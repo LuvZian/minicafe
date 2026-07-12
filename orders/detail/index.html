@@ -1,0 +1,71 @@
+﻿<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Order Detail | Minicafe</title>
+    <link rel="stylesheet" href="../../css/variables.css" />
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="../../index.html">Minicafe</a>
+      <nav class="site-nav" aria-label="Customer navigation">
+        <a href="../../menus/list/index.html">Menu</a>
+        <a href="../../basket/list/index.html">Basket <span id="cart-count" class="cart-count">0</span></a>
+        <a href="../list/index.html" aria-current="page">Orders</a>
+        <a href="../../my/index.html">My</a>
+      </nav>
+    </header>
+
+    <main class="page-shell">
+      <a class="back-link" href="../list/index.html">Back to orders</a>
+
+      <section id="order-detail" class="detail-layout" hidden>
+        <aside class="receipt-card" aria-label="Order summary">
+          <p class="eyebrow dark">Receipt</p>
+          <h1 id="order-title">Order</h1>
+          <dl class="receipt-list">
+            <div>
+              <dt>Status</dt>
+              <dd id="order-status"></dd>
+            </div>
+            <div>
+              <dt>Ordered at</dt>
+              <dd id="order-date"></dd>
+            </div>
+            <div>
+              <dt>Items</dt>
+              <dd id="order-count"></dd>
+            </div>
+            <div>
+              <dt>Total</dt>
+              <dd id="order-total"></dd>
+            </div>
+          </dl>
+          <a class="primary-link" href="../../menus/list/index.html">Order more</a>
+        </aside>
+
+        <section class="items-panel" aria-label="Ordered menu items">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow dark">Items</p>
+              <h2>Ordered menu</h2>
+            </div>
+          </div>
+          <div id="items-list" class="items-list"></div>
+        </section>
+      </section>
+
+      <section id="not-found" class="not-found" hidden>
+        <h1>Order not found</h1>
+        <p>The order may have been removed or the link is incorrect.</p>
+        <a href="../list/index.html">View orders</a>
+      </section>
+    </main>
+
+    <script src="../../js/data.js"></script>
+    <script src="../../js/utils.js"></script>
+    <script src="./index.js"></script>
+  </body>
+</html>

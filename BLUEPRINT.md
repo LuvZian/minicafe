@@ -1,4 +1,4 @@
-# ☕ 카페 앱 - 프로젝트 청사진
+﻿# ☕ 카페 앱 - 프로젝트 청사진
 
 ## 📁 폴더 구조 (완전 코로케이션)
 
@@ -143,12 +143,12 @@ minicafe/
 
 ### 5단계: 고객 - 주문 관리 시스템
 
-- [ ] `orders/list/index.html` — 주문 내역 목록
-- [ ] `orders/list/index.css`
-- [ ] `orders/list/index.js`
-- [ ] `orders/detail/index.html` — 주문 상세
-- [ ] `orders/detail/index.css`
-- [ ] `orders/detail/index.js`
+- [x] `orders/list/index.html` — 주문 내역 목록
+- [x] `orders/list/index.css`
+- [x] `orders/list/index.js`
+- [x] `orders/detail/index.html` — 주문 상세
+- [x] `orders/detail/index.css`
+- [x] `orders/detail/index.js`
 
 ### 6단계: 고객 - 메인 페이지
 
