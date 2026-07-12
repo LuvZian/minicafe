@@ -1,7 +1,8 @@
 ﻿body {
   background:
-    linear-gradient(135deg, rgba(255, 250, 243, 0.96), rgba(247, 241, 232, 0.96) 50%, rgba(238, 229, 216, 0.96)),
-    repeating-linear-gradient(90deg, rgba(125, 146, 120, 0.05) 0 1px, transparent 1px 72px);
+    radial-gradient(circle at 12% 5%, rgba(217, 164, 65, 0.18), transparent 28%),
+    radial-gradient(circle at 82% 16%, rgba(125, 146, 120, 0.16), transparent 26%),
+    linear-gradient(135deg, #fffaf3 0%, #f7f1e8 52%, #efe2d4 100%);
 }
 
 .site-header {
@@ -14,9 +15,9 @@
   gap: var(--sp-md);
   min-height: 72px;
   padding: 0 clamp(var(--sp-md), 4vw, var(--sp-2xl));
-  background: rgba(255, 250, 243, 0.88);
-  border-bottom: 1px solid rgba(205, 189, 173, 0.7);
-  box-shadow: 0 8px 28px rgba(79, 58, 50, 0.05);
+  background: rgba(255, 250, 243, 0.86);
+  border-bottom: 1px solid rgba(205, 189, 173, 0.68);
+  box-shadow: 0 10px 28px rgba(79, 58, 50, 0.07);
   backdrop-filter: blur(14px);
 }
 
@@ -31,8 +32,8 @@
 
 .brand::before {
   content: '';
-  width: 12px;
-  height: 12px;
+  width: 13px;
+  height: 13px;
   background: var(--color-honey);
   border: 3px solid #fff4d7;
   border-radius: 999px;
@@ -45,8 +46,8 @@
   gap: var(--sp-sm);
   padding: 6px;
   color: var(--text-secondary);
-  background: rgba(255, 255, 255, 0.46);
-  border: 1px solid rgba(228, 215, 201, 0.82);
+  background: rgba(255, 255, 255, 0.54);
+  border: 1px solid rgba(228, 215, 201, 0.84);
   border-radius: 999px;
   font-size: var(--font-size-sm);
 }
@@ -94,27 +95,37 @@
 }
 
 .menu-hero {
+  position: relative;
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: minmax(0, 1fr) auto;
   gap: var(--sp-lg);
   align-items: end;
-  min-height: 280px;
+  min-height: 320px;
+  overflow: hidden;
   padding: var(--sp-xl);
+  color: var(--text-on-dark);
   background:
-    linear-gradient(135deg, rgba(255, 250, 243, 0.92), rgba(251, 246, 238, 0.78)),
-    repeating-linear-gradient(45deg, rgba(217, 164, 65, 0.08) 0 8px, transparent 8px 18px);
-  border: 1px solid var(--border-color);
+    linear-gradient(105deg, rgba(51, 42, 37, 0.84), rgba(79, 58, 50, 0.48)),
+    url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1600&q=80');
+  background-position: center;
+  background-size: cover;
+  border: 1px solid rgba(255, 250, 243, 0.5);
   border-radius: var(--border-radius-sm);
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow-lg);
+}
+
+.menu-hero > * {
+  position: relative;
+  z-index: 1;
 }
 
 .eyebrow {
   width: max-content;
   margin-bottom: var(--sp-sm);
-  padding: 5px 10px;
-  color: var(--color-sage-dark);
-  background: rgba(125, 146, 120, 0.13);
-  border: 1px solid rgba(125, 146, 120, 0.18);
+  padding: 6px 11px;
+  color: #fff8e8;
+  background: rgba(255, 250, 243, 0.18);
+  border: 1px solid rgba(255, 250, 243, 0.24);
   border-radius: 999px;
   font-size: var(--font-size-xs);
   font-weight: 900;
@@ -124,12 +135,13 @@
 .menu-hero h1 {
   max-width: 680px;
   margin-bottom: var(--sp-sm);
+  color: #fffaf3;
   font-size: clamp(38px, 7vw, 68px);
 }
 
 .hero-copy {
   max-width: 560px;
-  color: var(--text-secondary);
+  color: rgba(255, 250, 243, 0.86);
   font-size: var(--font-size-lg);
 }
 
@@ -138,7 +150,7 @@
   color: var(--text-on-dark);
   background: linear-gradient(135deg, var(--color-sage-dark), var(--color-sage));
   border: 0;
-  box-shadow: 0 10px 22px rgba(83, 102, 79, 0.18);
+  box-shadow: 0 10px 22px rgba(83, 102, 79, 0.2);
 }
 
 .menu-toolbar {
@@ -148,7 +160,7 @@
   align-items: center;
   margin: var(--sp-xl) 0 var(--sp-lg);
   padding: var(--sp-md);
-  background: rgba(255, 250, 243, 0.84);
+  background: rgba(255, 250, 243, 0.86);
   border: 1px solid rgba(228, 215, 201, 0.92);
   border-radius: var(--border-radius-sm);
   box-shadow: var(--shadow-sm);
@@ -158,7 +170,7 @@
   width: 100%;
   min-height: 46px;
   padding: 0 14px;
-  background: rgba(255, 255, 255, 0.86);
+  background: rgba(255, 255, 255, 0.92);
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius-sm);
 }
@@ -174,7 +186,7 @@
   min-height: 40px;
   padding: 8px 13px;
   color: var(--text-secondary);
-  background: rgba(255, 255, 255, 0.62);
+  background: rgba(255, 255, 255, 0.68);
   border: 1px solid transparent;
   border-radius: 999px;
   font-weight: 800;
@@ -204,17 +216,17 @@
 
 .menu-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-  gap: var(--sp-md);
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: var(--sp-lg);
 }
 
 .menu-card {
   display: grid;
   overflow: hidden;
-  background: rgba(255, 250, 243, 0.9);
+  background: rgba(255, 250, 243, 0.94);
   border: 1px solid rgba(228, 215, 201, 0.92);
   border-radius: var(--border-radius-sm);
-  box-shadow: 0 8px 20px rgba(79, 58, 50, 0.05);
+  box-shadow: 0 10px 24px rgba(79, 58, 50, 0.07);
   transition:
     transform var(--transition-fast),
     box-shadow var(--transition-fast),
@@ -222,19 +234,34 @@
 }
 
 .menu-card:hover {
-  transform: translateY(-3px);
+  transform: translateY(-4px);
   background: #fffdf8;
-  box-shadow: 0 14px 30px rgba(79, 58, 50, 0.09);
+  box-shadow: 0 18px 36px rgba(79, 58, 50, 0.12);
 }
 
 .menu-visual {
-  display: grid;
-  height: 148px;
-  place-items: center;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  height: 188px;
+  overflow: hidden;
+  padding: var(--sp-md);
   color: var(--text-on-dark);
-  background: linear-gradient(135deg, var(--tile-start), var(--tile-end));
-  font-size: var(--font-size-3xl);
+  background:
+    linear-gradient(180deg, rgba(51, 42, 37, 0.02), rgba(51, 42, 37, 0.58)),
+    var(--menu-image);
+  background-position: center;
+  background-size: cover;
+}
+
+.menu-visual span {
+  padding: 5px 10px;
+  background: rgba(51, 42, 37, 0.54);
+  border: 1px solid rgba(255, 250, 243, 0.26);
+  border-radius: 999px;
+  font-size: var(--font-size-xs);
   font-weight: 900;
+  backdrop-filter: blur(8px);
 }
 
 .menu-body {
@@ -287,7 +314,7 @@
   min-height: 280px;
   padding: var(--sp-xl);
   text-align: center;
-  background: rgba(255, 255, 255, 0.48);
+  background: rgba(255, 255, 255, 0.52);
   border: 1px dashed var(--border-strong);
   border-radius: var(--border-radius-sm);
 }
