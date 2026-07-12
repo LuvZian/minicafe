@@ -1,0 +1,63 @@
+﻿<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Orders | Minicafe</title>
+    <link rel="stylesheet" href="../../css/variables.css" />
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="../../index.html">Minicafe</a>
+      <nav class="site-nav" aria-label="Customer navigation">
+        <a href="../../menus/list/index.html">Menu</a>
+        <a href="../../basket/list/index.html">Basket <span id="cart-count" class="cart-count">0</span></a>
+        <a href="./index.html" aria-current="page">Orders</a>
+        <a href="../../my/index.html">My</a>
+      </nav>
+    </header>
+
+    <main class="page-shell">
+      <section class="orders-hero" aria-labelledby="page-title">
+        <div>
+          <p class="eyebrow">Order history</p>
+          <h1 id="page-title">Your cafe moments, neatly kept</h1>
+          <p class="hero-copy">Review recent orders, check their status, and open the receipt whenever you need it.</p>
+        </div>
+        <a class="hero-action" href="../../menus/list/index.html">Order more</a>
+      </section>
+
+      <section class="orders-panel" aria-label="Order history">
+        <div class="panel-head">
+          <div>
+            <p class="eyebrow dark">History</p>
+            <h2>Recent orders</h2>
+          </div>
+          <label class="filter-field">
+            <span class="sr-only">Filter by status</span>
+            <select id="status-filter" aria-label="Filter by status">
+              <option value="all">All status</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="result-line">
+          <span id="result-count">0 orders</span>
+          <span id="result-total">0원 total</span>
+        </div>
+
+        <div id="orders-list" class="orders-list"></div>
+        <div id="empty-state" class="empty-state" hidden>
+          <h2>No orders yet</h2>
+          <p>Your completed cafe orders will appear here.</p>
+          <a href="../../menus/list/index.html">Browse menu</a>
+        </div>
+      </section>
+    </main>
+
+    <script src="../../js/data.js"></script>
+    <script src="../../js/utils.js"></script>
+    <script src="./index.js"></script>
+  </body>
+</html>
