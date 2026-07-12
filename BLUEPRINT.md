@@ -152,9 +152,9 @@ minicafe/
 
 ### 6단계: 고객 - 메인 페이지
 
-- [ ] `index.html`
-- [ ] `index.css`
-- [ ] `index.js`
+- [x] `index.html`
+- [x] `index.css`
+- [x] `index.js`
 
 ### 7단계: 고객 - 마이페이지
 
