@@ -1,0 +1,59 @@
+﻿<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Menu | Minicafe</title>
+    <link rel="stylesheet" href="../../css/variables.css" />
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="../../index.html">Minicafe</a>
+      <nav class="site-nav" aria-label="Customer navigation">
+        <a href="../list/index.html" aria-current="page">Menu</a>
+        <a href="../../basket/list/index.html">Basket <span id="cart-count" class="cart-count">0</span></a>
+        <a href="../../orders/list/index.html">Orders</a>
+        <a href="../../my/index.html">My</a>
+      </nav>
+    </header>
+
+    <main class="page-shell">
+      <section class="menu-hero" aria-labelledby="page-title">
+        <div>
+          <p class="eyebrow">Today at Minicafe</p>
+          <h1 id="page-title">A soft break, one cup at a time</h1>
+          <p class="hero-copy">Pick a calm drink, a small dessert, or something warm from the bakery shelf.</p>
+        </div>
+        <a class="hero-action" href="../../basket/list/index.html">View basket</a>
+      </section>
+
+      <section class="menu-toolbar" aria-label="Menu filters">
+        <label class="search-field">
+          <span class="sr-only">Search menu</span>
+          <input id="search-input" type="search" placeholder="Search menu" autocomplete="off" />
+        </label>
+        <div id="category-tabs" class="category-tabs" role="tablist" aria-label="Categories"></div>
+      </section>
+
+      <section aria-live="polite">
+        <div class="result-line">
+          <span id="result-count">0 menus</span>
+          <span>Freshly listed for a quiet cafe moment</span>
+        </div>
+        <div id="menu-grid" class="menu-grid"></div>
+        <div id="empty-state" class="empty-state" hidden>
+          <h2>No menu found</h2>
+          <p>Try another keyword or category.</p>
+        </div>
+      </section>
+    </main>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <script src="../../js/data.js"></script>
+    <script src="../../js/utils.js"></script>
+    <script src="./index.js"></script>
+  </body>
+</html>
+

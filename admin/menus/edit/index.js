@@ -21,7 +21,7 @@ function renderNotFound() {
         <p>The menu may have been removed or the link is incorrect.</p>
       </div>
       <div class="form-actions">
-        <a class="secondary-link" href="./list.html">Go to list</a>
+        <a class="secondary-link" href="../list/index.html">Go to list</a>
       </div>
     </div>
   `;
@@ -91,7 +91,7 @@ function renderForm(item) {
 
         <div class="form-actions">
           <button class="primary-button" type="submit">Save changes</button>
-          <a class="secondary-link" href="./detail.html?id=${encodeURIComponent(item.id)}">Cancel</a>
+          <a class="secondary-link" href="../detail/index.html?id=${encodeURIComponent(item.id)}">Cancel</a>
         </div>
       </form>
     </section>
@@ -108,7 +108,7 @@ function renderForm(item) {
     }
 
     updateMenu(item.id, nextMenu);
-    window.location.href = `./detail.html?id=${encodeURIComponent(item.id)}`;
+    window.location.href = `../detail/index.html?id=${encodeURIComponent(item.id)}`;
   });
 }
 
@@ -117,4 +117,5 @@ if (!menu) {
 } else {
   renderForm(menu);
 }
+
 

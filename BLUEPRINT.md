@@ -3,76 +3,81 @@
 ## 📁 폴더 구조 (완전 코로케이션)
 
 ```
-cafe-app/
-│
-├── index.html                        # 메인 (고객)
-├── index.css                         # 메인 페이지 스타일
-└── index.js                          # 메인 페이지 로직
-│
-├── 👤 고객 - 메뉴
-│   └── menus/
-│       ├── list.html                 # 메뉴 목록
-│       ├── list.css
-│       ├── list.js
-│       ├── detail.html               # 메뉴 상세
-│       ├── detail.css
-│       └── detail.js
-│
-├── 👤 고객 - 마이페이지
-│   └── my/
-│       ├── index.html                # 마이페이지 메인
-│       ├── index.css
-│       └── index.js
-│
-├── 👤 고객 - 장바구니
-│   └── basket/
-│       ├── list.html                 # 장바구니
-│       ├── list.css
-│       └── list.js
-│
-├── 👤 고객 - 주문 내역
-│   └── orders/
-│       ├── list.html                 # 주문 내역 목록
-│       ├── list.css
-│       ├── list.js
-│       ├── detail.html               # 주문 상세
-│       ├── detail.css
-│       └── detail.js                   
-│
-├── 🔴 관리자/사장
-│   └── admin/
-│       ├── index.html                # 대시보드
-│       ├── index.css
-│       ├── index.js
-│       │
-│       ├── menus/
-│       │   ├── list.html             # 메뉴 목록
-│       │   ├── list.css
-│       │   ├── list.js
-│       │   ├── detail.html           # 메뉴 상세
-│       │   ├── detail.css
-│       │   ├── detail.js
-│       │   ├── create.html           # 메뉴 추가
-│       │   ├── create.css
-│       │   ├── create.js
-│       │   ├── edit.html             # 메뉴 수정
-│       │   ├── edit.css
-│       │   └── edit.js
-│       │
-│       └── orders/
-│           ├── list.html             # 주문 목록
-│           ├── list.css
-│           ├── list.js
-│           ├── detail.html           # 주문 상세
-│           ├── detail.css
-│           └── detail.js
-│
-├── 📦 공유 자원
-│   ├── css/
-│   │   └── variables.css             # CSS 변수 (전역)
-│   └── js/
-│       ├── data.js                   # 메뉴/카테고리 데이터
-│       └── utils.js                  # 공통 유틸리티
+minicafe/
+|
+|-- index.html
+|-- index.css
+|-- index.js
+|
+|-- menus/
+|   |-- list/
+|   |   |-- index.html
+|   |   |-- index.css
+|   |   `-- index.js
+|   `-- detail/
+|       |-- index.html
+|       |-- index.css
+|       `-- index.js
+|
+|-- basket/
+|   `-- list/
+|       |-- index.html
+|       |-- index.css
+|       `-- index.js
+|
+|-- orders/
+|   |-- list/
+|   |   |-- index.html
+|   |   |-- index.css
+|   |   `-- index.js
+|   `-- detail/
+|       |-- index.html
+|       |-- index.css
+|       `-- index.js
+|
+|-- my/
+|   |-- index.html
+|   |-- index.css
+|   `-- index.js
+|
+|-- admin/
+|   |-- index.html
+|   |-- index.css
+|   |-- index.js
+|   |
+|   |-- menus/
+|   |   |-- list/
+|   |   |   |-- index.html
+|   |   |   |-- index.css
+|   |   |   `-- index.js
+|   |   |-- detail/
+|   |   |   |-- index.html
+|   |   |   |-- index.css
+|   |   |   `-- index.js
+|   |   |-- create/
+|   |   |   |-- index.html
+|   |   |   |-- index.css
+|   |   |   `-- index.js
+|   |   `-- edit/
+|   |       |-- index.html
+|   |       |-- index.css
+|   |       `-- index.js
+|   |
+|   `-- orders/
+|       |-- list/
+|       |   |-- index.html
+|       |   |-- index.css
+|       |   `-- index.js
+|       `-- detail/
+|           |-- index.html
+|           |-- index.css
+|           `-- index.js
+|
+|-- css/
+|   `-- variables.css
+`-- js/
+    |-- data.js
+    `-- utils.js
 ```
 
 ## 👥 역할별 기능
@@ -108,42 +113,42 @@ cafe-app/
 
 ### 2단계: 관리자 - 메뉴 관리 시스템
 
-- [x] `admin/menus/list.html` — 메뉴 목록
-- [x] `admin/menus/list.css`
-- [x] `admin/menus/list.js`
-- [x] `admin/menus/detail.html` — 메뉴 상세
-- [x] `admin/menus/detail.css`
-- [x] `admin/menus/detail.js`
-- [x] `admin/menus/create.html` — 메뉴 추가
-- [x] `admin/menus/create.css`
-- [x] `admin/menus/create.js`
-- [x] `admin/menus/edit.html` — 메뉴 수정
-- [x] `admin/menus/edit.css`
-- [x] `admin/menus/edit.js`
+- [x] `admin/menus/list/index.html` — 메뉴 목록
+- [x] `admin/menus/list/index.css`
+- [x] `admin/menus/list/index.js`
+- [x] `admin/menus/detail/index.html` — 메뉴 상세
+- [x] `admin/menus/detail/index.css`
+- [x] `admin/menus/detail/index.js`
+- [x] `admin/menus/create/index.html` — 메뉴 추가
+- [x] `admin/menus/create/index.css`
+- [x] `admin/menus/create/index.js`
+- [x] `admin/menus/edit/index.html` — 메뉴 수정
+- [x] `admin/menus/edit/index.css`
+- [x] `admin/menus/edit/index.js`
 
 ### 3단계: 고객 - 메뉴 조회 시스템
 
-- [ ] `menus/list.html` — 메뉴 목록
-- [ ] `menus/list.css`
-- [ ] `menus/list.js`
-- [ ] `menus/detail.html` — 메뉴 상세
-- [ ] `menus/detail.css`
-- [ ] `menus/detail.js`
+- [x] `menus/list/index.html` — 메뉴 목록
+- [x] `menus/list/index.css`
+- [x] `menus/list/index.js`
+- [x] `menus/detail/index.html` — 메뉴 상세
+- [x] `menus/detail/index.css`
+- [x] `menus/detail/index.js`
 
 ### 4단계: 고객 - 장바구니 관리 시스템
 
-- [ ] `basket/list.html` — 장바구니
-- [ ] `basket/list.css`
-- [ ] `basket/list.js`
+- [ ] `basket/list/index.html` — 장바구니
+- [ ] `basket/list/index.css`
+- [ ] `basket/list/index.js`
 
 ### 5단계: 고객 - 주문 관리 시스템
 
-- [ ] `orders/list.html` — 주문 내역 목록
-- [ ] `orders/list.css`
-- [ ] `orders/list.js`
-- [ ] `orders/detail.html` — 주문 상세
-- [ ] `orders/detail.css`
-- [ ] `orders/detail.js`
+- [ ] `orders/list/index.html` — 주문 내역 목록
+- [ ] `orders/list/index.css`
+- [ ] `orders/list/index.js`
+- [ ] `orders/detail/index.html` — 주문 상세
+- [ ] `orders/detail/index.css`
+- [ ] `orders/detail/index.js`
 
 ### 6단계: 고객 - 메인 페이지
 
@@ -162,9 +167,9 @@ cafe-app/
 - [ ] `admin/index.html` — 대시보드
 - [ ] `admin/index.css`
 - [ ] `admin/index.js`
-- [ ] `admin/orders/list.html` — 주문 목록
-- [ ] `admin/orders/list.css`
-- [ ] `admin/orders/list.js`
-- [ ] `admin/orders/detail.html` — 주문 상세
-- [ ] `admin/orders/detail.css`
-- [ ] `admin/orders/detail.js`
+- [ ] `admin/orders/list/index.html` — 주문 목록
+- [ ] `admin/orders/list/index.css`
+- [ ] `admin/orders/list/index.js`
+- [ ] `admin/orders/detail/index.html` — 주문 상세
+- [ ] `admin/orders/detail/index.css`
+- [ ] `admin/orders/detail/index.js`
