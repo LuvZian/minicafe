@@ -1,0 +1,29 @@
+﻿<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Menu Detail | Minicafe</title>
+    <link rel="stylesheet" href="../../css/variables.css" />
+    <link rel="stylesheet" href="./detail.css" />
+  </head>
+  <body>
+    <header class="admin-header">
+      <a class="brand" href="../../index.html">Minicafe</a>
+      <nav class="admin-nav" aria-label="Admin navigation">
+        <a href="../index.html">Dashboard</a>
+        <a href="./list.html" aria-current="page">Menus</a>
+        <a href="../orders/list.html">Orders</a>
+      </nav>
+    </header>
+
+    <main class="page-shell">
+      <a class="back-link" href="./list.html">Back to list</a>
+      <section id="detail-root" class="detail-root" aria-live="polite"></section>
+    </main>
+
+    <script src="../../js/data.js"></script>
+    <script src="../../js/utils.js"></script>
+    <script src="./detail.js"></script>
+  </body>
+</html>
