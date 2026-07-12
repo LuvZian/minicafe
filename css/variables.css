@@ -1,0 +1,135 @@
+﻿:root {
+  --color-cream: #f7f1e8;
+  --color-paper: #fffaf3;
+  --color-surface: #ffffff;
+  --color-surface-soft: #fbf6ee;
+  --color-sage: #7d9278;
+  --color-sage-dark: #53664f;
+  --color-clay: #b8795c;
+  --color-clay-soft: #e7c9b8;
+  --color-coffee: #4f3a32;
+  --color-coffee-soft: #7b6258;
+  --color-honey: #d9a441;
+
+  --text-primary: #332a25;
+  --text-secondary: #675850;
+  --text-muted: #96877d;
+  --text-on-dark: #fffaf3;
+
+  --bg-page: var(--color-cream);
+  --bg-card: rgba(255, 250, 243, 0.86);
+  --bg-card-solid: #fffaf3;
+  --bg-hover: #fffdf8;
+  --bg-overlay: rgba(51, 42, 37, 0.36);
+
+  --border-color: #e4d7c9;
+  --border-strong: #cdbdad;
+  --border-radius: 14px;
+  --border-radius-sm: 8px;
+  --border-radius-lg: 20px;
+
+  --shadow-sm: 0 2px 8px rgba(79, 58, 50, 0.06);
+  --shadow-md: 0 10px 28px rgba(79, 58, 50, 0.1);
+  --shadow-lg: 0 18px 48px rgba(79, 58, 50, 0.14);
+
+  --sp-xs: 4px;
+  --sp-sm: 8px;
+  --sp-md: 16px;
+  --sp-lg: 24px;
+  --sp-xl: 32px;
+  --sp-2xl: 48px;
+  --sp-3xl: 64px;
+
+  --font-body: Arial, 'Noto Sans KR', sans-serif;
+  --font-heading: Arial, 'Noto Sans KR', sans-serif;
+  --font-size-xs: 12px;
+  --font-size-sm: 14px;
+  --font-size-base: 16px;
+  --font-size-lg: 18px;
+  --font-size-xl: 24px;
+  --font-size-2xl: 32px;
+  --font-size-3xl: 42px;
+
+  --focus-ring: 0 0 0 4px rgba(125, 146, 120, 0.24);
+  --transition-fast: 160ms ease;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  min-width: 320px;
+  background: var(--bg-page);
+}
+
+body {
+  min-height: 100vh;
+  color: var(--text-primary);
+  background: var(--bg-page);
+  font-family: var(--font-body);
+  font-size: var(--font-size-base);
+  line-height: 1.6;
+}
+
+img,
+picture,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+input,
+textarea,
+select {
+  color: var(--text-primary);
+}
+
+:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--text-primary);
+  font-family: var(--font-heading);
+  line-height: 1.2;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
