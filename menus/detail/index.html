@@ -5,25 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Menu Detail | Minicafe</title>
     <link rel="stylesheet" href="../../css/variables.css" />
-    <link rel="stylesheet" href="./detail.css" />
+    <link rel="stylesheet" href="./index.css" />
   </head>
   <body>
-    <header class="admin-header">
+    <header class="site-header">
       <a class="brand" href="../../index.html">Minicafe</a>
-      <nav class="admin-nav" aria-label="Admin navigation">
-        <a href="../index.html">Dashboard</a>
-        <a href="./list.html" aria-current="page">Menus</a>
-        <a href="../orders/list.html">Orders</a>
+      <nav class="site-nav" aria-label="Customer navigation">
+        <a href="../list/index.html">Menu</a>
+        <a href="../../basket/list/index.html">Basket</a>
+        <a href="../../orders/list/index.html">Orders</a>
+        <a href="../../my/index.html">My</a>
       </nav>
     </header>
 
     <main class="page-shell">
-      <a class="back-link" href="./list.html">Back to list</a>
+      <a class="back-link" href="../list/index.html">Back to menu</a>
       <section id="detail-root" class="detail-root" aria-live="polite"></section>
     </main>
 
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
     <script src="../../js/data.js"></script>
     <script src="../../js/utils.js"></script>
-    <script src="./detail.js"></script>
+    <script src="./index.js"></script>
   </body>
 </html>
+
