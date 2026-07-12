@@ -11,25 +11,35 @@ const searchInput = $('#search-input');
 const cartCount = $('#cart-count');
 const toast = $('#toast');
 
-const TILE_COLORS = {
-  coffee: ['#8b6b5b', '#4f3a32'],
-  tea: ['#9cad8f', '#53664f'],
-  ade: ['#e6bf6a', '#b8795c'],
-  dessert: ['#d8a6a1', '#8b6b5b'],
-  bakery: ['#e5c28e', '#b8795c']
+const MENU_IMAGES = {
+  1: 'https://images.unsplash.com/photo-1570968915860-54d5c301fa9f?auto=format&fit=crop&w=900&q=80',
+  2: 'https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&w=900&q=80',
+  3: 'https://images.unsplash.com/photo-1561047029-3000c68339ca?auto=format&fit=crop&w=900&q=80',
+  4: 'https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=900&q=80',
+  5: 'https://images.unsplash.com/photo-1597318181409-cf64d0b5d8a2?auto=format&fit=crop&w=900&q=80',
+  6: 'https://images.unsplash.com/photo-1515823064-d6e0c04616a7?auto=format&fit=crop&w=900&q=80',
+  7: 'https://images.unsplash.com/photo-1621263764928-df1444c5e859?auto=format&fit=crop&w=900&q=80',
+  8: 'https://images.unsplash.com/photo-1622597467836-f3285f2131b8?auto=format&fit=crop&w=900&q=80',
+  9: 'https://images.unsplash.com/photo-1621303837174-89787a7d4729?auto=format&fit=crop&w=900&q=80',
+  10: 'https://marketlanemadras.com/cdn/shop/products/IMG_1907_85791865-8441-4fb0-abc1-5d747e6da6f7_900x900.jpg?v=1594190467',
+  11: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=900&q=80',
+  12: 'https://images.unsplash.com/photo-1608198093002-ad4e005484ec?auto=format&fit=crop&w=900&q=80'
+};
+
+const CATEGORY_IMAGES = {
+  coffee: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=900&q=80',
+  tea: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&w=900&q=80',
+  ade: 'https://images.unsplash.com/photo-1621263764928-df1444c5e859?auto=format&fit=crop&w=900&q=80',
+  dessert: 'https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=900&q=80',
+  bakery: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=900&q=80'
 };
 
 function updateCartCount() {
   cartCount.textContent = getCart().reduce((sum, item) => sum + item.quantity, 0);
 }
 
-function menuInitial(name) {
-  return escapeHtml(name.slice(0, 1).toUpperCase());
-}
-
-function getTileStyle(menu) {
-  const colors = TILE_COLORS[menu.category] || ['#8b6b5b', '#4f3a32'];
-  return `--tile-start: ${colors[0]}; --tile-end: ${colors[1]};`;
+function getMenuImage(menu) {
+  return menu.image || MENU_IMAGES[menu.id] || CATEGORY_IMAGES[menu.category] || CATEGORY_IMAGES.coffee;
 }
 
 function getFilteredMenus() {
@@ -79,11 +89,11 @@ function renderMenus() {
       <article class="menu-card">
         <a
           class="menu-visual"
-          style="${getTileStyle(menu)}"
+          style="--menu-image: url('${escapeHtml(getMenuImage(menu))}')"
           href="../detail/index.html?id=${encodeURIComponent(menu.id)}"
           aria-label="${escapeHtml(menu.name)} detail"
         >
-          ${menuInitial(menu.name)}
+          <span>${escapeHtml(getCategoryName(menu.category))}</span>
         </a>
         <div class="menu-body">
           <div class="menu-meta">
