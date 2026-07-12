@@ -137,9 +137,9 @@ minicafe/
 
 ### 4단계: 고객 - 장바구니 관리 시스템
 
-- [ ] `basket/list/index.html` — 장바구니
-- [ ] `basket/list/index.css`
-- [ ] `basket/list/index.js`
+- [x] `basket/list/index.html` — 장바구니
+- [x] `basket/list/index.css`
+- [x] `basket/list/index.js`
 
 ### 5단계: 고객 - 주문 관리 시스템
 
