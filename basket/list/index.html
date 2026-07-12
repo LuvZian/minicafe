@@ -1,0 +1,73 @@
+﻿<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Basket | Minicafe</title>
+    <link rel="stylesheet" href="../../css/variables.css" />
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="../../index.html">Minicafe</a>
+      <nav class="site-nav" aria-label="Customer navigation">
+        <a href="../../menus/list/index.html">Menu</a>
+        <a href="./index.html" aria-current="page">Basket <span id="cart-count" class="cart-count">0</span></a>
+        <a href="../../orders/list/index.html">Orders</a>
+        <a href="../../my/index.html">My</a>
+      </nav>
+    </header>
+
+    <main class="page-shell">
+      <section class="basket-hero" aria-labelledby="page-title">
+        <div>
+          <p class="eyebrow">Your cafe tray</p>
+          <h1 id="page-title">Almost ready for checkout</h1>
+          <p class="hero-copy">Check your drinks and treats, adjust quantities, and place the order when it feels right.</p>
+        </div>
+        <a class="hero-action" href="../../menus/list/index.html">Add more</a>
+      </section>
+
+      <section class="basket-layout" aria-live="polite">
+        <div class="basket-panel">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow dark">Basket</p>
+              <h2>Selected menu</h2>
+            </div>
+            <button id="clear-button" class="ghost-button" type="button">Clear all</button>
+          </div>
+
+          <div id="basket-list" class="basket-list"></div>
+          <div id="empty-state" class="empty-state" hidden>
+            <h2>Your basket is empty</h2>
+            <p>Pick something warm or sweet from the menu.</p>
+            <a href="../../menus/list/index.html">Browse menu</a>
+          </div>
+        </div>
+
+        <aside class="summary-panel" aria-label="Basket summary">
+          <p class="eyebrow dark">Summary</p>
+          <dl class="summary-list">
+            <div>
+              <dt>Items</dt>
+              <dd id="summary-count">0</dd>
+            </div>
+            <div>
+              <dt>Total</dt>
+              <dd id="summary-total">0원</dd>
+            </div>
+          </dl>
+          <button id="order-button" class="order-button" type="button">Place order</button>
+          <p id="summary-note" class="summary-note">You can still adjust quantities.</p>
+        </aside>
+      </section>
+    </main>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <script src="../../js/data.js"></script>
+    <script src="../../js/utils.js"></script>
+    <script src="./index.js"></script>
+  </body>
+</html>
