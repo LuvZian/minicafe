@@ -1,0 +1,62 @@
+﻿<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Orders | Minicafe</title>
+    <link rel="stylesheet" href="/css/variables.css" />
+    <link rel="stylesheet" href="/admin/orders/list/index.css" />
+  </head>
+  <body>
+    <header class="admin-header">
+      <a class="brand" href="/">Minicafe</a>
+      <nav class="admin-nav" aria-label="Admin navigation">
+        <a href="/admin/">Dashboard</a>
+        <a href="/admin/menus/list/">Menus</a>
+        <a href="/admin/orders/list/" aria-current="page">Orders</a>
+      </nav>
+    </header>
+
+    <main class="page-shell">
+      <section class="page-head" aria-labelledby="page-title">
+        <div>
+          <p class="eyebrow">Order desk</p>
+          <h1 id="page-title">Manage customer orders</h1>
+          <p class="head-copy">Filter incoming orders, review tickets, and keep each status up to date.</p>
+        </div>
+      </section>
+
+      <section class="toolbar" aria-label="Order filters">
+        <label class="field">
+          <span>Status</span>
+          <select id="status-filter">
+            <option value="all">All status</option>
+          </select>
+        </label>
+        <label class="field">
+          <span>Search</span>
+          <input id="search-input" type="search" placeholder="Order id or menu name" autocomplete="off" />
+        </label>
+      </section>
+
+      <section class="orders-panel" aria-live="polite">
+        <div class="panel-head">
+          <div>
+            <p class="eyebrow dark">Orders</p>
+            <h2>Order list</h2>
+          </div>
+          <span id="result-count">0 orders</span>
+        </div>
+        <div id="orders-list" class="orders-list"></div>
+        <div id="empty-state" class="empty-state" hidden>
+          <h2>No orders found</h2>
+          <p>Try another status or keyword.</p>
+        </div>
+      </section>
+    </main>
+
+    <script src="/js/data.js"></script>
+    <script src="/js/utils.js"></script>
+    <script src="/admin/orders/list/index.js"></script>
+  </body>
+</html>

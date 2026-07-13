@@ -1,0 +1,75 @@
+﻿<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Order Detail | Minicafe</title>
+    <link rel="stylesheet" href="/css/variables.css" />
+    <link rel="stylesheet" href="/admin/orders/detail/index.css" />
+  </head>
+  <body>
+    <header class="admin-header">
+      <a class="brand" href="/">Minicafe</a>
+      <nav class="admin-nav" aria-label="Admin navigation">
+        <a href="/admin/">Dashboard</a>
+        <a href="/admin/menus/list/">Menus</a>
+        <a href="/admin/orders/list/" aria-current="page">Orders</a>
+      </nav>
+    </header>
+
+    <main class="page-shell">
+      <a class="back-link" href="/admin/orders/list/">Back to orders</a>
+
+      <section id="order-detail" class="detail-layout" hidden>
+        <aside class="status-panel" aria-label="Order status">
+          <p class="eyebrow dark">Ticket</p>
+          <h1 id="order-title">Order</h1>
+          <dl class="summary-list">
+            <div>
+              <dt>Status</dt>
+              <dd id="order-status"></dd>
+            </div>
+            <div>
+              <dt>Ordered at</dt>
+              <dd id="order-date"></dd>
+            </div>
+            <div>
+              <dt>Items</dt>
+              <dd id="order-count"></dd>
+            </div>
+            <div>
+              <dt>Total</dt>
+              <dd id="order-total"></dd>
+            </div>
+          </dl>
+          <label class="field">
+            <span>Update status</span>
+            <select id="status-select"></select>
+          </label>
+          <button id="save-status" class="primary-button" type="button">Save status</button>
+          <p id="status-message" class="status-message" role="status" aria-live="polite"></p>
+        </aside>
+
+        <section class="items-panel" aria-label="Ordered items">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow dark">Items</p>
+              <h2>Customer order</h2>
+            </div>
+          </div>
+          <div id="items-list" class="items-list"></div>
+        </section>
+      </section>
+
+      <section id="not-found" class="not-found" hidden>
+        <h1>Order not found</h1>
+        <p>The order may have been removed or the link is incorrect.</p>
+        <a href="/admin/orders/list/">View orders</a>
+      </section>
+    </main>
+
+    <script src="/js/data.js"></script>
+    <script src="/js/utils.js"></script>
+    <script src="/admin/orders/detail/index.js"></script>
+  </body>
+</html>
