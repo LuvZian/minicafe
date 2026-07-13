@@ -4,17 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Orders | Minicafe</title>
-    <link rel="stylesheet" href="../../css/variables.css" />
-    <link rel="stylesheet" href="./index.css" />
+    <link rel="stylesheet" href="/css/variables.css" />
+    <link rel="stylesheet" href="/orders/list/index.css" />
   </head>
   <body>
     <header class="site-header">
-      <a class="brand" href="../../index.html">Minicafe</a>
+      <a class="brand" href="/">Minicafe</a>
       <nav class="site-nav" aria-label="Customer navigation">
-        <a href="../../menus/list/index.html">Menu</a>
-        <a href="../../basket/list/index.html">Basket <span id="cart-count" class="cart-count">0</span></a>
-        <a href="./index.html" aria-current="page">Orders</a>
-        <a href="../../my/index.html">My</a>
+        <a href="/menus/list/">Menu</a>
+        <a href="/basket/list/">Basket <span id="cart-count" class="cart-count">0</span></a>
+        <a href="/orders/list/" aria-current="page">Orders</a>
+        <a href="/my/">My</a>
       </nav>
     </header>
 
@@ -25,7 +25,7 @@
           <h1 id="page-title">Your cafe moments, neatly kept</h1>
           <p class="hero-copy">Review recent orders, check their status, and open the receipt whenever you need it.</p>
         </div>
-        <a class="hero-action" href="../../menus/list/index.html">Order more</a>
+        <a class="hero-action" href="/menus/list/">Order more</a>
       </section>
 
       <section class="orders-panel" aria-label="Order history">
@@ -51,13 +51,13 @@
         <div id="empty-state" class="empty-state" hidden>
           <h2>No orders yet</h2>
           <p>Your completed cafe orders will appear here.</p>
-          <a href="../../menus/list/index.html">Browse menu</a>
+          <a href="/menus/list/">Browse menu</a>
         </div>
       </section>
     </main>
 
-    <script src="../../js/data.js"></script>
-    <script src="../../js/utils.js"></script>
-    <script src="./index.js"></script>
+    <script src="/js/data.js"></script>
+    <script src="/js/utils.js"></script>
+    <script src="/orders/list/index.js"></script>
   </body>
 </html>

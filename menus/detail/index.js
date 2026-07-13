@@ -48,7 +48,7 @@ function renderNotFound() {
     <div class="not-found">
       <h1>Menu not found</h1>
       <p>The menu may have been removed or the link is incorrect.</p>
-      <a href="../list/index.html">Go to menu</a>
+      <a href="/menus/list/">Go to menu</a>
     </div>
   `;
 }
@@ -81,7 +81,7 @@ function renderDetail(item) {
             </div>
           </div>
           <button class="primary-button" type="button" id="add-button">Add to basket</button>
-          <a class="secondary-link" href="../list/index.html">Keep browsing</a>
+          <a class="secondary-link" href="/menus/list/">Keep browsing</a>
         </div>
       </div>
     </article>

@@ -59,8 +59,8 @@ function renderMenus() {
         </div>
         <strong class="price">${formatPrice(menu.price)}</strong>
         <div class="row-actions">
-          <a class="secondary-link" href="../detail/index.html?id=${encodeURIComponent(menu.id)}">Detail</a>
-          <a class="secondary-link" href="../edit/index.html?id=${encodeURIComponent(menu.id)}">Edit</a>
+          <a class="secondary-link" href="/admin/menus/detail/?id=${encodeURIComponent(menu.id)}">Detail</a>
+          <a class="secondary-link" href="/admin/menus/edit/?id=${encodeURIComponent(menu.id)}">Edit</a>
           <button class="danger-button" type="button" data-delete-id="${escapeHtml(menu.id)}">Delete</button>
         </div>
       </article>

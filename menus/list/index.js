@@ -90,7 +90,7 @@ function renderMenus() {
         <a
           class="menu-visual"
           style="--menu-image: url('${escapeHtml(getMenuImage(menu))}')"
-          href="../detail/index.html?id=${encodeURIComponent(menu.id)}"
+          href="/menus/detail/?id=${encodeURIComponent(menu.id)}"
           aria-label="${escapeHtml(menu.name)} detail"
         >
           <span>${escapeHtml(getCategoryName(menu.category))}</span>
@@ -103,7 +103,7 @@ function renderMenus() {
           <h2 class="menu-title">${escapeHtml(menu.name)}</h2>
           <p class="menu-description">${escapeHtml(menu.description)}</p>
           <div class="menu-actions">
-            <a class="detail-link" href="../detail/index.html?id=${encodeURIComponent(menu.id)}">Detail</a>
+            <a class="detail-link" href="/menus/detail/?id=${encodeURIComponent(menu.id)}">Detail</a>
             <button class="cart-button" type="button" data-add-to-cart="${escapeHtml(menu.id)}">Add</button>
           </div>
         </div>

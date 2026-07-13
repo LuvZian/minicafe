@@ -4,22 +4,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Order Detail | Minicafe</title>
-    <link rel="stylesheet" href="../../css/variables.css" />
-    <link rel="stylesheet" href="./index.css" />
+    <link rel="stylesheet" href="/css/variables.css" />
+    <link rel="stylesheet" href="/orders/detail/index.css" />
   </head>
   <body>
     <header class="site-header">
-      <a class="brand" href="../../index.html">Minicafe</a>
+      <a class="brand" href="/">Minicafe</a>
       <nav class="site-nav" aria-label="Customer navigation">
-        <a href="../../menus/list/index.html">Menu</a>
-        <a href="../../basket/list/index.html">Basket <span id="cart-count" class="cart-count">0</span></a>
-        <a href="../list/index.html" aria-current="page">Orders</a>
-        <a href="../../my/index.html">My</a>
+        <a href="/menus/list/">Menu</a>
+        <a href="/basket/list/">Basket <span id="cart-count" class="cart-count">0</span></a>
+        <a href="/orders/list/" aria-current="page">Orders</a>
+        <a href="/my/">My</a>
       </nav>
     </header>
 
     <main class="page-shell">
-      <a class="back-link" href="../list/index.html">Back to orders</a>
+      <a class="back-link" href="/orders/list/">Back to orders</a>
 
       <section id="order-detail" class="detail-layout" hidden>
         <aside class="receipt-card" aria-label="Order summary">
@@ -43,7 +43,7 @@
               <dd id="order-total"></dd>
             </div>
           </dl>
-          <a class="primary-link" href="../../menus/list/index.html">Order more</a>
+          <a class="primary-link" href="/menus/list/">Order more</a>
         </aside>
 
         <section class="items-panel" aria-label="Ordered menu items">
@@ -60,12 +60,12 @@
       <section id="not-found" class="not-found" hidden>
         <h1>Order not found</h1>
         <p>The order may have been removed or the link is incorrect.</p>
-        <a href="../list/index.html">View orders</a>
+        <a href="/orders/list/">View orders</a>
       </section>
     </main>
 
-    <script src="../../js/data.js"></script>
-    <script src="../../js/utils.js"></script>
-    <script src="./index.js"></script>
+    <script src="/js/data.js"></script>
+    <script src="/js/utils.js"></script>
+    <script src="/orders/detail/index.js"></script>
   </body>
 </html>

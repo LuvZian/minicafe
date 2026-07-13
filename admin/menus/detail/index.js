@@ -11,7 +11,7 @@ function renderNotFound() {
     <div class="not-found">
       <h1>Menu not found</h1>
       <p>The menu may have been removed or the link is incorrect.</p>
-      <a href="../list/index.html">Go to list</a>
+      <a href="/admin/menus/list/">Go to list</a>
     </div>
   `;
 }
@@ -35,8 +35,8 @@ function renderDetail(item) {
         </div>
         <div class="detail-price">${formatPrice(item.price)}</div>
         <div class="detail-actions">
-          <a class="primary-link" href="../edit/index.html?id=${encodeURIComponent(item.id)}">Edit</a>
-          <a class="secondary-link" href="../list/index.html">List</a>
+          <a class="primary-link" href="/admin/menus/edit/?id=${encodeURIComponent(item.id)}">Edit</a>
+          <a class="secondary-link" href="/admin/menus/list/">List</a>
           <button class="danger-button" type="button" id="delete-button">Delete</button>
         </div>
       </div>
@@ -46,7 +46,7 @@ function renderDetail(item) {
   $('#delete-button').addEventListener('click', () => {
     if (window.confirm(`${item.name} 메뉴를 삭제할까요?`)) {
       deleteMenu(item.id);
-      window.location.href = '../list/index.html';
+      window.location.href = '/admin/menus/list/';
     }
   });
 }
