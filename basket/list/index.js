@@ -1,4 +1,4 @@
-renderCustomerNav();
+﻿renderCustomerNav();
 const currentUser = requireAuth('customer');
 if (!currentUser) throw new Error('Authentication required');
 const basketList = $('#basket-list');
@@ -99,11 +99,11 @@ function renderBasket() {
     (item) => {
       const menu = getMenuForCartItem(item);
       return `
-        <article class="basket-item" data-menu-id="${escapeHtml(item.menuId)}" data-season="${escapeHtml(menu.category)}">
+        <article class="basket-item" data-cart-item-id="${escapeHtml(item.cartItemId || item.menuId)}" data-season="${escapeHtml(menu.category)}">
           <div class="item-image" style="--menu-image: url('${escapeHtml(getMenuImage(item))}')" aria-hidden="true"></div>
           <div>
-            <p class="item-meta">${escapeHtml(getCategoryName(menu.category))} · ${formatPrice(item.price)}</p>
-            <h3 class="item-name">${escapeHtml(item.name)}</h3>
+            <p class="item-meta">${escapeHtml(getCategoryName(menu.category))} · ${escapeHtml(getMenuKindName(item.kind || getMenuKind(menu)))} · ${formatPrice(item.price)}</p>
+            <h3 class="item-name">${escapeHtml(item.name)}</h3>            ${getMenuOptionsSummary(item.options) ? `<p class="item-option">${escapeHtml(getMenuOptionsSummary(item.options))}</p>` : ''}
             <p class="item-total">${formatPrice(item.price * item.quantity)}</p>
           </div>
           <div class="item-controls">
@@ -115,12 +115,12 @@ function renderBasket() {
                 max="99"
                 value="${escapeHtml(item.quantity)}"
                 inputmode="numeric"
-                data-quantity-input="${escapeHtml(item.menuId)}"
+                data-quantity-input="${escapeHtml(item.cartItemId || item.menuId)}"
                 aria-label="수량"
               />
               <button type="button" data-step="1" aria-label="수량 늘리기">+</button>
             </div>
-            <button class="remove-button" type="button" data-remove="${escapeHtml(item.menuId)}">삭제</button>
+            <button class="remove-button" type="button" data-remove="${escapeHtml(item.cartItemId || item.menuId)}">삭제</button>
           </div>
         </article>
       `;
@@ -145,7 +145,7 @@ basketList.addEventListener('click', (event) => {
 
   const input = $('[data-quantity-input]', itemEl);
   const nextQuantity = normalizeQuantity(normalizeQuantity(input.value) + Number(stepButton.dataset.step));
-  updateCartQuantity(itemEl.dataset.menuId, nextQuantity);
+  updateCartQuantity(itemEl.dataset.cartItemId, nextQuantity);
   renderBasket();
 });
 

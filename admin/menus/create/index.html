@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
@@ -34,6 +34,19 @@
           <label class="field">
             <span>계절</span>
             <select id="category" name="category" required></select>
+          </label>
+
+          <label class="field">
+            <span>관리자 카테고리</span>
+            <select id="kind" name="kind" required></select>
+          </label>
+          <label class="field field-wide" id="temperature-mode-field">
+            <span>음료 온도 설정</span>
+            <select id="temperature-mode" name="temperatureMode">
+              <option value="both">Hot / Ice 선택 가능</option>
+              <option value="hotOnly">Hot only</option>
+              <option value="iceOnly">Ice only</option>
+            </select>
           </label>
 
           <label class="field">

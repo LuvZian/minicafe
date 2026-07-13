@@ -1,14 +1,23 @@
-renderAdminNav();
+﻿renderAdminNav();
 const currentAdmin = requireAuth('admin');
 if (!currentAdmin) throw new Error('관리자 로그인이 필요해요.');
 
 const form = $('#menu-form');
 const categorySelect = $('#category');
+const kindSelect = $('#kind');
+const temperatureModeField = $('#temperature-mode-field');
+const temperatureModeSelect = $('#temperature-mode');
 const formError = $('#form-error');
 
 function renderCategories() {
   categorySelect.innerHTML = CATEGORIES.map(
     (category) => `<option value="${escapeHtml(category.id)}">${escapeHtml(category.name)}</option>`
+  ).join('');
+}
+
+function renderMenuTypes() {
+  kindSelect.innerHTML = MENU_TYPES.map(
+    (kind) => `<option value="${escapeHtml(kind.id)}">${escapeHtml(kind.name)}</option>`
   ).join('');
 }
 
@@ -44,10 +53,26 @@ function updatePreviewTitle() {
   previewTitle.textContent = $('#name').value.trim() || '새 계절 메뉴';
 }
 
+function updateKindSettings() {
+  const isDrink = kindSelect.value === 'drink';
+  if (temperatureModeField) temperatureModeField.hidden = !isDrink;
+  if (temperatureModeSelect) temperatureModeSelect.disabled = !isDrink;
+  if (!isDrink && temperatureModeSelect) temperatureModeSelect.value = 'both';
+}
+
+function getOptionConfig() {
+  if (kindSelect.value !== 'drink') return {};
+  return {
+    temperatureMode: temperatureModeSelect?.value || 'both'
+  };
+}
+
 function getFormValue() {
   return {
     name: $('#name').value,
     category: $('#category').value,
+    kind: $('#kind').value,
+    optionConfig: getOptionConfig(),
     price: $('#price').value,
     image: $('#image').value,
     description: $('#description').value
@@ -57,6 +82,7 @@ function getFormValue() {
 function validateMenu(menu) {
   if (!menu.name.trim()) return '메뉴 이름을 입력해주세요.';
   if (!menu.category) return '계절을 선택해주세요.';
+  if (!menu.kind) return '관리자 카테고리를 선택해주세요.';
   if (!Number(menu.price) || Number(menu.price) <= 0) return '가격은 0원보다 커야 해요.';
   if (!menu.description.trim()) return '메뉴 설명을 입력해주세요.';
   return '';
@@ -86,9 +112,12 @@ categorySelect.addEventListener('change', (event) => {
   updatePreviewImage();
 });
 
+kindSelect.addEventListener('change', updateKindSettings);
 $('#image').addEventListener('input', updatePreviewImage);
 $('#name').addEventListener('input', updatePreviewTitle);
 
 renderCategories();
+renderMenuTypes();
+updateKindSettings();
 updateSeason(categorySelect.value || 'spring');
 updatePreviewImage();

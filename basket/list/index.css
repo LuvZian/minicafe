@@ -2358,3 +2358,11 @@ body.season-winter .toast {
     aspect-ratio: 16 / 9 !important;
   }
 }
+/* Customer selected menu options */
+.item-option {
+  margin-top: 4px !important;
+  color: var(--season-muted, #5f6c58) !important;
+  font-size: var(--font-size-sm) !important;
+  font-weight: 800 !important;
+  word-break: keep-all !important;
+}

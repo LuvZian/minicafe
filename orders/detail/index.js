@@ -1,4 +1,4 @@
-renderCustomerNav();
+﻿renderCustomerNav();
 const currentUser = requireAuth('customer');
 if (!currentUser) throw new Error('Authentication required');
 const orderDetail = $('#order-detail');
@@ -89,9 +89,9 @@ function renderOrderDetail() {
       return `
         <article class="order-item" data-season="${escapeHtml(menu.category)}">
           <div>
-            <p class="item-meta">${escapeHtml(getCategoryName(menu.category))} · ${formatPrice(item.price)}</p>
+            <p class="item-meta">${escapeHtml(getCategoryName(menu.category))} · ${escapeHtml(getMenuKindName(item.kind || getMenuKind(menu)))} · ${formatPrice(item.price)}</p>
             <h3>${escapeHtml(item.name)}</h3>
-            <p>${escapeHtml(item.quantity)}개 담김</p>
+            <p>${escapeHtml(item.quantity)}개 담김</p>            ${getMenuOptionsSummary(item.options) ? `<p>${escapeHtml(getMenuOptionsSummary(item.options))}</p>` : ''}
           </div>
           <strong>${formatPrice(item.price * item.quantity)}</strong>
         </article>

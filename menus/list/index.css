@@ -1,4 +1,4 @@
-body {
+﻿body {
   background:
     radial-gradient(circle at 12% 5%, rgba(217, 164, 65, 0.18), transparent 28%),
     radial-gradient(circle at 82% 16%, rgba(125, 146, 120, 0.16), transparent 26%),
@@ -2370,4 +2370,410 @@ body.season-winter .brand::before {
   color: #213441 !important;
   background: linear-gradient(135deg, #d8e9f2, #f8fbfb) !important;
   box-shadow: 0 16px 34px rgba(69, 104, 123, 0.2) !important;
+}
+/* Customer option overlay and card action repair */
+body.season-all .menu-actions,
+body.season-spring .menu-actions,
+body.season-summer .menu-actions,
+body.season-autumn .menu-actions,
+body.season-winter .menu-actions {
+  grid-template-columns: minmax(0, 1fr) minmax(112px, auto) !important;
+  align-items: center !important;
+}
+
+body.season-all .cart-button,
+body.season-spring .cart-button,
+body.season-summer .cart-button,
+body.season-autumn .cart-button,
+body.season-winter .cart-button {
+  min-width: 112px !important;
+  padding-inline: 14px !important;
+  white-space: nowrap !important;
+  cursor: pointer !important;
+}
+
+.option-overlay[hidden] {
+  display: none !important;
+}
+
+.option-overlay {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 50 !important;
+  display: grid !important;
+  place-items: center !important;
+  padding: 24px !important;
+  background: rgba(31, 45, 34, 0.36) !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+.option-modal {
+  width: min(520px, 100%) !important;
+  max-height: min(760px, calc(100vh - 48px)) !important;
+  overflow: auto !important;
+  padding: 26px !important;
+  background: linear-gradient(145deg, rgba(255, 253, 248, 0.98), color-mix(in srgb, var(--menu-primary, #8aa35f) 8%, #fff)) !important;
+  border: 1px solid var(--menu-line, rgba(47, 75, 50, 0.16)) !important;
+  border-radius: 28px !important;
+  box-shadow: 0 28px 70px rgba(31, 45, 34, 0.24) !important;
+}
+
+.option-head {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 16px !important;
+  margin-bottom: 10px !important;
+}
+
+.option-head p {
+  width: max-content !important;
+  margin: 0 !important;
+  padding: 7px 12px !important;
+  color: var(--menu-primary-dark, #3f7030) !important;
+  background: color-mix(in srgb, var(--menu-primary, #8aa35f) 13%, #fff) !important;
+  border: 1px solid var(--menu-line, rgba(47, 75, 50, 0.16)) !important;
+  border-radius: 999px !important;
+  font-size: 13px !important;
+  font-weight: 900 !important;
+}
+
+.option-close {
+  width: 38px !important;
+  height: 38px !important;
+  display: inline-grid !important;
+  place-items: center !important;
+  color: var(--menu-ink, #1f2d22) !important;
+  background: rgba(255, 253, 248, 0.86) !important;
+  border: 1px solid var(--menu-line, rgba(47, 75, 50, 0.16)) !important;
+  border-radius: 999px !important;
+  font-size: 24px !important;
+  cursor: pointer !important;
+}
+
+.option-modal h2 {
+  margin: 0 0 18px !important;
+  color: var(--menu-ink, #1f2d22) !important;
+  font-size: 30px !important;
+  line-height: 1.15 !important;
+}
+
+.option-fields {
+  display: grid !important;
+  gap: 14px !important;
+  margin-top: 14px !important;
+}
+
+.option-group,
+.option-number {
+  display: grid !important;
+  gap: 10px !important;
+  margin: 0 !important;
+  padding: 16px !important;
+  background: rgba(255, 255, 255, 0.62) !important;
+  border: 1px solid var(--menu-line, rgba(47, 75, 50, 0.16)) !important;
+  border-radius: 18px !important;
+}
+
+.option-group legend,
+.option-number > span {
+  color: var(--menu-primary-dark, #3f7030) !important;
+  font-size: 14px !important;
+  font-weight: 900 !important;
+}
+
+.option-group label {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  min-height: 36px !important;
+  color: var(--menu-ink, #1f2d22) !important;
+  font-weight: 800 !important;
+}
+
+.option-fixed,
+.option-help {
+  margin: 0 !important;
+  color: var(--menu-muted, #52624d) !important;
+  font-weight: 800 !important;
+}
+
+.quantity-in-modal {
+  grid-template-columns: auto minmax(160px, 1fr) !important;
+  align-items: center !important;
+}
+
+.quantity-in-modal .quantity-control {
+  justify-self: end !important;
+}
+
+.option-actions {
+  display: grid !important;
+  grid-template-columns: 0.8fr 1.2fr !important;
+  gap: 10px !important;
+  margin-top: 18px !important;
+}
+
+@media (max-width: 520px) {
+  .option-modal {
+    padding: 20px !important;
+    border-radius: 22px !important;
+  }
+
+  .quantity-in-modal,
+  .option-actions {
+    grid-template-columns: 1fr !important;
+  }
+
+  .quantity-in-modal .quantity-control {
+    justify-self: stretch !important;
+  }
+}
+/* Unified polished option modal */
+.option-overlay {
+  background:
+    radial-gradient(circle at 18% 12%, color-mix(in srgb, var(--menu-primary, var(--detail-primary, #8aa35f)) 24%, transparent), transparent 34%),
+    rgba(26, 31, 25, 0.42) !important;
+  backdrop-filter: blur(14px) saturate(1.05) !important;
+}
+
+.option-modal {
+  position: relative !important;
+  display: grid !important;
+  gap: 16px !important;
+  width: min(560px, 100%) !important;
+  padding: 24px !important;
+  background:
+    linear-gradient(145deg, rgba(255, 253, 248, 0.99), color-mix(in srgb, var(--menu-primary, var(--detail-primary, #8aa35f)) 7%, #fff)) !important;
+  border: 1px solid color-mix(in srgb, var(--menu-primary, var(--detail-primary, #8aa35f)) 24%, #fff) !important;
+  border-radius: 26px !important;
+  box-shadow:
+    0 30px 80px rgba(31, 45, 34, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.72) !important;
+}
+
+.option-modal::before {
+  content: '' !important;
+  position: absolute !important;
+  inset: 0 0 auto !important;
+  height: 8px !important;
+  background: linear-gradient(90deg, var(--menu-primary-dark, var(--detail-primary-dark, #3f7030)), var(--menu-primary, var(--detail-primary, #8aa35f)), color-mix(in srgb, var(--menu-primary, var(--detail-primary, #8aa35f)) 38%, #fff)) !important;
+  border-radius: 26px 26px 0 0 !important;
+}
+
+.option-head {
+  margin: 2px 0 0 !important;
+}
+
+.option-head p {
+  color: var(--menu-primary-dark, var(--detail-primary-dark, #3f7030)) !important;
+  background: color-mix(in srgb, var(--menu-primary, var(--detail-primary, #8aa35f)) 12%, #fff) !important;
+  border-color: color-mix(in srgb, var(--menu-primary, var(--detail-primary, #8aa35f)) 22%, #fff) !important;
+}
+
+.option-modal h2 {
+  margin: 0 !important;
+  color: var(--menu-ink, var(--detail-ink, #1f2d22)) !important;
+  font-size: clamp(26px, 5vw, 36px) !important;
+  line-height: 1.12 !important;
+  word-break: keep-all !important;
+}
+
+.option-preview {
+  display: grid !important;
+  grid-template-columns: 108px minmax(0, 1fr) !important;
+  gap: 14px !important;
+  align-items: stretch !important;
+  padding: 12px !important;
+  background: rgba(255, 255, 255, 0.66) !important;
+  border: 1px solid color-mix(in srgb, var(--menu-primary, var(--detail-primary, #8aa35f)) 18%, #fff) !important;
+  border-radius: 20px !important;
+}
+
+.option-preview-image {
+  min-height: 104px !important;
+  background:
+    linear-gradient(180deg, rgba(22, 28, 20, 0.02), rgba(22, 28, 20, 0.18)),
+    var(--option-image) !important;
+  background-position: center !important;
+  background-size: cover !important;
+  border-radius: 16px !important;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.42) !important;
+}
+
+.option-preview-copy {
+  display: grid !important;
+  align-content: center !important;
+  gap: 8px !important;
+  min-width: 0 !important;
+}
+
+.option-preview-copy span {
+  width: max-content !important;
+  max-width: 100% !important;
+  padding: 6px 10px !important;
+  color: var(--menu-primary-dark, var(--detail-primary-dark, #3f7030)) !important;
+  background: color-mix(in srgb, var(--menu-primary, var(--detail-primary, #8aa35f)) 11%, #fff) !important;
+  border-radius: 999px !important;
+  font-size: 12px !important;
+  font-weight: 900 !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+.option-preview-copy strong {
+  color: var(--menu-ink, var(--detail-ink, #1f2d22)) !important;
+  font-size: 24px !important;
+  line-height: 1 !important;
+}
+
+.quantity-in-modal,
+.option-group,
+.option-number {
+  background: rgba(255, 255, 255, 0.72) !important;
+  border-color: color-mix(in srgb, var(--menu-primary, var(--detail-primary, #8aa35f)) 18%, #fff) !important;
+  border-radius: 18px !important;
+}
+
+.option-group label {
+  min-height: 40px !important;
+  padding: 0 2px !important;
+}
+
+.option-group input[type='radio'] {
+  accent-color: var(--menu-primary, var(--detail-primary, #8aa35f)) !important;
+}
+
+.option-fixed {
+  padding: 10px 12px !important;
+  background: color-mix(in srgb, var(--menu-primary, var(--detail-primary, #8aa35f)) 10%, #fff) !important;
+  border-radius: 14px !important;
+}
+
+.quantity-control {
+  min-width: 158px !important;
+}
+
+.quantity-control button {
+  cursor: pointer !important;
+}
+
+.option-actions .secondary-link,
+.option-actions .primary-button {
+  width: 100% !important;
+  min-height: 48px !important;
+}
+
+@media (max-width: 520px) {
+  .option-preview {
+    grid-template-columns: 88px minmax(0, 1fr) !important;
+  }
+
+  .option-preview-image {
+    min-height: 92px !important;
+  }
+}
+/* Option modal follows the selected menu season */
+.option-overlay[data-season='spring'] {
+  --menu-primary: #d87591;
+  --menu-primary-dark: #98455c;
+  --menu-ink: #32252a;
+  --menu-muted: #80636d;
+}
+
+.option-overlay[data-season='summer'] {
+  --menu-primary: #72a544;
+  --menu-primary-dark: #3f7030;
+  --menu-ink: #1f2d22;
+  --menu-muted: #52624d;
+}
+
+.option-overlay[data-season='autumn'] {
+  --menu-primary: #bc5b3f;
+  --menu-primary-dark: #803528;
+  --menu-ink: #33231f;
+  --menu-muted: #76574f;
+}
+
+.option-overlay[data-season='winter'] {
+  --menu-primary: #7193aa;
+  --menu-primary-dark: #435f73;
+  --menu-ink: #213441;
+  --menu-muted: #5f7280;
+}
+
+.option-modal .quantity-control {
+  display: grid !important;
+  grid-template-columns: 42px minmax(54px, 1fr) 42px !important;
+  align-items: center !important;
+  min-width: 168px !important;
+  min-height: 46px !important;
+  overflow: hidden !important;
+  padding: 4px !important;
+  background: rgba(255, 253, 248, 0.94) !important;
+  border: 1px solid color-mix(in srgb, var(--menu-primary, var(--detail-primary, #8aa35f)) 22%, #fff) !important;
+  border-radius: 999px !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.68) !important;
+}
+
+.option-modal .quantity-control button,
+.option-modal .quantity-control input {
+  width: 100% !important;
+  height: 38px !important;
+  min-height: 38px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 999px !important;
+  font: inherit !important;
+  font-weight: 900 !important;
+  text-align: center !important;
+}
+
+.option-modal .quantity-control button {
+  color: #fffdf8 !important;
+  background: linear-gradient(135deg, var(--menu-primary-dark, var(--detail-primary-dark, #3f7030)), var(--menu-primary, var(--detail-primary, #8aa35f))) !important;
+  box-shadow: 0 7px 14px color-mix(in srgb, var(--menu-primary, var(--detail-primary, #8aa35f)) 28%, transparent) !important;
+}
+
+.option-modal .quantity-control input {
+  color: var(--menu-ink, var(--detail-ink, #1f2d22)) !important;
+  background: transparent !important;
+  appearance: textfield !important;
+}
+
+.option-modal .quantity-control input::-webkit-outer-spin-button,
+.option-modal .quantity-control input::-webkit-inner-spin-button {
+  margin: 0 !important;
+  appearance: none !important;
+}
+
+.menu-list-option-overlay .quantity-in-modal {
+  grid-template-columns: auto minmax(168px, 1fr) !important;
+}
+/* Option counter polish */
+.option-modal .quantity-control button,
+.option-modal .fork-control button {
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+}
+
+.option-modal .fork-number {
+  grid-template-columns: auto minmax(168px, 1fr) !important;
+  align-items: center !important;
+}
+
+.option-modal .fork-control {
+  justify-self: end !important;
+}
+
+@media (max-width: 520px) {
+  .option-modal .fork-number {
+    grid-template-columns: 1fr !important;
+  }
+
+  .option-modal .fork-control {
+    justify-self: stretch !important;
+  }
 }
