@@ -1,9 +1,10 @@
-renderCustomerNav();
+﻿renderCustomerNav();
 const SEASONS = ['spring', 'summer', 'autumn', 'winter'];
 const state = {
   category: 'all',
   query: '',
-  themeSeason: getRandomSeason()
+  themeSeason: getRandomSeason(),
+  activeMenu: null
 };
 
 const menuGrid = $('#menu-grid');
@@ -54,6 +55,28 @@ const CATEGORY_COPY = {
 
 function getRandomSeason() {
   return SEASONS[Math.floor(Math.random() * SEASONS.length)];
+}
+
+function normalizeQuantity(value) {
+  const quantity = Number.parseInt(value, 10);
+  if (Number.isNaN(quantity)) return 1;
+  return Math.min(Math.max(quantity, 1), 99);
+}
+
+function normalizeForkCount(value) {
+  const count = Number.parseInt(value, 10);
+  if (Number.isNaN(count)) return 1;
+  return Math.min(Math.max(count, 0), 20);
+}
+
+function redirectToSignupForCart() {
+  const next = encodeURIComponent(window.location.pathname + window.location.search);
+  window.location.href = `/auth/signup/?next=${next}`;
+}
+
+function canAddToCart() {
+  const user = getCurrentUser();
+  return user && user.role === 'customer';
 }
 
 function updateCartCount() {
@@ -143,13 +166,151 @@ function renderMenus() {
           <h2 class="menu-title">${escapeHtml(menu.name)}</h2>
           <p class="menu-description">${escapeHtml(menu.description)}</p>
           <div class="menu-actions">
-            <a class="detail-link" href="/menus/detail/?id=${encodeURIComponent(menu.id)}">Detail</a>
-            <button class="cart-button" type="button" data-add-to-cart="${escapeHtml(menu.id)}">Add</button>
+            <a class="detail-link" href="/menus/detail/?id=${encodeURIComponent(menu.id)}">상세</a>
+            <button class="cart-button" type="button" data-open-options="${escapeHtml(menu.id)}">옵션 선택</button>
           </div>
         </div>
       </article>
     `
   );
+}
+
+function renderDrinkTemperatureOptions(menu) {
+  const { temperatureMode } = getMenuOptionConfig(menu);
+  if (temperatureMode === 'hotOnly') {
+    return '<p class="option-fixed">이 메뉴는 따뜻한 음료로만 준비돼요.</p><input type="hidden" name="temperature" value="hot" />';
+  }
+  if (temperatureMode === 'iceOnly') {
+    return '<p class="option-fixed">이 메뉴는 차가운 음료로만 준비돼요.</p><input type="hidden" name="temperature" value="ice" />';
+  }
+  return `
+    <label><input type="radio" name="temperature" value="hot" /> Hot</label>
+    <label><input type="radio" name="temperature" value="ice" checked /> Ice</label>
+  `;
+}
+
+function renderOptionFields(menu) {
+  const kind = getMenuKind(menu);
+  if (kind === 'drink') {
+    return `
+      <fieldset class="option-group">
+        <legend>온도</legend>
+        ${renderDrinkTemperatureOptions(menu)}
+      </fieldset>
+      <fieldset class="option-group">
+        <legend>이용 방식</legend>
+        <label><input type="radio" name="serviceType" value="dineIn" checked /> 매장</label>
+        <label><input type="radio" name="serviceType" value="takeout" /> 포장</label>
+      </fieldset>
+    `;
+  }
+
+  if (kind === 'dessert') {
+    return `
+      <fieldset class="option-group">
+        <legend>이용 방식</legend>
+        <label><input type="radio" name="serviceType" value="dineIn" checked /> 매장</label>
+        <label><input type="radio" name="serviceType" value="takeout" /> 포장</label>
+      </fieldset>
+      <label class="option-number fork-number">
+        <span>포크 개수</span>
+        <div class="quantity-control fork-control" aria-label="포크 개수 조절">
+          <button type="button" data-fork-step="-1" aria-label="포크 개수 줄이기">-</button>
+          <input id="fork-count" type="number" min="0" max="20" value="1" inputmode="numeric" />
+          <button type="button" data-fork-step="1" aria-label="포크 개수 늘리기">+</button>
+        </div>
+      </label>
+    `;
+  }
+
+  if (kind === 'goods') {
+    return `
+      <fieldset class="option-group">
+        <legend>포장 선택</legend>
+        <label><input type="radio" name="giftWrap" value="wrapped" /> 선물 포장</label>
+        <label><input type="radio" name="giftWrap" value="unwrapped" checked /> 미포장</label>
+      </fieldset>
+    `;
+  }
+
+  return '<p class="option-help">선택 옵션이 없는 메뉴예요.</p>';
+}
+
+function getSelectedOptions(menu, parent) {
+  const kind = getMenuKind(menu);
+  if (kind === 'drink') {
+    return {
+      temperature: $('[name="temperature"]:checked', parent)?.value || $('[name="temperature"]', parent)?.value || 'ice',
+      serviceType: $('[name="serviceType"]:checked', parent)?.value || 'dineIn'
+    };
+  }
+  if (kind === 'dessert') {
+    return {
+      serviceType: $('[name="serviceType"]:checked', parent)?.value || 'dineIn',
+      forkCount: $('#fork-count', parent)?.value || 1
+    };
+  }
+  if (kind === 'goods') {
+    return {
+      giftWrap: $('[name="giftWrap"]:checked', parent)?.value || 'unwrapped'
+    };
+  }
+  return {};
+}
+
+function ensureOptionOverlay() {
+  let overlay = $('#menu-option-overlay');
+  if (overlay) return overlay;
+
+  document.body.insertAdjacentHTML('beforeend', '<div class="option-overlay menu-list-option-overlay" id="menu-option-overlay" hidden></div>');
+  return $('#menu-option-overlay');
+}
+
+function openOptionOverlay(menu) {
+  const overlay = ensureOptionOverlay();
+  state.activeMenu = menu;
+  overlay.dataset.season = menu.category;
+  overlay.innerHTML = `
+    <section class="option-modal" role="dialog" aria-modal="true" aria-labelledby="option-title">
+      <div class="option-head">
+        <p>${escapeHtml(getMenuKindName(menu.kind || getMenuKind(menu)))} 옵션</p>
+        <button type="button" class="option-close" data-close-options aria-label="옵션 닫기">×</button>
+      </div>
+      <h2 id="option-title">${escapeHtml(menu.name)}</h2>
+      <div class="option-preview" style="--option-image: url('${escapeHtml(getMenuImage(menu))}')">
+        <div class="option-preview-image" aria-hidden="true"></div>
+        <div class="option-preview-copy">
+          <span>${escapeHtml(getCategoryName(menu.category))} · ${escapeHtml(getMenuKindName(menu.kind || getMenuKind(menu)))}</span>
+          <strong>${formatPrice(menu.price)}</strong>
+        </div>
+      </div>
+      <label class="option-number quantity-in-modal">
+        <span>수량</span>
+        <div class="quantity-control" aria-label="수량 조절">
+          <button type="button" data-quantity-step="-1" aria-label="수량 줄이기">-</button>
+          <input id="option-quantity-input" type="number" min="1" max="99" value="1" inputmode="numeric" />
+          <button type="button" data-quantity-step="1" aria-label="수량 늘리기">+</button>
+        </div>
+      </label>
+      <div class="option-fields">
+        ${renderOptionFields(menu)}
+      </div>
+      <div class="option-actions">
+        <button type="button" class="secondary-link" data-close-options>취소</button>
+        <button type="button" class="primary-button" data-confirm-options>장바구니 담기</button>
+      </div>
+    </section>
+  `;
+  overlay.hidden = false;
+}
+
+function closeOptionOverlay() {
+  const overlay = $('#menu-option-overlay');
+  if (overlay) {
+    overlay.hidden = true;
+    delete overlay.dataset.season;
+  }
+  state.activeMenu = null;
 }
 
 function showToast(message, season = state.themeSeason) {
@@ -177,15 +338,63 @@ searchInput.addEventListener('input', (event) => {
 });
 
 menuGrid.addEventListener('click', (event) => {
-  const button = event.target.closest('button[data-add-to-cart]');
+  const button = event.target.closest('[data-open-options]');
   if (!button) return;
 
-  const menu = getMenuById(button.dataset.addToCart);
+  const menu = getMenuById(button.dataset.openOptions);
   if (!menu) return;
+  openOptionOverlay(menu);
+});
 
-  addToCart(menu.id, 1);
-  updateCartCount();
-  showToast(`${menu.name} 장바구니에 담았어요`, menu.category);
+document.addEventListener('click', (event) => {
+  const overlay = $('#menu-option-overlay');
+  if (!overlay || overlay.hidden) return;
+
+  const stepButton = event.target.closest('button[data-quantity-step]');
+  if (stepButton) {
+    const input = $('#option-quantity-input', overlay);
+    input.value = normalizeQuantity(normalizeQuantity(input.value) + Number(stepButton.dataset.quantityStep));
+    return;
+  }
+
+  const forkButton = event.target.closest('button[data-fork-step]');
+  if (forkButton) {
+    const input = $('#fork-count', overlay);
+    if (input) {
+      input.value = normalizeForkCount(normalizeForkCount(input.value) + Number(forkButton.dataset.forkStep));
+    }
+    return;
+  }
+
+  if (event.target.closest('[data-close-options]') || event.target === overlay) {
+    closeOptionOverlay();
+    return;
+  }
+
+  if (event.target.closest('[data-confirm-options]') && state.activeMenu) {
+    if (!canAddToCart()) {
+      redirectToSignupForCart();
+      return;
+    }
+
+    const input = $('#option-quantity-input', overlay);
+    const quantity = normalizeQuantity(input.value);
+    const options = normalizeMenuOptions(state.activeMenu, getSelectedOptions(state.activeMenu, overlay));
+    addToCart(state.activeMenu.id, quantity, options);
+    showToast(`${state.activeMenu.name} ${quantity}개를 장바구니에 담았어요`, state.activeMenu.category);
+    updateCartCount();
+    renderCustomerNav();
+    closeOptionOverlay();
+  }
+});
+
+document.addEventListener('change', (event) => {
+  if (event.target.matches('#option-quantity-input')) {
+    event.target.value = normalizeQuantity(event.target.value);
+  }
+  if (event.target.matches('#fork-count')) {
+    event.target.value = normalizeForkCount(event.target.value);
+  }
 });
 
 applySeasonTheme();

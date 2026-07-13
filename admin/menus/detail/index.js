@@ -1,4 +1,4 @@
-renderAdminNav();
+﻿renderAdminNav();
 const currentAdmin = requireAuth('admin');
 if (!currentAdmin) throw new Error('관리자 로그인이 필요해요.');
 const detailRoot = $('#detail-root');
@@ -21,6 +21,11 @@ function renderNotFound() {
 }
 
 function renderDetail(item) {
+  const kind = item.kind || getMenuKind(item);
+  const optionBadge = kind === 'drink'
+    ? `<span class="kind-pill">온도 설정 · ${escapeHtml(MENU_OPTION_LABELS.temperatureMode[getMenuOptionConfig(item).temperatureMode])}</span>`
+    : '';
+
   document.title = `${item.name} | 메뉴 상세`;
   document.body.dataset.season = item.category;
   detailRoot.innerHTML = `
@@ -33,7 +38,11 @@ function renderDetail(item) {
         ${item.image ? '' : menuInitial(item.name)}
       </div>
       <div class="detail-panel">
-        <span class="category-pill">${escapeHtml(getCategoryName(item.category))}</span>
+        <div class="admin-menu-meta" aria-label="관리자 메뉴 분류">
+          <span class="category-pill">계절 · ${escapeHtml(getCategoryName(item.category))}</span>
+          <span class="kind-pill">관리자 카테고리 · ${escapeHtml(getMenuKindName(kind))}</span>
+          ${optionBadge}
+        </div>
         <div>
           <h1 class="detail-title">${escapeHtml(item.name)}</h1>
           <p class="detail-description">${escapeHtml(item.description)}</p>

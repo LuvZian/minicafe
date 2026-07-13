@@ -1,4 +1,4 @@
-renderAdminNav();
+﻿renderAdminNav();
 const currentAdmin = requireAuth('admin');
 if (!currentAdmin) throw new Error('관리자 로그인이 필요해요.');
 
@@ -13,6 +13,22 @@ function categoryOptions(selectedCategory) {
         ${escapeHtml(category.name)}
       </option>
     `
+  ).join('');
+}
+
+function menuTypeOptions(selectedKind) {
+  return MENU_TYPES.map(
+    (kind) => `
+      <option value="${escapeHtml(kind.id)}" ${kind.id === selectedKind ? 'selected' : ''}>
+        ${escapeHtml(kind.name)}
+      </option>
+    `
+  ).join('');
+}
+
+function temperatureModeOptions(selectedMode = 'both') {
+  return Object.entries(MENU_OPTION_LABELS.temperatureMode).map(
+    ([value, label]) => `<option value="${escapeHtml(value)}" ${value === selectedMode ? 'selected' : ''}>${escapeHtml(label)}</option>`
   ).join('');
 }
 
@@ -41,6 +57,22 @@ function updatePreviewImage() {
   preview.style.setProperty('--menu-image', toCssUrl(image));
 }
 
+function updateKindSettings() {
+  const field = $('#temperature-mode-field');
+  const select = $('#temperature-mode');
+  const isDrink = $('#kind')?.value === 'drink';
+  if (field) field.hidden = !isDrink;
+  if (select) select.disabled = !isDrink;
+  if (!isDrink && select) select.value = 'both';
+}
+
+function getOptionConfig() {
+  if ($('#kind').value !== 'drink') return {};
+  return {
+    temperatureMode: $('#temperature-mode')?.value || 'both'
+  };
+}
+
 function renderNotFound() {
   updateSeason('spring');
   document.title = '메뉴를 찾을 수 없어요 | Minicafe';
@@ -62,6 +94,8 @@ function getFormValue() {
   return {
     name: $('#name').value,
     category: $('#category').value,
+    kind: $('#kind').value,
+    optionConfig: getOptionConfig(),
     price: $('#price').value,
     image: $('#image').value,
     description: $('#description').value
@@ -71,6 +105,7 @@ function getFormValue() {
 function validateMenu(nextMenu) {
   if (!nextMenu.name.trim()) return '메뉴 이름을 입력해주세요.';
   if (!nextMenu.category) return '계절을 선택해주세요.';
+  if (!nextMenu.kind) return '관리자 카테고리를 선택해주세요.';
   if (!Number(nextMenu.price) || Number(nextMenu.price) <= 0) return '가격은 0원보다 커야 해요.';
   if (!nextMenu.description.trim()) return '메뉴 설명을 입력해주세요.';
   return '';
@@ -86,13 +121,15 @@ function renderForm(item) {
   updateSeason(item.category);
   document.title = `${item.name} 수정 | Minicafe`;
   const previewImage = item.image || seasonFallbackImage(item.category);
+  const selectedKind = item.kind || getMenuKind(item);
+  const selectedOptionConfig = getMenuOptionConfig(item);
 
   editRoot.innerHTML = `
     <section class="form-shell" data-season="${escapeHtml(item.category)}" aria-labelledby="page-title">
       <div class="form-intro">
         <p class="eyebrow">메뉴 수정</p>
         <h1 id="page-title">계절 메뉴를 다듬어요</h1>
-        <p>현재 메뉴의 계절 분위기에 맞춰 이름, 가격, 이미지와 설명을 정리해요.</p>
+        <p>현재 메뉴의 계절 분위기에 맞춰 이름, 가격, 이미지와 관리자 카테고리를 정리해요.</p>
         <div class="edit-preview" style="--menu-image: ${toCssUrl(previewImage)}" aria-hidden="true">
           <span>${escapeHtml(item.name)}</span>
         </div>
@@ -107,6 +144,16 @@ function renderForm(item) {
         <label class="field">
           <span>계절</span>
           <select id="category" name="category" required>${categoryOptions(item.category)}</select>
+        </label>
+
+        <label class="field">
+          <span>관리자 카테고리</span>
+          <select id="kind" name="kind" required>${menuTypeOptions(selectedKind)}</select>
+        </label>
+
+        <label class="field field-wide" id="temperature-mode-field">
+          <span>음료 온도 설정</span>
+          <select id="temperature-mode" name="temperatureMode">${temperatureModeOptions(selectedOptionConfig.temperatureMode)}</select>
         </label>
 
         <label class="field">
@@ -139,6 +186,7 @@ function renderForm(item) {
     updatePreviewImage();
   });
 
+  $('#kind').addEventListener('change', updateKindSettings);
   $('#image').addEventListener('input', updatePreviewImage);
 
   $('#name').addEventListener('input', (event) => {
@@ -159,6 +207,8 @@ function renderForm(item) {
     updateMenu(item.id, nextMenu);
     window.location.href = `/admin/menus/detail/?id=${encodeURIComponent(item.id)}`;
   });
+
+  updateKindSettings();
 }
 
 if (!menu) {

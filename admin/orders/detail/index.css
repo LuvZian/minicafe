@@ -1,4 +1,4 @@
-body {
+﻿body {
   background: var(--bg-admin-pattern), var(--bg-page-soft);
 }
 
@@ -1866,4 +1866,23 @@ body[data-season='winter'] {
   .order-item > strong {
     justify-self: start !important;
   }
+}
+/* Selected options in admin order detail */
+.order-item .item-option {
+  width: max-content !important;
+  max-width: 100% !important;
+  margin-top: 6px !important;
+  padding: 7px 10px !important;
+  color: var(--item-primary-dark, var(--detail-primary-dark, #3f7030)) !important;
+  background: color-mix(in srgb, var(--item-primary, var(--detail-primary, #8aa35f)) 11%, #fff) !important;
+  border: 1px solid var(--item-line, var(--detail-line, rgba(100, 143, 77, 0.18))) !important;
+  border-radius: 999px !important;
+  font-size: 13px !important;
+  font-weight: 900 !important;
+  line-height: 1.35 !important;
+  word-break: keep-all !important;
+}
+
+.season-note[hidden] {
+  display: none !important;
 }

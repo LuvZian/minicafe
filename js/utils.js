@@ -1,10 +1,10 @@
-const MENU_STORAGE_KEY = 'minicafe_menus';
+﻿const MENU_STORAGE_KEY = 'minicafe_menus';
 const CART_STORAGE_KEY = 'minicafe_cart';
 const ORDER_STORAGE_KEY = 'minicafe_orders';
 const AUTH_USERS_STORAGE_KEY = 'minicafe_users';
 const AUTH_SESSION_STORAGE_KEY = 'minicafe_session';
 const MENU_VERSION_STORAGE_KEY = 'minicafe_menu_version';
-const MENU_DATA_VERSION = 'season-menu-images-v4';
+const MENU_DATA_VERSION = 'season-menu-options-v1';
 
 function readStorage(key, fallback) {
   try {
@@ -42,6 +42,11 @@ function getCategoryName(categoryId) {
   return category ? category.name : categoryId;
 }
 
+function getMenuKindName(kindId) {
+  const kind = MENU_TYPES.find((item) => item.id === kindId);
+  return kind ? kind.name : kindId;
+}
+
 
 const MENU_KIND_ORDER = {
   drink: 0,
@@ -51,6 +56,8 @@ const MENU_KIND_ORDER = {
 };
 
 function getMenuKind(menu) {
+  if (MENU_TYPES.some((kind) => kind.id === menu.kind)) return menu.kind;
+
   const image = String(menu.image || '').toLowerCase();
   const text = [menu.name, menu.description].join(' ').toLowerCase();
 
@@ -93,6 +100,108 @@ function sortMenusBySeasonKindPrice(menus) {
 
     return String(a.name || '').localeCompare(String(b.name || ''), 'ko-KR');
   });
+}
+
+const MENU_OPTION_LABELS = {
+  temperature: {
+    hot: 'Hot',
+    ice: 'Ice'
+  },
+  temperatureMode: {
+    both: 'Hot / Ice 선택 가능',
+    hotOnly: 'Hot only',
+    iceOnly: 'Ice only'
+  },
+  serviceType: {
+    dineIn: '매장',
+    takeout: '포장'
+  },
+  giftWrap: {
+    wrapped: '선물 포장',
+    unwrapped: '미포장'
+  }
+};
+
+function getMenuOptionConfig(menu) {
+  const kind = getMenuKind(menu);
+  if (kind !== 'drink') return {};
+
+  const mode = menu?.optionConfig?.temperatureMode;
+  return {
+    temperatureMode: ['both', 'hotOnly', 'iceOnly'].includes(mode) ? mode : 'both'
+  };
+}
+
+function normalizeMenuOptionConfig(menu) {
+  const kind = MENU_TYPES.some((item) => item.id === menu.kind) ? menu.kind : getMenuKind(menu);
+  if (kind !== 'drink') return {};
+
+  const mode = menu?.optionConfig?.temperatureMode;
+  return {
+    temperatureMode: ['both', 'hotOnly', 'iceOnly'].includes(mode) ? mode : 'both'
+  };
+}
+
+function getDefaultMenuOptions(menu) {
+  const kind = getMenuKind(menu);
+  if (kind === 'drink') {
+    const { temperatureMode } = getMenuOptionConfig(menu);
+    const temperature = temperatureMode === 'hotOnly' ? 'hot' : 'ice';
+    return { temperature, serviceType: 'dineIn' };
+  }
+  if (kind === 'dessert') return { serviceType: 'dineIn', forkCount: 1 };
+  if (kind === 'goods') return { giftWrap: 'unwrapped' };
+  return {};
+}
+
+function normalizeMenuOptions(menu, options = {}) {
+  const kind = getMenuKind(menu);
+  const defaults = getDefaultMenuOptions(menu);
+  const nextOptions = { ...defaults, ...options };
+
+  if (kind === 'drink') {
+    const serviceTypes = Object.keys(MENU_OPTION_LABELS.serviceType);
+    const { temperatureMode } = getMenuOptionConfig(menu);
+    const temperatures = temperatureMode === 'both'
+      ? ['hot', 'ice']
+      : [temperatureMode === 'hotOnly' ? 'hot' : 'ice'];
+
+    return {
+      temperature: temperatures.includes(nextOptions.temperature) ? nextOptions.temperature : defaults.temperature,
+      serviceType: serviceTypes.includes(nextOptions.serviceType) ? nextOptions.serviceType : defaults.serviceType
+    };
+  }
+
+  if (kind === 'dessert') {
+    const serviceTypes = Object.keys(MENU_OPTION_LABELS.serviceType);
+    const forkCount = Math.min(Math.max(Number.parseInt(nextOptions.forkCount, 10) || 1, 0), 20);
+    return {
+      serviceType: serviceTypes.includes(nextOptions.serviceType) ? nextOptions.serviceType : defaults.serviceType,
+      forkCount
+    };
+  }
+
+  if (kind === 'goods') {
+    const giftWraps = Object.keys(MENU_OPTION_LABELS.giftWrap);
+    return {
+      giftWrap: giftWraps.includes(nextOptions.giftWrap) ? nextOptions.giftWrap : defaults.giftWrap
+    };
+  }
+
+  return {};
+}
+
+function getMenuOptionsSummary(options = {}) {
+  const parts = [];
+  if (options.temperature) parts.push(MENU_OPTION_LABELS.temperature[options.temperature] || options.temperature);
+  if (options.serviceType) parts.push(MENU_OPTION_LABELS.serviceType[options.serviceType] || options.serviceType);
+  if (Number.isFinite(Number(options.forkCount))) parts.push(`포크 ${Number(options.forkCount)}개`);
+  if (options.giftWrap) parts.push(MENU_OPTION_LABELS.giftWrap[options.giftWrap] || options.giftWrap);
+  return parts.join(' · ');
+}
+
+function getCartItemKey(menuId, options = {}) {
+  return `${menuId}::${JSON.stringify(options)}`;
 }
 function getStatusLabel(statusValue) {
   const status = Object.values(ORDER_STATUS).find((item) => item.value === statusValue);
@@ -286,11 +395,26 @@ function renderAdminNav() {
 function getMenus() {
   const menus = readStorage(MENU_STORAGE_KEY, null);
   const version = readStorage(MENU_VERSION_STORAGE_KEY, null);
-  if (Array.isArray(menus) && menus.length > 0 && version === MENU_DATA_VERSION) return menus;
+  if (Array.isArray(menus) && menus.length > 0 && version === MENU_DATA_VERSION) {
+    const normalizedMenus = menus.map((menu) => ({
+      ...menu,
+      kind: menu.kind || getMenuKind(menu),
+      optionConfig: normalizeMenuOptionConfig(menu)
+    }));
+    if (
+      normalizedMenus.some((menu, index) =>
+        menu.kind !== menus[index].kind ||
+        JSON.stringify(menu.optionConfig || {}) !== JSON.stringify(menus[index].optionConfig || {})
+      )
+    ) {
+      saveMenus(normalizedMenus);
+    }
+    return normalizedMenus;
+  }
 
   writeStorage(MENU_STORAGE_KEY, MENU_ITEMS);
   writeStorage(MENU_VERSION_STORAGE_KEY, MENU_DATA_VERSION);
-  return [...MENU_ITEMS];
+  return MENU_ITEMS.map((menu) => ({ ...menu, kind: menu.kind || getMenuKind(menu), optionConfig: normalizeMenuOptionConfig(menu) }));
 }
 
 function saveMenus(menus) {
@@ -306,6 +430,8 @@ function normalizeMenu(menu) {
   return {
     name: String(menu.name || '').trim(),
     category: String(menu.category || '').trim(),
+    kind: MENU_TYPES.some((kind) => kind.id === menu.kind) ? menu.kind : getMenuKind(menu),
+    optionConfig: normalizeMenuOptionConfig(menu),
     price: Number(menu.price) || 0,
     description: String(menu.description || '').trim(),
     image: String(menu.image || '').trim()
@@ -349,23 +475,28 @@ function saveCart(cart) {
   writeStorage(CART_STORAGE_KEY, cart);
 }
 
-function addToCart(menuId, quantity = 1) {
+function addToCart(menuId, quantity = 1, options = {}) {
   const menu = getMenuById(menuId);
   if (!menu) return null;
 
+  const normalizedOptions = normalizeMenuOptions(menu, options);
+  const cartItemId = getCartItemKey(menu.id, normalizedOptions);
   const cart = getCart();
-  const existing = cart.find((item) => String(item.menuId) === String(menuId));
+  const existing = cart.find((item) => item.cartItemId === cartItemId);
   const amount = Math.max(Number(quantity) || 1, 1);
 
   if (existing) {
     existing.quantity += amount;
   } else {
     cart.push({
+      cartItemId,
       menuId: menu.id,
       name: menu.name,
       category: menu.category,
+      kind: menu.kind || getMenuKind(menu),
       price: menu.price,
-      quantity: amount
+      quantity: amount,
+      options: normalizedOptions
     });
   }
 
@@ -373,21 +504,21 @@ function addToCart(menuId, quantity = 1) {
   return cart;
 }
 
-function updateCartQuantity(menuId, quantity) {
+function updateCartQuantity(cartItemId, quantity) {
   const nextQuantity = Number(quantity);
   if (nextQuantity <= 0) {
-    removeFromCart(menuId);
+    removeFromCart(cartItemId);
     return;
   }
 
   const cart = getCart().map((item) =>
-    String(item.menuId) === String(menuId) ? { ...item, quantity: nextQuantity } : item
+    String(item.cartItemId || item.menuId) === String(cartItemId) ? { ...item, quantity: nextQuantity } : item
   );
   saveCart(cart);
 }
 
-function removeFromCart(menuId) {
-  saveCart(getCart().filter((item) => String(item.menuId) !== String(menuId)));
+function removeFromCart(cartItemId) {
+  saveCart(getCart().filter((item) => String(item.cartItemId || item.menuId) !== String(cartItemId)));
 }
 
 function clearCart() {

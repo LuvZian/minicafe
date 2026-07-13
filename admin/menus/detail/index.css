@@ -1687,3 +1687,24 @@ body[data-season='winter'] .admin-header .brand::before {
     radial-gradient(circle at 36% 35%, rgba(255, 253, 245, 0.78) 0 22%, transparent 23%),
     linear-gradient(135deg, #4f7488, #a8cadc) !important;
 }
+/* Admin-only menu category chips */
+.admin-menu-meta {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  align-items: center !important;
+}
+
+.kind-pill {
+  display: inline-flex !important;
+  align-items: center !important;
+  width: fit-content !important;
+  min-height: 34px !important;
+  padding: 7px 12px !important;
+  color: #202820 !important;
+  background: rgba(255, 253, 248, 0.86) !important;
+  border: 1px solid var(--detail-line) !important;
+  border-radius: 999px !important;
+  font-size: var(--font-size-sm) !important;
+  font-weight: 900 !important;
+}

@@ -1,4 +1,4 @@
-renderAdminNav();
+﻿renderAdminNav();
 const currentAdmin = requireAuth('admin');
 if (!currentAdmin) throw new Error('관리자 로그인이 필요해요.');
 
@@ -79,7 +79,8 @@ function applyOrderTheme(order) {
   const mood = getOrderMood(order);
   document.body.dataset.season = mood.season === 'all' ? '' : mood.season;
   orderDetail.dataset.season = mood.season;
-  orderSeason.textContent = `${mood.label} 분위기의 주문이에요.`;
+  orderSeason.textContent = '';
+  orderSeason.hidden = true;
 }
 
 function populateStatusSelect() {
@@ -114,6 +115,7 @@ function renderOrder(order) {
     (item) => {
       const menu = getMenuForOrderItem(item);
       const season = menu.category || item.category || 'all';
+      const optionSummary = getMenuOptionsSummary(item.options);
       return `
         <article class="order-item" data-season="${escapeHtml(season)}">
           <div class="item-thumb" style="--menu-image: url('${escapeHtml(menu.image || SEASON_IMAGES[season] || SEASON_IMAGES.spring)}')" aria-hidden="true"></div>
@@ -121,6 +123,7 @@ function renderOrder(order) {
             <p class="item-meta">${escapeHtml(getCategoryName(season))} · ${formatPrice(item.price)}</p>
             <h3>${escapeHtml(item.name)}</h3>
             <p>${escapeHtml(item.quantity)}개 담김</p>
+            ${optionSummary ? `<p class=item-option>${escapeHtml(optionSummary)}</p>` : ''}
           </div>
           <strong>${formatPrice(item.price * item.quantity)}</strong>
         </article>
