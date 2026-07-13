@@ -242,6 +242,46 @@ const MENU_ITEMS = [
     price: 12000,
     description: '눈꽃 무늬를 담은 부드러운 차 테이블 타월입니다.',
     image: '/assets/menu/snow-tea-towel.png'
+  },
+  {
+    id: 25,
+    name: '벚꽃 꿀차',
+    category: 'spring',
+    kind: 'drink',
+    optionConfig: { temperatureMode: 'both' },
+    price: 6900,
+    description: '벚꽃 향과 꿀의 은은한 단맛을 따뜻하게도 차갑게도 즐기는 봄 차입니다.',
+    image: '/assets/menu/spring-cherry-honey-tea.png'
+  },
+  {
+    id: 26,
+    name: '청매실 허브티',
+    category: 'summer',
+    kind: 'drink',
+    optionConfig: { temperatureMode: 'both' },
+    price: 6600,
+    description: '청매실의 산뜻함과 허브 향을 담아 Hot 또는 Ice로 즐기는 여름 차입니다.',
+    image: '/assets/menu/summer-plum-herbal-tea.png'
+  },
+  {
+    id: 27,
+    name: '밤보리 라떼',
+    category: 'autumn',
+    kind: 'drink',
+    optionConfig: { temperatureMode: 'both' },
+    price: 7000,
+    description: '밤의 고소함과 볶은 보리 향이 어우러져 따뜻하게도 차갑게도 좋은 라떼입니다.',
+    image: '/assets/menu/autumn-chestnut-barley-latte.png'
+  },
+  {
+    id: 28,
+    name: '유자 생강 허니티',
+    category: 'winter',
+    kind: 'drink',
+    optionConfig: { temperatureMode: 'both' },
+    price: 6800,
+    description: '유자와 생강, 꿀의 균형을 담아 겨울에도 Hot 또는 Ice로 즐기는 차입니다.',
+    image: '/assets/menu/winter-yuzu-ginger-honey-tea.png'
   }
 ];
 

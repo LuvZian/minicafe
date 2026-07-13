@@ -4,7 +4,7 @@ const ORDER_STORAGE_KEY = 'minicafe_orders';
 const AUTH_USERS_STORAGE_KEY = 'minicafe_users';
 const AUTH_SESSION_STORAGE_KEY = 'minicafe_session';
 const MENU_VERSION_STORAGE_KEY = 'minicafe_menu_version';
-const MENU_DATA_VERSION = 'season-menu-options-v1';
+const MENU_DATA_VERSION = 'season-menu-options-v2';
 
 function readStorage(key, fallback) {
   try {
