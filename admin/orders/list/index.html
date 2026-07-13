@@ -1,52 +1,52 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Admin Orders | Minicafe</title>
+    <title>주문 관리 | Minicafe</title>
     <link rel="stylesheet" href="/css/variables.css" />
     <link rel="stylesheet" href="/admin/orders/list/index.css" />
   </head>
   <body>
     <header class="admin-header">
       <a class="brand" href="/">Minicafe</a>
-      <nav class="admin-nav" aria-label="Admin navigation"></nav>
+      <nav class="admin-nav" aria-label="관리자 메뉴"></nav>
     </header>
 
     <main class="page-shell">
       <section class="page-head" aria-labelledby="page-title">
         <div>
-          <p class="eyebrow">Order desk</p>
-          <h1 id="page-title">Manage customer orders</h1>
-          <p class="head-copy">Filter incoming orders, review tickets, and keep each status up to date.</p>
+          <p class="eyebrow">주문 관리</p>
+          <h1 id="page-title">계절 주문을 살펴봐요</h1>
+          <p class="head-copy">들어온 주문을 상태별로 확인하고, 메뉴 흐름에 맞춰 차분하게 관리해요.</p>
         </div>
       </section>
 
-      <section class="toolbar" aria-label="Order filters">
+      <section class="toolbar" aria-label="주문 필터">
         <label class="field">
-          <span>Status</span>
+          <span>상태</span>
           <select id="status-filter">
-            <option value="all">All status</option>
+            <option value="all">전체 상태</option>
           </select>
         </label>
         <label class="field">
-          <span>Search</span>
-          <input id="search-input" type="search" placeholder="Order id or menu name" autocomplete="off" />
+          <span>검색</span>
+          <input id="search-input" type="search" placeholder="주문 번호, 메뉴 이름, 계절" autocomplete="off" />
         </label>
       </section>
 
       <section class="orders-panel" aria-live="polite">
         <div class="panel-head">
           <div>
-            <p class="eyebrow dark">Orders</p>
-            <h2>Order list</h2>
+            <p class="eyebrow dark">주문 목록</p>
+            <h2>최근 주문</h2>
           </div>
-          <span id="result-count">0 orders</span>
+          <span id="result-count">0건의 주문</span>
         </div>
         <div id="orders-list" class="orders-list"></div>
         <div id="empty-state" class="empty-state" hidden>
-          <h2>No orders found</h2>
-          <p>Try another status or keyword.</p>
+          <h2>주문을 찾을 수 없어요</h2>
+          <p>다른 상태나 검색어로 다시 찾아보세요.</p>
         </div>
       </section>
     </main>

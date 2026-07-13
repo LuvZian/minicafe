@@ -1,52 +1,52 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Orders | Minicafe</title>
+    <title>주문 내역 | Minicafe</title>
     <link rel="stylesheet" href="/css/variables.css" />
     <link rel="stylesheet" href="/orders/list/index.css" />
   </head>
   <body>
     <header class="site-header">
       <a class="brand" href="/">Minicafe</a>
-      <nav class="site-nav" aria-label="Customer navigation"></nav>
+      <nav class="site-nav" aria-label="고객 메뉴"></nav>
     </header>
 
     <main class="page-shell">
       <section class="orders-hero" aria-labelledby="page-title">
         <div>
-          <p class="eyebrow">Order history</p>
-          <h1 id="page-title">Your cafe moments, neatly kept</h1>
-          <p class="hero-copy">Review recent orders, check their status, and open the receipt whenever you need it.</p>
+          <p class="eyebrow">계절의 주문</p>
+          <h1 id="page-title">계절의 주문을 모아두었어요</h1>
+          <p class="hero-copy">페이지는 사계절로 은은하게, 주문 카드는 담긴 메뉴의 대표 계절로 물들어요.</p>
         </div>
-        <a class="hero-action" href="/menus/list/">Order more</a>
+        <a class="hero-action" href="/menus/list/">메뉴 더 보기</a>
       </section>
 
-      <section class="orders-panel" aria-label="Order history">
+      <section class="orders-panel" aria-label="주문 내역">
         <div class="panel-head">
           <div>
-            <p class="eyebrow dark">History</p>
-            <h2>Recent orders</h2>
+            <p class="eyebrow dark">주문 기록</p>
+            <h2>최근 주문</h2>
           </div>
           <label class="filter-field">
-            <span class="sr-only">Filter by status</span>
-            <select id="status-filter" aria-label="Filter by status">
-              <option value="all">All status</option>
+            <span class="sr-only">상태별 보기</span>
+            <select id="status-filter" aria-label="상태별 보기">
+              <option value="all">전체 상태</option>
             </select>
           </label>
         </div>
 
         <div class="result-line">
-          <span id="result-count">0 orders</span>
-          <span id="result-total">0원 total</span>
+          <span id="result-count">0건의 주문</span>
+          <span id="result-total">총 0원</span>
         </div>
 
         <div id="orders-list" class="orders-list"></div>
         <div id="empty-state" class="empty-state" hidden>
-          <h2>No orders yet</h2>
-          <p>Your completed cafe orders will appear here.</p>
-          <a href="/menus/list/">Browse menu</a>
+          <h2>아직 주문이 없어요</h2>
+          <p>첫 주문을 남기면 계절 카드로 차곡차곡 모아둘게요.</p>
+          <a href="/menus/list/">메뉴 보러가기</a>
         </div>
       </section>
     </main>

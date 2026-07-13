@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
@@ -16,11 +16,11 @@
     <main class="page-shell">
       <section class="basket-hero" aria-labelledby="page-title">
         <div>
-          <p class="eyebrow">Your cafe tray</p>
-          <h1 id="page-title">Almost ready for checkout</h1>
-          <p class="hero-copy">Check your drinks and treats, adjust quantities, and place the order when it feels right.</p>
+          <p class="eyebrow">Seasonal basket</p>
+          <h1 id="page-title">고른 계절을 담아두었어요</h1>
+          <p class="hero-copy">가장 많이 담긴 계절에 맞춰 장바구니 분위기가 바뀌어요.</p>
         </div>
-        <a class="hero-action" href="/menus/list/">Add more</a>
+        <a class="hero-action" href="/menus/list/">메뉴 더 보기</a>
       </section>
 
       <section class="basket-layout" aria-live="polite">
@@ -28,16 +28,16 @@
           <div class="panel-head">
             <div>
               <p class="eyebrow dark">Basket</p>
-              <h2>Selected menu</h2>
+              <h2>담은 메뉴</h2>
             </div>
-            <button id="clear-button" class="ghost-button" type="button">Clear all</button>
+            <button id="clear-button" class="ghost-button" type="button">전체 비우기</button>
           </div>
 
           <div id="basket-list" class="basket-list"></div>
           <div id="empty-state" class="empty-state" hidden>
-            <h2>Your basket is empty</h2>
-            <p>Pick something warm or sweet from the menu.</p>
-            <a href="/menus/list/">Browse menu</a>
+            <h2>장바구니가 비어 있어요</h2>
+            <p>계절 메뉴를 담으면 이 화면도 함께 물들어요.</p>
+            <a href="/menus/list/">메뉴 보러가기</a>
           </div>
         </div>
 
@@ -45,16 +45,16 @@
           <p class="eyebrow dark">Summary</p>
           <dl class="summary-list">
             <div>
-              <dt>Items</dt>
+              <dt>메뉴 수</dt>
               <dd id="summary-count">0</dd>
             </div>
             <div>
-              <dt>Total</dt>
-              <dd id="summary-total">0원</dd>
+              <dt>합계</dt>
+              <dd id="summary-total">0&#50896;</dd>
             </div>
           </dl>
-          <button id="order-button" class="order-button" type="button">Place order</button>
-          <p id="summary-note" class="summary-note">You can still adjust quantities.</p>
+          <button id="order-button" class="order-button" type="button">주문하기</button>
+          <p id="summary-note" class="summary-note">수량은 주문 전까지 바꿀 수 있어요.</p>
         </aside>
       </section>
     </main>

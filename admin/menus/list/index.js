@@ -1,6 +1,6 @@
-﻿renderAdminNav();
+renderAdminNav();
 const currentAdmin = requireAuth('admin');
-if (!currentAdmin) throw new Error('Admin authentication required');
+if (!currentAdmin) throw new Error('관리자 로그인이 필요해요.');
 const searchInput = $('#search-input');
 const categoryFilter = $('#category-filter');
 const menuList = $('#menu-list');
@@ -16,7 +16,7 @@ const state = {
 
 function renderCategoryFilter() {
   categoryFilter.innerHTML = [
-    '<option value="all">All categories</option>',
+    '<option value="all">전체 계절</option>',
     ...CATEGORIES.map((category) => `<option value="${escapeHtml(category.id)}">${escapeHtml(category.name)}</option>`)
   ].join('');
 }
@@ -39,12 +39,12 @@ function getFilteredMenus() {
 function renderStats(menus, filteredMenus) {
   totalCount.textContent = menus.length;
   categoryCount.textContent = new Set(menus.map((menu) => menu.category)).size;
-  resultCount.textContent = `${filteredMenus.length} items`;
+  resultCount.textContent = `${filteredMenus.length}개 메뉴`;
 }
 
 function renderMenus() {
   const menus = getMenus();
-  const filteredMenus = getFilteredMenus();
+  const filteredMenus = sortMenusBySeasonKindPrice(getFilteredMenus());
 
   renderStats(menus, filteredMenus);
   emptyState.hidden = filteredMenus.length > 0;
@@ -54,17 +54,18 @@ function renderMenus() {
     menuList,
     filteredMenus,
     (menu) => `
-      <article class="menu-row">
-        <div>
+      <article class="menu-row" data-season="${escapeHtml(menu.category)}">
+        <div class="menu-thumb" style="--menu-image: url('${escapeHtml(menu.image || SEASON_IMAGES[menu.category] || SEASON_IMAGES.spring)}')" aria-hidden="true"></div>
+        <div class="menu-info">
           <p class="menu-meta">${escapeHtml(getCategoryName(menu.category))}</p>
           <h3 class="menu-title">${escapeHtml(menu.name)}</h3>
           <p class="menu-description">${escapeHtml(menu.description)}</p>
         </div>
         <strong class="price">${formatPrice(menu.price)}</strong>
         <div class="row-actions">
-          <a class="secondary-link" href="/admin/menus/detail/?id=${encodeURIComponent(menu.id)}">Detail</a>
-          <a class="secondary-link" href="/admin/menus/edit/?id=${encodeURIComponent(menu.id)}">Edit</a>
-          <button class="danger-button" type="button" data-delete-id="${escapeHtml(menu.id)}">Delete</button>
+          <a class="secondary-link" href="/admin/menus/detail/?id=${encodeURIComponent(menu.id)}">상세</a>
+          <a class="secondary-link" href="/admin/menus/edit/?id=${encodeURIComponent(menu.id)}">수정</a>
+          <button class="danger-button" type="button" data-delete-id="${escapeHtml(menu.id)}">삭제</button>
         </div>
       </article>
     `
@@ -96,6 +97,3 @@ menuList.addEventListener('click', (event) => {
 
 renderCategoryFilter();
 renderMenus();
-
-
-

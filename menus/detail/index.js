@@ -1,34 +1,18 @@
-﻿renderCustomerNav();
+renderCustomerNav();
 const detailRoot = $('#detail-root');
 const toast = $('#toast');
 const menuId = getQueryParam('id');
 const menu = getMenuById(menuId);
 
-const MENU_IMAGES = {
-  1: 'https://images.unsplash.com/photo-1570968915860-54d5c301fa9f?auto=format&fit=crop&w=1200&q=80',
-  2: 'https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&w=1200&q=80',
-  3: 'https://images.unsplash.com/photo-1561047029-3000c68339ca?auto=format&fit=crop&w=1200&q=80',
-  4: 'https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=1200&q=80',
-  5: 'https://images.unsplash.com/photo-1597318181409-cf64d0b5d8a2?auto=format&fit=crop&w=1200&q=80',
-  6: 'https://images.unsplash.com/photo-1515823064-d6e0c04616a7?auto=format&fit=crop&w=1200&q=80',
-  7: 'https://images.unsplash.com/photo-1621263764928-df1444c5e859?auto=format&fit=crop&w=1200&q=80',
-  8: 'https://images.unsplash.com/photo-1622597467836-f3285f2131b8?auto=format&fit=crop&w=1200&q=80',
-  9: 'https://images.unsplash.com/photo-1621303837174-89787a7d4729?auto=format&fit=crop&w=1200&q=80',
-  10: 'https://marketlanemadras.com/cdn/shop/products/IMG_1907_85791865-8441-4fb0-abc1-5d747e6da6f7_1200x1200.jpg?v=1594190467',
-  11: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=1200&q=80',
-  12: 'https://images.unsplash.com/photo-1608198093002-ad4e005484ec?auto=format&fit=crop&w=1200&q=80'
-};
-
 const CATEGORY_IMAGES = {
-  coffee: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1200&q=80',
-  tea: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&w=1200&q=80',
-  ade: 'https://images.unsplash.com/photo-1621263764928-df1444c5e859?auto=format&fit=crop&w=1200&q=80',
-  dessert: 'https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=1200&q=80',
-  bakery: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1200&q=80'
+  spring: SEASON_IMAGES.spring,
+  summer: SEASON_IMAGES.summer,
+  autumn: SEASON_IMAGES.autumn,
+  winter: SEASON_IMAGES.winter
 };
 
 function getMenuImage(item) {
-  return item.image || MENU_IMAGES[item.id] || CATEGORY_IMAGES[item.category] || CATEGORY_IMAGES.coffee;
+  return item.image || CATEGORY_IMAGES[item.category] || SEASON_IMAGES.spring;
 }
 
 function normalizeQuantity(value) {
@@ -37,7 +21,8 @@ function normalizeQuantity(value) {
   return Math.min(Math.max(quantity, 1), 99);
 }
 
-function showToast(message) {
+function showToast(message, season = document.body.dataset.season) {
+  toast.dataset.season = season;
   toast.textContent = message;
   toast.classList.add('is-visible');
   window.clearTimeout(showToast.timer);
@@ -47,14 +32,16 @@ function showToast(message) {
 function renderNotFound() {
   detailRoot.innerHTML = `
     <div class="not-found">
-      <h1>Menu not found</h1>
-      <p>The menu may have been removed or the link is incorrect.</p>
-      <a href="/menus/list/">Go to menu</a>
+      <h1>메뉴를 찾을 수 없어요</h1>
+      <p>메뉴가 삭제되었거나 링크가 올바르지 않을 수 있어요.</p>
+      <a href="/menus/list/">메뉴로 돌아가기</a>
     </div>
   `;
 }
 
 function renderDetail(item) {
+  document.body.dataset.season = item.category;
+  document.body.classList.add('season-' + item.category);
   document.title = `${item.name} | Minicafe Menu`;
   detailRoot.innerHTML = `
     <article class="detail-layout">
@@ -74,15 +61,15 @@ function renderDetail(item) {
         <div class="detail-price">${formatPrice(item.price)}</div>
         <div class="purchase-box">
           <div class="quantity-row">
-            <strong>Quantity</strong>
-            <div class="quantity-control" aria-label="Quantity control">
-              <button type="button" data-quantity-step="-1" aria-label="Decrease quantity">-</button>
+            <strong>수량</strong>
+            <div class="quantity-control" aria-label="수량 조절">
+              <button type="button" data-quantity-step="-1" aria-label="수량 줄이기">-</button>
               <input id="quantity-input" type="number" min="1" max="99" value="1" inputmode="numeric" />
-              <button type="button" data-quantity-step="1" aria-label="Increase quantity">+</button>
+              <button type="button" data-quantity-step="1" aria-label="수량 늘리기">+</button>
             </div>
           </div>
-          <button class="primary-button" type="button" id="add-button">Add to basket</button>
-          <a class="secondary-link" href="/menus/list/">Keep browsing</a>
+          <button class="primary-button" type="button" id="add-button">장바구니 담기</button>
+          <a class="secondary-link" href="/menus/list/">메뉴 더 보기</a>
         </div>
       </div>
     </article>
@@ -103,7 +90,7 @@ function renderDetail(item) {
       const quantity = normalizeQuantity(quantityInput.value);
       quantityInput.value = quantity;
       addToCart(item.id, quantity);
-      showToast(`${item.name} ${quantity} added to basket`);
+      showToast(`${item.name} ${quantity}개를 장바구니에 담았어요`, item.category);
     }
   });
 
@@ -117,4 +104,3 @@ if (!menu) {
 } else {
   renderDetail(menu);
 }
-

@@ -1,56 +1,57 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Admin Order Detail | Minicafe</title>
+    <title>주문 상세 | Minicafe</title>
     <link rel="stylesheet" href="/css/variables.css" />
     <link rel="stylesheet" href="/admin/orders/detail/index.css" />
   </head>
   <body>
     <header class="admin-header">
       <a class="brand" href="/">Minicafe</a>
-      <nav class="admin-nav" aria-label="Admin navigation"></nav>
+      <nav class="admin-nav" aria-label="관리자 메뉴"></nav>
     </header>
 
     <main class="page-shell">
-      <a class="back-link" href="/admin/orders/list/">Back to orders</a>
+      <a class="back-link" href="/admin/orders/list/">주문 목록으로 돌아가기</a>
 
       <section id="order-detail" class="detail-layout" hidden>
-        <aside class="status-panel" aria-label="Order status">
-          <p class="eyebrow dark">Ticket</p>
-          <h1 id="order-title">Order</h1>
+        <aside class="status-panel" aria-label="주문 상태">
+          <p class="eyebrow dark">주문표</p>
+          <h1 id="order-title">주문</h1>
+          <p id="order-season" class="season-note"></p>
           <dl class="summary-list">
             <div>
-              <dt>Status</dt>
+              <dt>상태</dt>
               <dd id="order-status"></dd>
             </div>
             <div>
-              <dt>Ordered at</dt>
+              <dt>주문 시간</dt>
               <dd id="order-date"></dd>
             </div>
             <div>
-              <dt>Items</dt>
+              <dt>메뉴 수량</dt>
               <dd id="order-count"></dd>
             </div>
             <div>
-              <dt>Total</dt>
+              <dt>총 금액</dt>
               <dd id="order-total"></dd>
             </div>
           </dl>
           <label class="field">
-            <span>Update status</span>
+            <span>상태 변경</span>
             <select id="status-select"></select>
           </label>
-          <button id="save-status" class="primary-button" type="button">Save status</button>
+          <button id="save-status" class="primary-button" type="button">상태 저장</button>
           <p id="status-message" class="status-message" role="status" aria-live="polite"></p>
         </aside>
 
-        <section class="items-panel" aria-label="Ordered items">
+        <section class="items-panel" aria-label="주문 메뉴">
           <div class="panel-head">
             <div>
-              <p class="eyebrow dark">Items</p>
-              <h2>Customer order</h2>
+              <p class="eyebrow dark">담긴 메뉴</p>
+              <h2>고객 주문 구성</h2>
             </div>
           </div>
           <div id="items-list" class="items-list"></div>
@@ -58,9 +59,9 @@
       </section>
 
       <section id="not-found" class="not-found" hidden>
-        <h1>Order not found</h1>
-        <p>The order may have been removed or the link is incorrect.</p>
-        <a href="/admin/orders/list/">View orders</a>
+        <h1>주문을 찾을 수 없어요</h1>
+        <p>주문이 삭제되었거나 링크가 올바르지 않을 수 있어요.</p>
+        <a href="/admin/orders/list/">주문 목록 보기</a>
       </section>
     </main>
 

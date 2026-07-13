@@ -1,4 +1,4 @@
-﻿renderCustomerNav();
+renderCustomerNav();
 const currentUser = requireAuth('customer');
 if (!currentUser) throw new Error('Authentication required');
 const basketList = $('#basket-list');
@@ -11,27 +11,12 @@ const orderButton = $('#order-button');
 const cartCount = $('#cart-count');
 const toast = $('#toast');
 
-const MENU_IMAGES = {
-  1: 'https://images.unsplash.com/photo-1570968915860-54d5c301fa9f?auto=format&fit=crop&w=700&q=80',
-  2: 'https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&w=700&q=80',
-  3: 'https://images.unsplash.com/photo-1561047029-3000c68339ca?auto=format&fit=crop&w=700&q=80',
-  4: 'https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=700&q=80',
-  5: 'https://images.unsplash.com/photo-1597318181409-cf64d0b5d8a2?auto=format&fit=crop&w=700&q=80',
-  6: 'https://images.unsplash.com/photo-1515823064-d6e0c04616a7?auto=format&fit=crop&w=700&q=80',
-  7: 'https://images.unsplash.com/photo-1621263764928-df1444c5e859?auto=format&fit=crop&w=700&q=80',
-  8: 'https://images.unsplash.com/photo-1622597467836-f3285f2131b8?auto=format&fit=crop&w=700&q=80',
-  9: 'https://images.unsplash.com/photo-1621303837174-89787a7d4729?auto=format&fit=crop&w=700&q=80',
-  10: 'https://marketlanemadras.com/cdn/shop/products/IMG_1907_85791865-8441-4fb0-abc1-5d747e6da6f7_900x900.jpg?v=1594190467',
-  11: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=700&q=80',
-  12: 'https://images.unsplash.com/photo-1608198093002-ad4e005484ec?auto=format&fit=crop&w=700&q=80'
-};
-
-const CATEGORY_IMAGES = {
-  coffee: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=700&q=80',
-  tea: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&w=700&q=80',
-  ade: 'https://images.unsplash.com/photo-1621263764928-df1444c5e859?auto=format&fit=crop&w=700&q=80',
-  dessert: 'https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=700&q=80',
-  bakery: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=700&q=80'
+const SEASON_CLASSES = ['season-all', 'season-spring', 'season-summer', 'season-autumn', 'season-winter'];
+const SEASON_NAMES = {
+  spring: '봄',
+  summer: '여름',
+  autumn: '가을',
+  winter: '겨울'
 };
 
 function normalizeQuantity(value) {
@@ -44,9 +29,43 @@ function getItemCount(cart) {
   return cart.reduce((sum, item) => sum + item.quantity, 0);
 }
 
+function getMenuForCartItem(item) {
+  return getMenuById(item.menuId) || item;
+}
+
 function getMenuImage(item) {
-  const menu = getMenuById(item.menuId);
-  return (menu && menu.image) || MENU_IMAGES[item.menuId] || CATEGORY_IMAGES[item.category] || CATEGORY_IMAGES.coffee;
+  const menu = getMenuForCartItem(item);
+  return menu.image || SEASON_IMAGES[menu.category] || SEASON_IMAGES.spring;
+}
+
+function getRepresentativeSeason(cart) {
+  if (cart.length === 0) return 'all';
+
+  const scores = cart.reduce((acc, item) => {
+    const menu = getMenuForCartItem(item);
+    const season = menu.category;
+    if (!SEASON_NAMES[season]) return acc;
+
+    if (!acc[season]) acc[season] = { quantity: 0, total: 0 };
+    acc[season].quantity += item.quantity;
+    acc[season].total += item.price * item.quantity;
+    return acc;
+  }, {});
+
+  const [winner] = Object.entries(scores).sort((a, b) => {
+    if (b[1].quantity !== a[1].quantity) return b[1].quantity - a[1].quantity;
+    return b[1].total - a[1].total;
+  })[0] || ['all'];
+
+  return winner;
+}
+
+function applyBasketSeason(cart) {
+  const season = getRepresentativeSeason(cart);
+  document.body.classList.remove(...SEASON_CLASSES);
+  document.body.classList.add(`season-${season}`);
+  document.body.dataset.season = season;
+  return season;
 }
 
 function showToast(message) {
@@ -60,6 +79,8 @@ function renderBasket() {
   const cart = getCart();
   const hasItems = cart.length > 0;
   const itemCount = getItemCount(cart);
+  const representativeSeason = applyBasketSeason(cart);
+  const seasonLabel = SEASON_NAMES[representativeSeason];
 
   basketList.hidden = !hasItems;
   emptyState.hidden = hasItems;
@@ -68,37 +89,42 @@ function renderBasket() {
   if (cartCount) cartCount.textContent = itemCount;
   summaryCount.textContent = itemCount;
   summaryTotal.textContent = formatPrice(getCartTotal());
-  summaryNote.textContent = hasItems ? 'You can still adjust quantities.' : 'Add a menu item to start your basket.';
+  summaryNote.textContent = hasItems
+    ? `${seasonLabel} 분위기로 장바구니를 정리했어요.`
+    : '메뉴를 담으면 가장 많이 담긴 계절 분위기로 바뀌어요.';
 
   renderList(
     basketList,
     cart,
-    (item) => `
-      <article class="basket-item" data-menu-id="${escapeHtml(item.menuId)}">
-        <div class="item-image" style="--menu-image: url('${escapeHtml(getMenuImage(item))}')" aria-hidden="true"></div>
-        <div>
-          <p class="item-meta">${escapeHtml(getCategoryName(item.category))} · ${formatPrice(item.price)}</p>
-          <h3 class="item-name">${escapeHtml(item.name)}</h3>
-          <p class="item-total">${formatPrice(item.price * item.quantity)}</p>
-        </div>
-        <div class="item-controls">
-          <div class="quantity-control" aria-label="${escapeHtml(item.name)} quantity">
-            <button type="button" data-step="-1" aria-label="Decrease quantity">-</button>
-            <input
-              type="number"
-              min="1"
-              max="99"
-              value="${escapeHtml(item.quantity)}"
-              inputmode="numeric"
-              data-quantity-input="${escapeHtml(item.menuId)}"
-              aria-label="Quantity"
-            />
-            <button type="button" data-step="1" aria-label="Increase quantity">+</button>
+    (item) => {
+      const menu = getMenuForCartItem(item);
+      return `
+        <article class="basket-item" data-menu-id="${escapeHtml(item.menuId)}" data-season="${escapeHtml(menu.category)}">
+          <div class="item-image" style="--menu-image: url('${escapeHtml(getMenuImage(item))}')" aria-hidden="true"></div>
+          <div>
+            <p class="item-meta">${escapeHtml(getCategoryName(menu.category))} · ${formatPrice(item.price)}</p>
+            <h3 class="item-name">${escapeHtml(item.name)}</h3>
+            <p class="item-total">${formatPrice(item.price * item.quantity)}</p>
           </div>
-          <button class="remove-button" type="button" data-remove="${escapeHtml(item.menuId)}">Remove</button>
-        </div>
-      </article>
-    `
+          <div class="item-controls">
+            <div class="quantity-control" aria-label="${escapeHtml(item.name)} 수량">
+              <button type="button" data-step="-1" aria-label="수량 줄이기">-</button>
+              <input
+                type="number"
+                min="1"
+                max="99"
+                value="${escapeHtml(item.quantity)}"
+                inputmode="numeric"
+                data-quantity-input="${escapeHtml(item.menuId)}"
+                aria-label="수량"
+              />
+              <button type="button" data-step="1" aria-label="수량 늘리기">+</button>
+            </div>
+            <button class="remove-button" type="button" data-remove="${escapeHtml(item.menuId)}">삭제</button>
+          </div>
+        </article>
+      `;
+    }
   );
 }
 
@@ -110,7 +136,7 @@ basketList.addEventListener('click', (event) => {
   if (removeButton) {
     removeFromCart(removeButton.dataset.remove);
     renderBasket();
-    showToast('Item removed from basket');
+    showToast('장바구니에서 삭제했어요');
     return;
   }
 
@@ -136,7 +162,7 @@ clearButton.addEventListener('click', () => {
   if (getCart().length === 0) return;
   clearCart();
   renderBasket();
-  showToast('Basket cleared');
+  showToast('장바구니를 비웠어요');
 });
 
 orderButton.addEventListener('click', () => {
@@ -146,7 +172,7 @@ orderButton.addEventListener('click', () => {
   const order = createOrder(cart);
   clearCart();
   renderBasket();
-  showToast(`Order ${order.id} placed`);
+  showToast(`주문 ${order.id}을 접수했어요`);
   window.setTimeout(() => {
     window.location.href = `/orders/detail/?id=${encodeURIComponent(order.id)}`;
   }, 500);

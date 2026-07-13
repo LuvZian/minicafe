@@ -1,4 +1,4 @@
-﻿body {
+body {
   background: var(--bg-page-pattern), var(--bg-page-soft);
 }
 
@@ -141,7 +141,7 @@
   color: var(--text-on-dark);
   background:
     linear-gradient(105deg, rgba(51, 42, 37, 0.86), rgba(79, 58, 50, 0.42)),
-    url('https://images.unsplash.com/photo-1511081692775-05d0f180a065?auto=format&fit=crop&w=1600&q=80');
+    url('/assets/photos/season-spring.png');
   background-position: center;
   background-size: cover;
   border-color: rgba(255, 250, 243, 0.5);
@@ -376,4 +376,3695 @@ button.nav-logout {
   color: inherit;
   background: transparent;
   border: 0;
+}
+/* Seasonal oriental cafe redesign */
+body {
+  background-color: #f5f2e8 !important;
+  background-image: var(--bg-page-soft) !important;
+  background-size: 56px 56px, 56px 56px, auto !important;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(31, 45, 34, 0.08), transparent 1px),
+    linear-gradient(180deg, rgba(31, 45, 34, 0.04), transparent 1px);
+  background-size: 120px 120px;
+  mask-image: linear-gradient(180deg, black, transparent 78%);
+}
+
+.site-header,
+.admin-header {
+  min-height: 76px !important;
+  padding: 0 clamp(18px, 4vw, 56px) !important;
+  background: rgba(255, 253, 244, 0.9) !important;
+  border-bottom: 1px solid rgba(47, 75, 50, 0.16) !important;
+  box-shadow: 0 14px 34px rgba(31, 45, 34, 0.08) !important;
+  backdrop-filter: blur(18px) !important;
+}
+
+.brand {
+  gap: 12px !important;
+  color: #1f2d22 !important;
+  font-size: 23px !important;
+  letter-spacing: 0 !important;
+}
+
+.brand::before {
+  content: '' !important;
+  width: 34px !important;
+  height: 34px !important;
+  background:
+    linear-gradient(135deg, #213b28, #7fa34b) !important;
+  border: 7px solid #fffdf4 !important;
+  border-radius: 50% !important;
+  box-shadow:
+    0 0 0 1px rgba(47, 75, 50, 0.25),
+    inset 0 0 0 1px rgba(255, 253, 244, 0.5) !important;
+}
+
+.site-nav,
+.admin-nav,
+.role-tabs {
+  gap: 4px !important;
+  padding: 5px !important;
+  background: rgba(238, 242, 223, 0.7) !important;
+  border: 1px solid rgba(47, 75, 50, 0.14) !important;
+  border-radius: 999px !important;
+}
+
+.site-nav a,
+.admin-nav a,
+.nav-logout,
+.role-tabs button {
+  border-radius: 999px !important;
+  color: #52624d !important;
+}
+
+.site-nav a:hover,
+.site-nav a[aria-current='page'],
+.admin-nav a:hover,
+.admin-nav a[aria-current='page'],
+.role-tabs button.is-active {
+  color: #1f2d22 !important;
+  background: #fffdf4 !important;
+  box-shadow: 0 7px 16px rgba(31, 45, 34, 0.09) !important;
+}
+
+.cart-count {
+  background: #6f913e !important;
+}
+
+.page-shell {
+  width: min(1180px, calc(100% - 36px)) !important;
+  padding: 40px 0 72px !important;
+}
+
+.home-hero,
+.menu-hero,
+.basket-hero,
+.page-head,
+.auth-visual {
+  isolation: isolate;
+  border-radius: 0 !important;
+  border: 1px solid rgba(47, 75, 50, 0.18) !important;
+  box-shadow: var(--shadow-lg) !important;
+}
+
+.home-hero {
+  grid-template-columns: minmax(0, 1.08fr) minmax(300px, 0.55fr) !important;
+  gap: 18px !important;
+  align-items: stretch !important;
+}
+
+.hero-copy-block,
+.menu-hero,
+.basket-hero,
+.auth-visual {
+  min-height: 520px !important;
+  padding: clamp(28px, 5vw, 58px) !important;
+  background:
+    linear-gradient(90deg, rgba(18, 33, 21, 0.88), rgba(18, 33, 21, 0.55) 48%, rgba(18, 33, 21, 0.18)),
+    url('/assets/photos/season-spring.png') !important;
+  background-position: center !important;
+  background-size: cover !important;
+}
+
+.hero-copy-block::before,
+.menu-hero::before,
+.basket-hero::before,
+.auth-visual::before {
+  content: 'MINICAFE' !important;
+  position: absolute !important;
+  top: 28px !important;
+  right: 28px !important;
+  z-index: 0 !important;
+  writing-mode: vertical-rl !important;
+  color: rgba(255, 253, 244, 0.62) !important;
+  border: 1px solid rgba(255, 253, 244, 0.32) !important;
+  padding: 12px 7px !important;
+  font-size: 11px !important;
+  font-weight: 900 !important;
+  letter-spacing: 0 !important;
+}
+
+.hero-copy-block::after,
+.menu-hero::after,
+.basket-hero::after,
+.auth-visual::after {
+  content: '' !important;
+  position: absolute !important;
+  inset: 18px !important;
+  z-index: 0 !important;
+  border: 1px solid rgba(255, 253, 244, 0.22) !important;
+  pointer-events: none !important;
+}
+
+.hero-copy-block > *,
+.menu-hero > *,
+.basket-hero > *,
+.auth-visual > * {
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+.home-hero h1,
+.menu-hero h1,
+.basket-hero h1,
+.auth-visual h1 {
+  max-width: 780px !important;
+  color: #fffdf4 !important;
+  font-size: clamp(42px, 7vw, 86px) !important;
+  line-height: 0.98 !important;
+}
+
+.hero-copy,
+.auth-visual p {
+  max-width: 620px !important;
+  color: rgba(255, 253, 244, 0.86) !important;
+  font-size: 18px !important;
+}
+
+.eyebrow {
+  width: max-content !important;
+  margin-bottom: 14px !important;
+  padding: 7px 13px !important;
+  color: #fffdf4 !important;
+  background: rgba(255, 253, 244, 0.14) !important;
+  border: 1px solid rgba(255, 253, 244, 0.28) !important;
+  border-radius: 0 !important;
+  font-size: 11px !important;
+  letter-spacing: 0 !important;
+}
+
+.eyebrow.dark,
+.menu-meta,
+.category-pill,
+.item-meta {
+  color: #2f4b32 !important;
+  background: rgba(138, 163, 95, 0.15) !important;
+  border: 1px solid rgba(47, 75, 50, 0.14) !important;
+  border-radius: 999px !important;
+}
+
+.primary-link,
+.hero-action,
+.cart-button,
+.order-button,
+.primary-button,
+.empty-state a {
+  min-height: 46px !important;
+  color: #fffdf4 !important;
+  background: linear-gradient(135deg, #213b28, #7fa34b) !important;
+  border: 1px solid rgba(255, 253, 244, 0.2) !important;
+  border-radius: 999px !important;
+  box-shadow: 0 14px 24px rgba(47, 75, 50, 0.22) !important;
+}
+
+.secondary-link,
+.detail-link,
+.text-link,
+.back-link,
+.ghost-button,
+.not-found a {
+  min-height: 42px !important;
+  color: #1f2d22 !important;
+  background: rgba(255, 253, 244, 0.86) !important;
+  border: 1px solid rgba(47, 75, 50, 0.16) !important;
+  border-radius: 999px !important;
+}
+
+.hero-card,
+.summary-card,
+.featured-section,
+.menu-toolbar,
+.basket-panel,
+.summary-panel,
+.detail-panel,
+.not-found,
+.form-shell,
+.menu-panel,
+.toolbar,
+.stats-grid article,
+.auth-panel {
+  position: relative !important;
+  overflow: hidden !important;
+  background:
+    linear-gradient(145deg, rgba(255, 253, 244, 0.97), rgba(238, 242, 223, 0.9)) !important;
+  border: 1px solid rgba(47, 75, 50, 0.16) !important;
+  border-radius: 0 !important;
+  box-shadow: var(--shadow-md) !important;
+}
+
+.hero-card::before,
+.summary-card::before,
+.featured-section::before,
+.menu-toolbar::before,
+.basket-panel::before,
+.summary-panel::before,
+.detail-panel::before,
+.form-shell::before,
+.menu-panel::before,
+.toolbar::before,
+.auth-panel::before {
+  content: '' !important;
+  position: absolute !important;
+  inset: 0 auto 0 0 !important;
+  width: 6px !important;
+  height: auto !important;
+  background: linear-gradient(180deg, #213b28, #8aa35f, #cfb45b) !important;
+}
+
+.hero-card {
+  display: grid !important;
+  align-content: start !important;
+  gap: 18px !important;
+  padding: 24px !important;
+}
+
+.today-visual,
+.featured-visual,
+.menu-visual,
+.item-image {
+  background-image: var(--image-shade), var(--menu-image, none) !important;
+  background-position: center !important;
+  background-size: cover !important;
+}
+
+.today-visual {
+  min-height: 260px !important;
+  border-radius: 0 !important;
+  border: 1px solid rgba(47, 75, 50, 0.15) !important;
+}
+
+.summary-grid {
+  grid-template-columns: 1.1fr 0.9fr 0.9fr !important;
+  gap: 18px !important;
+  margin-top: 18px !important;
+}
+
+.summary-card {
+  min-height: 220px !important;
+  padding: 26px !important;
+}
+
+.summary-card h2,
+.hero-card h2,
+.section-head h2,
+.panel-head h2 {
+  font-size: 28px !important;
+}
+
+.featured-section {
+  margin-top: 18px !important;
+  padding: 28px !important;
+}
+
+.featured-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 18px !important;
+}
+
+.featured-card,
+.menu-card,
+.basket-item,
+.menu-row,
+.order-card,
+.detail-card,
+.order-row {
+  overflow: hidden !important;
+  background: rgba(255, 253, 244, 0.92) !important;
+  border: 1px solid rgba(47, 75, 50, 0.16) !important;
+  border-radius: 0 !important;
+  box-shadow: 0 12px 26px rgba(31, 45, 34, 0.08) !important;
+}
+
+.featured-card:hover,
+.menu-card:hover,
+.basket-item:hover,
+.menu-row:hover,
+.order-card:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: var(--shadow-lift) !important;
+}
+
+.featured-visual {
+  height: 190px !important;
+}
+
+.menu-hero,
+.basket-hero {
+  grid-template-columns: minmax(0, 1fr) auto !important;
+  align-items: end !important;
+}
+
+.menu-toolbar,
+.toolbar {
+  display: grid !important;
+  grid-template-columns: minmax(220px, 320px) 1fr !important;
+  gap: 16px !important;
+  margin: 22px 0 !important;
+  padding: 16px !important;
+}
+
+.category-tabs button,
+.search-field input,
+.field input,
+.field select,
+.field textarea,
+.quantity-control {
+  background: rgba(255, 253, 244, 0.92) !important;
+  border: 1px solid rgba(47, 75, 50, 0.16) !important;
+  border-radius: 999px !important;
+}
+
+.field textarea {
+  border-radius: 14px !important;
+}
+
+.category-tabs button.is-active,
+.category-tabs button:hover {
+  color: #fffdf4 !important;
+  background: #2f4b32 !important;
+  border-color: #2f4b32 !important;
+}
+
+.result-line {
+  padding: 0 4px !important;
+  color: #7d8b75 !important;
+}
+
+.menu-grid {
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)) !important;
+  gap: 20px !important;
+}
+
+.menu-card {
+  grid-template-rows: 240px auto !important;
+}
+
+.menu-card .menu-visual {
+  height: 240px !important;
+  align-items: flex-start !important;
+  padding: 16px !important;
+}
+
+.menu-visual span {
+  color: #fffdf4 !important;
+  background: rgba(31, 45, 34, 0.66) !important;
+  border-radius: 999px !important;
+}
+
+.menu-body,
+.featured-body {
+  gap: 10px !important;
+  padding: 18px !important;
+}
+
+.menu-title,
+.item-name {
+  font-size: 22px !important;
+}
+
+.menu-description,
+.featured-body p,
+.detail-description,
+.summary-note {
+  color: #52624d !important;
+}
+
+.menu-actions {
+  grid-template-columns: 1fr 88px !important;
+}
+
+.detail-layout {
+  grid-template-columns: minmax(360px, 0.95fr) minmax(0, 1fr) !important;
+  gap: 20px !important;
+}
+
+.detail-layout > .menu-visual {
+  min-height: 620px !important;
+  border-radius: 0 !important;
+  border: 1px solid rgba(47, 75, 50, 0.18) !important;
+  box-shadow: var(--shadow-lg) !important;
+}
+
+.detail-panel {
+  padding: clamp(28px, 5vw, 54px) !important;
+  justify-content: center !important;
+}
+
+.detail-title {
+  font-size: clamp(42px, 7vw, 76px) !important;
+}
+
+.detail-price {
+  color: #213b28 !important;
+  background: #fffdf4 !important;
+  border-color: rgba(47, 75, 50, 0.16) !important;
+  border-radius: 0 !important;
+}
+
+.purchase-box,
+.panel-head,
+.section-head,
+.auth-note {
+  border-top-color: rgba(47, 75, 50, 0.14) !important;
+  border-bottom-color: rgba(47, 75, 50, 0.14) !important;
+}
+
+.basket-layout,
+.my-layout,
+.dashboard-grid,
+.order-layout {
+  gap: 20px !important;
+}
+
+.basket-panel,
+.summary-panel {
+  padding: 24px !important;
+}
+
+.basket-item {
+  grid-template-columns: 132px minmax(0, 1fr) auto !important;
+  padding: 16px !important;
+}
+
+.item-image {
+  width: 132px !important;
+  border-radius: 0 !important;
+}
+
+.summary-list {
+  background: rgba(255, 253, 244, 0.58) !important;
+  border-color: rgba(47, 75, 50, 0.14) !important;
+  border-radius: 0 !important;
+}
+
+.auth-shell {
+  width: min(1160px, calc(100% - 36px)) !important;
+}
+
+.auth-panel {
+  padding: clamp(28px, 4vw, 46px) !important;
+}
+
+.auth-form {
+  gap: 18px !important;
+}
+
+.form-shell {
+  display: grid !important;
+  grid-template-columns: minmax(220px, 0.4fr) minmax(0, 1fr) !important;
+  gap: 28px !important;
+  padding: clamp(24px, 4vw, 42px) !important;
+}
+
+.form-intro h1,
+.page-head h1 {
+  font-size: clamp(36px, 6vw, 62px) !important;
+}
+
+.admin-header + .page-shell .page-head,
+.admin-header + .page-shell .form-shell,
+.admin-header + .page-shell .menu-panel,
+.admin-header + .page-shell .toolbar {
+  background:
+    linear-gradient(145deg, rgba(255, 253, 244, 0.96), rgba(238, 242, 223, 0.9)),
+    var(--bg-admin-pattern) !important;
+}
+
+.menu-row {
+  grid-template-columns: minmax(0, 1fr) auto auto !important;
+  padding: 18px !important;
+}
+
+.toast {
+  background: linear-gradient(135deg, #213b28, #6f913e) !important;
+  border-radius: 0 !important;
+}
+
+.remove-button,
+.danger-button {
+  color: #7a342a !important;
+  background: #fff4ef !important;
+  border: 1px solid #e6beb2 !important;
+  border-radius: 999px !important;
+}
+
+@media (max-width: 960px) {
+  .home-hero,
+  .summary-grid,
+  .featured-grid,
+  .detail-layout,
+  .basket-layout,
+  .form-shell,
+  .auth-shell {
+    grid-template-columns: 1fr !important;
+  }
+
+  .hero-copy-block,
+  .menu-hero,
+  .basket-hero,
+  .auth-visual {
+    min-height: 430px !important;
+  }
+
+  .menu-toolbar,
+  .toolbar {
+    grid-template-columns: 1fr !important;
+  }
+
+  .category-tabs {
+    justify-content: flex-start !important;
+  }
+
+  .detail-layout > .menu-visual {
+    min-height: 440px !important;
+  }
+
+  .basket-item,
+  .menu-row {
+    grid-template-columns: 1fr !important;
+  }
+
+  .item-image {
+    width: 100% !important;
+    aspect-ratio: 16 / 9 !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .site-header,
+  .admin-header {
+    align-items: flex-start !important;
+    flex-direction: column !important;
+    padding-top: 12px !important;
+    padding-bottom: 12px !important;
+  }
+
+  .site-nav,
+  .admin-nav {
+    width: 100% !important;
+    overflow-x: auto !important;
+    border-radius: 14px !important;
+  }
+
+  .page-shell {
+    width: min(100% - 24px, 1180px) !important;
+  }
+
+  .home-hero h1,
+  .menu-hero h1,
+  .basket-hero h1,
+  .auth-visual h1 {
+    font-size: clamp(36px, 12vw, 54px) !important;
+  }
+}
+/* Cozy seasonal cafe redesign */
+body {
+  background-color: #f8f5e9 !important;
+  background-image:
+    radial-gradient(circle at 12% 10%, rgba(176, 205, 118, 0.28), transparent 24%),
+    radial-gradient(circle at 88% 8%, rgba(233, 202, 130, 0.22), transparent 22%),
+    linear-gradient(90deg, rgba(78, 119, 61, 0.045) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(78, 119, 61, 0.035) 1px, transparent 1px),
+    linear-gradient(135deg, #fffdf5 0%, #f8f5e9 54%, #edf4d8 100%) !important;
+  background-size: auto, auto, 42px 42px, 42px 42px, auto !important;
+}
+
+body::before {
+  background:
+    radial-gradient(circle, rgba(126, 166, 82, 0.12) 0 2px, transparent 2px) !important;
+  background-size: 28px 28px !important;
+  opacity: 0.7 !important;
+  mask-image: linear-gradient(180deg, black, transparent 86%) !important;
+}
+
+.site-header,
+.admin-header {
+  min-height: 70px !important;
+  margin: 12px auto 0 !important;
+  width: min(1180px, calc(100% - 28px)) !important;
+  padding: 0 18px !important;
+  background: rgba(255, 253, 245, 0.86) !important;
+  border: 1px solid rgba(100, 143, 77, 0.18) !important;
+  border-radius: 24px !important;
+  box-shadow: 0 14px 34px rgba(72, 97, 54, 0.11) !important;
+}
+
+.brand {
+  font-size: 22px !important;
+  font-weight: 900 !important;
+}
+
+.brand::before {
+  width: 30px !important;
+  height: 30px !important;
+  background:
+    radial-gradient(circle at 36% 35%, #e6f2c2 0 22%, transparent 23%),
+    linear-gradient(135deg, #4d7c3a, #b1cc6c) !important;
+  border: 6px solid #fffdf5 !important;
+  border-radius: 12px !important;
+  transform: rotate(-7deg) !important;
+}
+
+.site-nav,
+.admin-nav,
+.role-tabs {
+  background: #edf5d8 !important;
+  border-color: rgba(100, 143, 77, 0.16) !important;
+  border-radius: 18px !important;
+}
+
+.site-nav a,
+.admin-nav a,
+.nav-logout,
+.role-tabs button {
+  min-height: 36px !important;
+  padding: 8px 13px !important;
+  border-radius: 14px !important;
+  font-weight: 900 !important;
+}
+
+.site-nav a:hover,
+.site-nav a[aria-current='page'],
+.admin-nav a:hover,
+.admin-nav a[aria-current='page'],
+.role-tabs button.is-active {
+  background: #fffdf5 !important;
+  box-shadow: 0 7px 16px rgba(77, 124, 58, 0.12) !important;
+}
+
+.page-shell {
+  padding: 28px 0 70px !important;
+}
+
+.home-hero,
+.menu-hero,
+.basket-hero {
+  gap: 18px !important;
+}
+
+.hero-copy-block,
+.menu-hero,
+.basket-hero,
+.auth-visual {
+  min-height: 430px !important;
+  padding: clamp(26px, 5vw, 52px) !important;
+  background:
+    linear-gradient(90deg, rgba(33, 63, 35, 0.8), rgba(73, 111, 55, 0.43)),
+    url('/assets/photos/season-spring.png') !important;
+  border: 1px solid rgba(100, 143, 77, 0.2) !important;
+  border-radius: 30px !important;
+  box-shadow: 0 24px 58px rgba(61, 84, 46, 0.16) !important;
+}
+
+.hero-copy-block::before,
+.menu-hero::before,
+.basket-hero::before,
+.auth-visual::before {
+  content: 'season' !important;
+  top: 22px !important;
+  right: 22px !important;
+  writing-mode: horizontal-tb !important;
+  padding: 7px 12px !important;
+  color: #fffdf5 !important;
+  background: rgba(255, 253, 245, 0.16) !important;
+  border-radius: 999px !important;
+  border: 1px solid rgba(255, 253, 245, 0.28) !important;
+  font-size: 12px !important;
+  text-transform: lowercase !important;
+}
+
+.hero-copy-block::after,
+.menu-hero::after,
+.basket-hero::after,
+.auth-visual::after {
+  inset: 14px !important;
+  border: 1px dashed rgba(255, 253, 245, 0.34) !important;
+  border-radius: 22px !important;
+}
+
+.home-hero h1,
+.menu-hero h1,
+.basket-hero h1,
+.auth-visual h1 {
+  font-size: clamp(34px, 6vw, 66px) !important;
+  line-height: 1.04 !important;
+}
+
+.hero-copy,
+.auth-visual p {
+  font-size: 17px !important;
+}
+
+.eyebrow {
+  padding: 7px 12px !important;
+  border-radius: 999px !important;
+  text-transform: none !important;
+  font-size: 12px !important;
+  background: rgba(255, 253, 245, 0.18) !important;
+}
+
+.hero-card,
+.summary-card,
+.featured-section,
+.menu-toolbar,
+.basket-panel,
+.summary-panel,
+.detail-panel,
+.not-found,
+.form-shell,
+.menu-panel,
+.toolbar,
+.stats-grid article,
+.auth-panel {
+  background:
+    linear-gradient(145deg, rgba(255, 253, 245, 0.98), rgba(241, 248, 222, 0.92)) !important;
+  border: 1px solid rgba(100, 143, 77, 0.18) !important;
+  border-radius: 24px !important;
+  box-shadow: 0 16px 36px rgba(72, 97, 54, 0.11) !important;
+}
+
+.hero-card::before,
+.summary-card::before,
+.featured-section::before,
+.menu-toolbar::before,
+.basket-panel::before,
+.summary-panel::before,
+.detail-panel::before,
+.form-shell::before,
+.menu-panel::before,
+.toolbar::before,
+.auth-panel::before {
+  inset: 0 0 auto !important;
+  width: auto !important;
+  height: 8px !important;
+  background: repeating-linear-gradient(90deg, #88aa55 0 18px, #d8c16f 18px 36px, #f4e7b6 36px 54px) !important;
+}
+
+.hero-card,
+.summary-card {
+  padding: 22px !important;
+}
+
+.today-visual,
+.featured-visual,
+.menu-card .menu-visual,
+.item-image,
+.menu-thumb,
+.detail-layout > .menu-visual {
+  border-radius: 20px !important;
+  border: 1px solid rgba(100, 143, 77, 0.16) !important;
+}
+
+.today-visual {
+  min-height: 230px !important;
+}
+
+.summary-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+}
+
+.summary-card h2,
+.hero-card h2,
+.section-head h2,
+.panel-head h2 {
+  font-size: 24px !important;
+}
+
+.featured-grid {
+  gap: 16px !important;
+}
+
+.featured-card,
+.menu-card,
+.basket-item,
+.menu-row,
+.order-card,
+.detail-card,
+.order-row {
+  background: rgba(255, 253, 245, 0.94) !important;
+  border: 1px solid rgba(100, 143, 77, 0.17) !important;
+  border-radius: 24px !important;
+  box-shadow: 0 12px 26px rgba(72, 97, 54, 0.09) !important;
+}
+
+.featured-card:hover,
+.menu-card:hover,
+.basket-item:hover,
+.menu-row:hover,
+.order-card:hover {
+  transform: translateY(-3px) rotate(-0.2deg) !important;
+  box-shadow: 0 20px 42px rgba(72, 97, 54, 0.14) !important;
+}
+
+.menu-card {
+  grid-template-rows: 210px auto !important;
+}
+
+.menu-card .menu-visual {
+  height: 210px !important;
+  margin: 12px 12px 0 !important;
+  width: auto !important;
+}
+
+.menu-body,
+.featured-body {
+  padding: 16px 18px 18px !important;
+}
+
+.menu-title,
+.item-name {
+  font-size: 21px !important;
+}
+
+.menu-meta,
+.category-pill,
+.item-meta,
+.eyebrow.dark {
+  color: #3d6735 !important;
+  background: #eef7d9 !important;
+  border-color: rgba(100, 143, 77, 0.16) !important;
+  border-radius: 999px !important;
+}
+
+.primary-link,
+.hero-action,
+.cart-button,
+.order-button,
+.primary-button,
+.empty-state a {
+  min-height: 42px !important;
+  background: linear-gradient(135deg, #4d7c3a, #9fbd5a) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 10px 20px rgba(77, 124, 58, 0.2) !important;
+}
+
+.secondary-link,
+.detail-link,
+.text-link,
+.back-link,
+.ghost-button,
+.not-found a {
+  min-height: 40px !important;
+  background: #fffdf5 !important;
+  border-color: rgba(100, 143, 77, 0.17) !important;
+  border-radius: 16px !important;
+}
+
+.menu-toolbar,
+.toolbar {
+  border-radius: 22px !important;
+}
+
+.search-field input,
+.field input,
+.field select,
+.field textarea,
+.quantity-control,
+.category-tabs button {
+  border-radius: 16px !important;
+  background: #fffdf5 !important;
+  border-color: rgba(100, 143, 77, 0.17) !important;
+}
+
+.category-tabs button.is-active,
+.category-tabs button:hover {
+  color: #fffdf5 !important;
+  background: #6f963f !important;
+}
+
+.detail-layout > .menu-visual {
+  min-height: 540px !important;
+}
+
+.detail-price {
+  border-radius: 18px !important;
+  background: #fffdf5 !important;
+}
+
+.basket-item {
+  grid-template-columns: 120px minmax(0, 1fr) auto !important;
+}
+
+.item-image {
+  width: 120px !important;
+}
+
+.form-shell {
+  border-radius: 26px !important;
+}
+
+.toast {
+  border-radius: 18px !important;
+  background: linear-gradient(135deg, #4d7c3a, #8aaa50) !important;
+}
+
+@media (max-width: 960px) {
+  .home-hero,
+  .summary-grid,
+  .featured-grid,
+  .detail-layout,
+  .basket-layout,
+  .form-shell,
+  .auth-shell {
+    grid-template-columns: 1fr !important;
+  }
+
+  .hero-copy-block,
+  .menu-hero,
+  .basket-hero,
+  .auth-visual {
+    min-height: 380px !important;
+  }
+
+  .detail-layout > .menu-visual {
+    min-height: 360px !important;
+  }
+
+  .basket-item {
+    grid-template-columns: 1fr !important;
+  }
+
+  .item-image {
+    width: 100% !important;
+  }
+}
+/* Hero image carousel and softer image placement */
+.hero-copy-block {
+  overflow: hidden !important;
+  background: #24452a !important;
+}
+
+.hero-slides,
+.hero-slide {
+  position: absolute;
+  inset: 0;
+}
+
+.hero-slide {
+  opacity: 0;
+  background-image:
+    linear-gradient(90deg, rgba(29, 55, 31, 0.82), rgba(61, 101, 48, 0.5) 46%, rgba(61, 101, 48, 0.18)),
+    var(--hero-image);
+  background-position: center;
+  background-size: cover;
+  transform: scale(1.04);
+  transition:
+    opacity 700ms ease,
+    transform 900ms ease;
+}
+
+.hero-slide.is-active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.hero-text-layer {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  min-height: inherit;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.hero-slider-ui {
+  position: absolute;
+  right: 24px;
+  bottom: 22px;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  background: rgba(255, 253, 245, 0.2);
+  border: 1px solid rgba(255, 253, 245, 0.26);
+  border-radius: 999px;
+  backdrop-filter: blur(10px);
+}
+
+.hero-arrow,
+.hero-dots button {
+  display: grid;
+  place-items: center;
+  color: #fffdf5;
+  background: rgba(255, 253, 245, 0.16);
+  border: 1px solid rgba(255, 253, 245, 0.28);
+  border-radius: 999px;
+}
+
+.hero-arrow {
+  width: 34px;
+  height: 34px;
+  font-size: 22px;
+  line-height: 1;
+}
+
+.hero-dots {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.hero-dots button {
+  width: 10px;
+  height: 10px;
+  padding: 0;
+  border: 0;
+  background: rgba(255, 253, 245, 0.48);
+}
+
+.hero-dots button.is-active {
+  width: 24px;
+  background: #fffdf5;
+}
+
+.menu-card .menu-visual,
+.featured-visual,
+.today-visual,
+.item-image,
+.menu-thumb,
+.detail-layout > .menu-visual {
+  background-repeat: no-repeat !important;
+  background-position: center center !important;
+  background-size: cover !important;
+}
+
+.menu-card .menu-visual::after,
+.featured-visual::after,
+.today-visual::after,
+.item-image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 28% 18%, rgba(255, 253, 245, 0.22), transparent 28%),
+    linear-gradient(180deg, transparent 58%, rgba(31, 45, 34, 0.22));
+}
+
+.menu-card .menu-visual,
+.featured-visual,
+.today-visual,
+.item-image {
+  position: relative;
+  overflow: hidden;
+}
+
+.menu-card .menu-visual span {
+  position: relative;
+  z-index: 1;
+}
+
+.menu-card:nth-child(3n + 1) .menu-visual,
+.featured-card:nth-child(3n + 1) .featured-visual {
+  background-position: center 42% !important;
+}
+
+.menu-card:nth-child(3n + 2) .menu-visual,
+.featured-card:nth-child(3n + 2) .featured-visual {
+  background-position: center 55% !important;
+}
+
+.menu-card:nth-child(3n) .menu-visual,
+.featured-card:nth-child(3n) .featured-visual {
+  background-position: center 48% !important;
+}
+
+@media (max-width: 760px) {
+  .hero-slider-ui {
+    right: 16px;
+    bottom: 16px;
+  }
+
+  .hero-text-layer {
+    padding-bottom: 48px;
+  }
+}
+/* Refined cozy hero carousel */
+.home-hero {
+  grid-template-columns: minmax(0, 1fr) minmax(290px, 360px) !important;
+  gap: 20px !important;
+  align-items: stretch !important;
+}
+
+.hero-copy-block {
+  min-height: 560px !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  background: #29462b !important;
+  border: 1px solid rgba(96, 132, 68, 0.22) !important;
+  border-radius: 32px !important;
+  box-shadow: 0 26px 64px rgba(57, 78, 43, 0.2) !important;
+}
+
+.hero-copy-block::before,
+.hero-copy-block::after {
+  display: none !important;
+}
+
+.hero-slides {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  background-image: var(--hero-image);
+  background-position: center;
+  background-size: cover;
+  transform: scale(1.035);
+  transition:
+    opacity 850ms ease,
+    transform 1100ms ease;
+}
+
+.hero-slide::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(28, 49, 30, 0.78), rgba(28, 49, 30, 0.34) 48%, rgba(28, 49, 30, 0.08)),
+    linear-gradient(180deg, rgba(28, 49, 30, 0.08), rgba(28, 49, 30, 0.36));
+}
+
+.hero-slide.is-active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.hero-text-layer {
+  position: relative !important;
+  z-index: 2 !important;
+  display: flex !important;
+  min-height: 560px !important;
+  max-width: 660px;
+  flex-direction: column !important;
+  justify-content: flex-end !important;
+  margin: 0;
+  padding: clamp(28px, 5vw, 56px) clamp(24px, 5vw, 58px) 96px !important;
+}
+
+.hero-text-layer .eyebrow {
+  color: #31552f !important;
+  background: rgba(255, 253, 245, 0.88) !important;
+  border: 1px solid rgba(255, 253, 245, 0.52) !important;
+  box-shadow: 0 8px 18px rgba(34, 57, 32, 0.12) !important;
+}
+
+.home-hero h1 {
+  max-width: 620px !important;
+  color: #fffdf5 !important;
+  text-shadow: 0 3px 20px rgba(22, 37, 23, 0.24) !important;
+}
+
+.hero-copy {
+  max-width: 520px !important;
+  color: rgba(255, 253, 245, 0.9) !important;
+  text-shadow: 0 2px 12px rgba(22, 37, 23, 0.22) !important;
+}
+
+.hero-actions {
+  margin-top: 22px !important;
+}
+
+.hero-actions .primary-link,
+.hero-actions .secondary-link {
+  border-radius: 999px !important;
+}
+
+.hero-actions .secondary-link {
+  color: #fffdf5 !important;
+  background: rgba(255, 253, 245, 0.16) !important;
+  border-color: rgba(255, 253, 245, 0.34) !important;
+  backdrop-filter: blur(10px);
+}
+
+.hero-slider-ui {
+  position: absolute !important;
+  left: clamp(24px, 5vw, 58px) !important;
+  right: auto !important;
+  bottom: 30px !important;
+  z-index: 4 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  padding: 9px 11px !important;
+  background: rgba(255, 253, 245, 0.76) !important;
+  border: 1px solid rgba(255, 253, 245, 0.64) !important;
+  border-radius: 999px !important;
+  box-shadow: 0 14px 26px rgba(30, 49, 28, 0.18) !important;
+  backdrop-filter: blur(14px) !important;
+}
+
+.hero-arrow {
+  width: 34px !important;
+  height: 34px !important;
+  color: #31552f !important;
+  background: #fffdf5 !important;
+  border: 1px solid rgba(96, 132, 68, 0.18) !important;
+  border-radius: 50% !important;
+  font-size: 22px !important;
+  line-height: 1 !important;
+  box-shadow: 0 6px 14px rgba(57, 78, 43, 0.1) !important;
+}
+
+.hero-arrow:hover {
+  transform: translateY(-1px) !important;
+  background: #edf7d7 !important;
+}
+
+.hero-dots {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 7px !important;
+}
+
+.hero-dots button {
+  width: 9px !important;
+  height: 9px !important;
+  padding: 0 !important;
+  background: rgba(77, 124, 58, 0.3) !important;
+  border: 0 !important;
+  border-radius: 999px !important;
+  transition:
+    width 180ms ease,
+    background 180ms ease;
+}
+
+.hero-dots button.is-active {
+  width: 28px !important;
+  background: #6f963f !important;
+}
+
+.hero-card {
+  border-radius: 28px !important;
+}
+
+.today-visual {
+  min-height: 245px !important;
+  background-position: center !important;
+}
+
+@media (max-width: 960px) {
+  .home-hero {
+    grid-template-columns: 1fr !important;
+  }
+
+  .hero-copy-block,
+  .hero-text-layer {
+    min-height: 480px !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-copy-block,
+  .hero-text-layer {
+    min-height: 430px !important;
+  }
+
+  .hero-text-layer {
+    padding: 26px 22px 92px !important;
+  }
+
+  .hero-slider-ui {
+    left: 22px !important;
+    bottom: 22px !important;
+  }
+}
+/* Clean swipe carousel controls */
+.hero-copy-block {
+  cursor: grab;
+  touch-action: pan-y;
+}
+
+.hero-copy-block:active {
+  cursor: grabbing;
+}
+
+.hero-text-layer {
+  max-width: 620px !important;
+  padding: clamp(30px, 5vw, 60px) clamp(24px, 5vw, 62px) 112px !important;
+}
+
+.hero-text-layer::before {
+  content: '';
+  position: absolute;
+  left: clamp(20px, 4vw, 42px);
+  bottom: 76px;
+  z-index: -1;
+  width: min(560px, calc(100% - 40px));
+  height: 58%;
+  background: linear-gradient(90deg, rgba(27, 48, 29, 0.72), rgba(27, 48, 29, 0.18), transparent);
+  border-radius: 28px;
+  filter: blur(18px);
+}
+
+.hero-text-layer .eyebrow {
+  margin-bottom: 12px !important;
+}
+
+.home-hero h1 {
+  max-width: 580px !important;
+  margin-bottom: 12px !important;
+  font-size: clamp(36px, 5.6vw, 68px) !important;
+}
+
+.hero-copy {
+  max-width: 500px !important;
+}
+
+.hero-slider-ui {
+  position: absolute !important;
+  inset: auto 28px 26px auto !important;
+  z-index: 5 !important;
+  display: contents !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+}
+
+.hero-arrow {
+  position: absolute !important;
+  top: 50% !important;
+  z-index: 6 !important;
+  width: 44px !important;
+  height: 44px !important;
+  color: #31552f !important;
+  background: rgba(255, 253, 245, 0.84) !important;
+  border: 1px solid rgba(255, 253, 245, 0.72) !important;
+  border-radius: 50% !important;
+  box-shadow: 0 12px 24px rgba(28, 49, 30, 0.18) !important;
+  backdrop-filter: blur(12px) !important;
+  transform: translateY(-50%) !important;
+}
+
+#hero-prev {
+  left: 20px !important;
+}
+
+#hero-next {
+  right: 20px !important;
+}
+
+.hero-arrow:hover {
+  background: #fffdf5 !important;
+  transform: translateY(-50%) scale(1.04) !important;
+}
+
+.hero-dots {
+  position: absolute !important;
+  right: 32px !important;
+  bottom: 30px !important;
+  z-index: 6 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  padding: 0 !important;
+}
+
+.hero-dots button {
+  width: 9px !important;
+  height: 9px !important;
+  padding: 0 !important;
+  background: rgba(255, 253, 245, 0.56) !important;
+  border: 1px solid rgba(255, 253, 245, 0.66) !important;
+  border-radius: 999px !important;
+  box-shadow: 0 5px 14px rgba(27, 48, 29, 0.2) !important;
+}
+
+.hero-dots button.is-active {
+  width: 30px !important;
+  background: #fffdf5 !important;
+}
+
+.hero-slide {
+  will-change: opacity, transform;
+}
+
+.hero-slide::before {
+  background:
+    linear-gradient(90deg, rgba(28, 49, 30, 0.74), rgba(28, 49, 30, 0.28) 44%, rgba(28, 49, 30, 0.06)),
+    linear-gradient(180deg, rgba(28, 49, 30, 0.02), rgba(28, 49, 30, 0.34)) !important;
+}
+
+@media (max-width: 760px) {
+  .hero-text-layer {
+    padding: 28px 24px 96px !important;
+  }
+
+  .hero-arrow {
+    top: auto !important;
+    bottom: 22px !important;
+    width: 38px !important;
+    height: 38px !important;
+    transform: none !important;
+  }
+
+  .hero-arrow:hover {
+    transform: scale(1.04) !important;
+  }
+
+  #hero-prev {
+    left: 22px !important;
+  }
+
+  #hero-next {
+    right: auto !important;
+    left: 68px !important;
+  }
+
+  .hero-dots {
+    right: 22px !important;
+    bottom: 36px !important;
+  }
+}
+/* Traditional image slide layout */
+.hero-copy-block {
+  background: #263d28 !important;
+}
+
+.hero-slide {
+  overflow: hidden;
+  background: #263d28;
+}
+
+.hero-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: saturate(0.94) contrast(0.98) brightness(0.92);
+  transform: scale(1.035);
+  transition: transform 1100ms ease;
+}
+
+.hero-slide.is-active img {
+  transform: scale(1);
+}
+
+.hero-slide::before {
+  z-index: 1;
+  background:
+    linear-gradient(90deg, rgba(28, 45, 29, 0.62), rgba(28, 45, 29, 0.24) 48%, rgba(28, 45, 29, 0.08)),
+    linear-gradient(180deg, rgba(28, 45, 29, 0.08), rgba(28, 45, 29, 0.42)) !important;
+}
+
+.hero-text-layer {
+  justify-content: center !important;
+  max-width: 580px !important;
+  min-height: 560px !important;
+  padding: clamp(28px, 5vw, 58px) !important;
+}
+
+.hero-text-layer::before {
+  left: clamp(22px, 4vw, 42px) !important;
+  bottom: auto !important;
+  top: 50% !important;
+  width: min(540px, calc(100% - 44px)) !important;
+  height: auto !important;
+  min-height: 292px !important;
+  background: rgba(255, 253, 245, 0.84) !important;
+  border: 1px solid rgba(255, 253, 245, 0.56) !important;
+  border-radius: 26px !important;
+  box-shadow: 0 22px 48px rgba(28, 45, 29, 0.22) !important;
+  filter: none !important;
+  transform: translateY(-50%) !important;
+  backdrop-filter: blur(12px) !important;
+}
+
+.hero-text-layer::after {
+  content: '';
+  position: absolute;
+  left: clamp(38px, 5vw, 62px);
+  top: calc(50% - 118px);
+  z-index: -1;
+  width: 42px;
+  height: 4px;
+  background: #82a84f;
+  border-radius: 999px;
+  box-shadow: 54px 0 0 #d1b766;
+}
+
+.hero-text-layer .eyebrow {
+  width: max-content !important;
+  color: #3b5d35 !important;
+  background: #eef7dd !important;
+  border-color: rgba(93, 136, 66, 0.14) !important;
+  box-shadow: none !important;
+}
+
+.home-hero h1 {
+  max-width: 500px !important;
+  color: #213423 !important;
+  font-family: var(--font-heading) !important;
+  font-size: clamp(36px, 5vw, 60px) !important;
+  line-height: 1.12 !important;
+  text-shadow: none !important;
+}
+
+.hero-copy {
+  max-width: 460px !important;
+  color: #52624d !important;
+  font-size: 16px !important;
+  text-shadow: none !important;
+}
+
+.hero-actions .secondary-link {
+  color: #2f4b32 !important;
+  background: #fffdf5 !important;
+  border-color: rgba(93, 136, 66, 0.18) !important;
+  backdrop-filter: none !important;
+}
+
+.hero-actions .primary-link {
+  box-shadow: 0 12px 24px rgba(77, 124, 58, 0.2) !important;
+}
+
+.hero-dots {
+  right: 34px !important;
+  bottom: 32px !important;
+}
+
+.hero-arrow {
+  background: rgba(255, 253, 245, 0.9) !important;
+}
+
+.brand,
+.home-hero h1,
+.menu-hero h1,
+.basket-hero h1,
+.auth-visual h1,
+.detail-title,
+.form-intro h1,
+.page-head h1,
+.section-head h2,
+.hero-card h2,
+.summary-card h2,
+.panel-head h2 {
+  font-family: var(--font-heading) !important;
+  font-weight: 700 !important;
+}
+
+body,
+button,
+input,
+textarea,
+select {
+  font-family: var(--font-body) !important;
+}
+
+@media (max-width: 760px) {
+  .hero-text-layer {
+    justify-content: flex-end !important;
+    padding: 24px 22px 106px !important;
+  }
+
+  .hero-text-layer::before {
+    top: auto !important;
+    bottom: 76px !important;
+    transform: none !important;
+    min-height: 270px !important;
+  }
+
+  .hero-text-layer::after {
+    top: auto !important;
+    bottom: 320px !important;
+  }
+
+  .home-hero h1 {
+    font-size: clamp(32px, 10vw, 48px) !important;
+  }
+}
+/* Slide card with visible image panel */
+.hero-copy-block {
+  min-height: 560px !important;
+  padding: 18px !important;
+  background: linear-gradient(135deg, #eff5df, #fffaf0) !important;
+  border-radius: 32px !important;
+  overflow: hidden !important;
+}
+
+.hero-copy-block::before,
+.hero-copy-block::after {
+  display: none !important;
+}
+
+.hero-slides {
+  position: relative !important;
+  z-index: 1 !important;
+  width: 100%;
+  height: 100%;
+  min-height: 524px;
+}
+
+.hero-slide {
+  position: absolute !important;
+  inset: 0 !important;
+  display: grid !important;
+  grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.78fr) !important;
+  gap: 18px !important;
+  width: 100%;
+  height: 100%;
+  min-height: 524px;
+  padding: 0 !important;
+  opacity: 0;
+  pointer-events: none;
+  background: transparent !important;
+  transform: translateX(18px) scale(0.985) !important;
+  transition:
+    opacity 520ms ease,
+    transform 620ms ease;
+}
+
+.hero-slide.is-active {
+  opacity: 1 !important;
+  pointer-events: auto;
+  transform: translateX(0) scale(1) !important;
+}
+
+.hero-slide::before,
+.hero-slide::after {
+  display: none !important;
+}
+
+.hero-slide-media {
+  position: relative;
+  min-height: 100%;
+  overflow: hidden;
+  background: #e5efd0;
+  border: 1px solid rgba(93, 136, 66, 0.16);
+  border-radius: 26px;
+  box-shadow: inset 0 0 0 1px rgba(255, 253, 245, 0.52);
+}
+
+.hero-slide-media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 20% 14%, rgba(255, 253, 245, 0.32), transparent 28%),
+    linear-gradient(180deg, transparent 62%, rgba(33, 52, 35, 0.14));
+}
+
+.hero-slide-media img {
+  width: 100%;
+  height: 100%;
+  min-height: 524px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  filter: saturate(1.02) contrast(0.98);
+}
+
+.hero-slide-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+  padding: clamp(26px, 4vw, 44px);
+  background:
+    linear-gradient(145deg, rgba(255, 253, 245, 0.96), rgba(238, 247, 218, 0.9));
+  border: 1px solid rgba(93, 136, 66, 0.16);
+  border-radius: 26px;
+  box-shadow: 0 18px 34px rgba(57, 78, 43, 0.1);
+}
+
+.hero-slide-content::before {
+  content: '';
+  width: 48px;
+  height: 5px;
+  margin-bottom: 20px;
+  background: #7fa34b;
+  border-radius: 999px;
+  box-shadow: 58px 0 0 #d1b766;
+}
+
+.hero-slide-content .eyebrow {
+  width: max-content !important;
+  color: #3b5d35 !important;
+  background: #edf7d9 !important;
+  border-color: rgba(93, 136, 66, 0.15) !important;
+  box-shadow: none !important;
+}
+
+.hero-slide-content h2 {
+  max-width: 520px;
+  margin: 0 0 14px;
+  color: #213423;
+  font-family: var(--font-heading);
+  font-size: clamp(34px, 4.2vw, 58px);
+  line-height: 1.12;
+}
+
+.hero-slide-content > p:not(.eyebrow) {
+  max-width: 420px;
+  color: #52624d;
+  font-size: 16px;
+}
+
+.hero-slide-content .hero-actions {
+  margin-top: 26px !important;
+}
+
+.hero-slide-content .secondary-link {
+  color: #2f4b32 !important;
+  background: #fffdf5 !important;
+  border-color: rgba(93, 136, 66, 0.18) !important;
+}
+
+.hero-text-layer {
+  display: none !important;
+}
+
+.hero-slider-ui {
+  display: contents !important;
+}
+
+.hero-dots {
+  right: 34px !important;
+  bottom: 34px !important;
+}
+
+.hero-arrow {
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+}
+
+#hero-prev {
+  left: 34px !important;
+}
+
+#hero-next {
+  right: 34px !important;
+}
+
+@media (max-width: 980px) {
+  .hero-copy-block {
+    min-height: 680px !important;
+  }
+
+  .hero-slides,
+  .hero-slide {
+    min-height: 644px;
+  }
+
+  .hero-slide {
+    grid-template-columns: 1fr !important;
+    grid-template-rows: minmax(300px, 1fr) auto;
+  }
+
+  .hero-slide-media img {
+    min-height: 300px;
+  }
+
+  .hero-slide-content {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-copy-block {
+    min-height: 640px !important;
+    padding: 12px !important;
+  }
+
+  .hero-slides,
+  .hero-slide {
+    min-height: 616px;
+  }
+
+  .hero-slide-content {
+    padding: 24px;
+  }
+
+  .hero-slide-content h2 {
+    font-size: clamp(30px, 9vw, 44px);
+  }
+
+  .hero-dots {
+    right: 22px !important;
+    bottom: 22px !important;
+  }
+
+  #hero-prev {
+    left: 22px !important;
+  }
+
+  #hero-next {
+    right: auto !important;
+    left: 72px !important;
+  }
+}
+/* Seasonal hero cleanup */
+.home-hero,
+.hero-copy-block,
+.hero-slide-media,
+.hero-slide-content {
+  border: 0 !important;
+}
+
+.hero-copy-block {
+  box-shadow: none !important;
+  background: transparent !important;
+  padding: 0 !important;
+}
+
+.hero-slides,
+.hero-slide {
+  min-height: 560px !important;
+}
+
+.hero-slide {
+  gap: 24px !important;
+}
+
+.hero-slide-media {
+  border-radius: 30px !important;
+  box-shadow: 0 24px 58px rgba(42, 53, 35, 0.16) !important;
+}
+
+.hero-slide-media img {
+  min-height: 560px !important;
+}
+
+.hero-slide-content {
+  border-radius: 30px !important;
+  box-shadow: 0 18px 42px rgba(42, 53, 35, 0.11) !important;
+}
+
+@media (max-width: 980px) {
+  .hero-slides,
+  .hero-slide {
+    min-height: 700px !important;
+  }
+
+  .hero-slide-media img {
+    min-height: 360px !important;
+  }
+}
+/* Full seasonal redesign driven by hero slide */
+body {
+  --season-bg-1: #fff8f8;
+  --season-bg-2: #f9e6e9;
+  --season-bg-3: #f4c7d2;
+  --season-ink: #3b2a2f;
+  --season-muted: #755860;
+  --season-primary: #c9677f;
+  --season-primary-dark: #8e4055;
+  --season-soft: rgba(255, 244, 247, 0.88);
+  --season-card: rgba(255, 253, 249, 0.88);
+  --season-line: rgba(184, 89, 112, 0.2);
+  --season-shadow: rgba(113, 48, 64, 0.16);
+  transition: background 520ms ease, color 520ms ease;
+}
+
+body[data-season='spring'] {
+  --season-bg-1: #fff8f8;
+  --season-bg-2: #f9e6e9;
+  --season-bg-3: #f4c7d2;
+  --season-ink: #3b2a2f;
+  --season-muted: #755860;
+  --season-primary: #c9677f;
+  --season-primary-dark: #8e4055;
+  --season-soft: rgba(255, 244, 247, 0.88);
+  --season-card: rgba(255, 253, 249, 0.9);
+  --season-line: rgba(184, 89, 112, 0.22);
+  --season-shadow: rgba(113, 48, 64, 0.16);
+}
+
+body[data-season='summer'] {
+  --season-bg-1: #f5fff1;
+  --season-bg-2: #dcefc7;
+  --season-bg-3: #9fc976;
+  --season-ink: #243522;
+  --season-muted: #516a49;
+  --season-primary: #6fa13e;
+  --season-primary-dark: #3e6b2f;
+  --season-soft: rgba(241, 250, 229, 0.88);
+  --season-card: rgba(253, 255, 247, 0.9);
+  --season-line: rgba(88, 133, 55, 0.22);
+  --season-shadow: rgba(54, 92, 40, 0.16);
+}
+
+body[data-season='autumn'] {
+  --season-bg-1: #fff6ec;
+  --season-bg-2: #f2d2b3;
+  --season-bg-3: #bc5d42;
+  --season-ink: #3f281f;
+  --season-muted: #765242;
+  --season-primary: #b7553c;
+  --season-primary-dark: #7f3428;
+  --season-soft: rgba(255, 242, 226, 0.88);
+  --season-card: rgba(255, 251, 244, 0.91);
+  --season-line: rgba(173, 80, 53, 0.22);
+  --season-shadow: rgba(111, 50, 32, 0.17);
+}
+
+body[data-season='winter'] {
+  --season-bg-1: #fbfdff;
+  --season-bg-2: #e8f0f5;
+  --season-bg-3: #b8cad8;
+  --season-ink: #26323b;
+  --season-muted: #5a6873;
+  --season-primary: #6f8fa5;
+  --season-primary-dark: #435f73;
+  --season-soft: rgba(246, 251, 255, 0.9);
+  --season-card: rgba(255, 255, 255, 0.92);
+  --season-line: rgba(99, 132, 153, 0.22);
+  --season-shadow: rgba(57, 76, 91, 0.14);
+}
+
+body:has(.home-hero) {
+  color: var(--season-ink) !important;
+  background:
+    radial-gradient(circle at 16% 12%, color-mix(in srgb, var(--season-bg-3) 34%, transparent), transparent 26%),
+    radial-gradient(circle at 82% 4%, color-mix(in srgb, var(--season-primary) 20%, transparent), transparent 24%),
+    linear-gradient(90deg, color-mix(in srgb, var(--season-primary) 7%, transparent) 1px, transparent 1px),
+    linear-gradient(180deg, color-mix(in srgb, var(--season-primary) 5%, transparent) 1px, transparent 1px),
+    linear-gradient(135deg, var(--season-bg-1), var(--season-bg-2) 58%, color-mix(in srgb, var(--season-bg-3) 45%, #fff) 100%) !important;
+  background-size: auto, auto, 48px 48px, 48px 48px, auto !important;
+}
+
+body:has(.home-hero)::before {
+  background: radial-gradient(circle, color-mix(in srgb, var(--season-primary) 18%, transparent) 0 2px, transparent 2px) !important;
+  background-size: 30px 30px !important;
+  opacity: 0.72 !important;
+}
+
+body:has(.home-hero) .site-header {
+  background: color-mix(in srgb, var(--season-card) 92%, transparent) !important;
+  border-color: var(--season-line) !important;
+  box-shadow: 0 16px 36px var(--season-shadow) !important;
+}
+
+body:has(.home-hero) .brand,
+body:has(.home-hero) h1,
+body:has(.home-hero) h2,
+body:has(.home-hero) h3 {
+  color: var(--season-ink) !important;
+}
+
+body:has(.home-hero) .brand::before {
+  background: linear-gradient(135deg, var(--season-primary-dark), var(--season-primary)) !important;
+}
+
+body:has(.home-hero) .site-nav,
+body:has(.home-hero) .hero-slide-content,
+body:has(.home-hero) .hero-card,
+body:has(.home-hero) .summary-card,
+body:has(.home-hero) .featured-section {
+  background: var(--season-card) !important;
+  border-color: var(--season-line) !important;
+  box-shadow: 0 18px 42px var(--season-shadow) !important;
+}
+
+body:has(.home-hero) .site-nav a:hover,
+body:has(.home-hero) .site-nav a[aria-current='page'] {
+  background: var(--season-soft) !important;
+}
+
+body:has(.home-hero) .hero-copy-block {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+body:has(.home-hero) .hero-slide-media {
+  box-shadow: 0 26px 64px var(--season-shadow) !important;
+}
+
+body:has(.home-hero) .hero-slide-content::before,
+body:has(.home-hero) .featured-section::before,
+body:has(.home-hero) .summary-card::before,
+body:has(.home-hero) .hero-card::before {
+  background: linear-gradient(90deg, var(--season-primary-dark), var(--season-primary), color-mix(in srgb, var(--season-primary) 38%, #fff)) !important;
+}
+
+body:has(.home-hero) .eyebrow.dark,
+body:has(.home-hero) .hero-slide-content .eyebrow,
+body:has(.home-hero) .menu-meta {
+  color: var(--season-primary-dark) !important;
+  background: color-mix(in srgb, var(--season-primary) 14%, #fff) !important;
+  border-color: var(--season-line) !important;
+}
+
+body:has(.home-hero) .hero-slide-content > p:not(.eyebrow),
+body:has(.home-hero) .summary-card p,
+body:has(.home-hero) .hero-card p,
+body:has(.home-hero) .featured-body p {
+  color: var(--season-muted) !important;
+}
+
+body:has(.home-hero) .primary-link,
+body:has(.home-hero) .detail-link,
+body:has(.home-hero) .text-link {
+  border-color: var(--season-line) !important;
+}
+
+body:has(.home-hero) .primary-link {
+  background: linear-gradient(135deg, var(--season-primary-dark), var(--season-primary)) !important;
+  color: #fffdf8 !important;
+  box-shadow: 0 14px 26px var(--season-shadow) !important;
+}
+
+body:has(.home-hero) .secondary-link,
+body:has(.home-hero) .detail-link,
+body:has(.home-hero) .text-link {
+  background: color-mix(in srgb, var(--season-card) 80%, #fff) !important;
+  color: var(--season-ink) !important;
+}
+
+body:has(.home-hero) .hero-dots button {
+  background: color-mix(in srgb, var(--season-primary) 28%, #fff) !important;
+  border-color: color-mix(in srgb, var(--season-primary) 28%, #fff) !important;
+}
+
+body:has(.home-hero) .hero-dots button.is-active {
+  background: var(--season-primary) !important;
+}
+
+body:has(.home-hero) .hero-arrow {
+  color: var(--season-primary-dark) !important;
+  background: color-mix(in srgb, var(--season-card) 86%, #fff) !important;
+  border-color: var(--season-line) !important;
+}
+
+body:has(.home-hero) .featured-card,
+body:has(.home-hero) .menu-card {
+  border-color: var(--season-line) !important;
+}
+
+body:has(.home-hero) .today-footer strong,
+body:has(.home-hero) .featured-footer strong {
+  color: var(--season-primary-dark) !important;
+}
+.season-spring,
+.season-summer,
+.season-autumn,
+.season-winter {
+  transition: background 520ms ease, color 520ms ease;
+}
+
+/* Seasonal concept rebuild: the active hero slide controls the page mood. */
+body.season-spring {
+  --season-bg-1: #fff8f8;
+  --season-bg-2: #f7dfe7;
+  --season-bg-3: #e9a9ba;
+  --season-ink: #3c2630;
+  --season-muted: #7a5963;
+  --season-primary: #d87591;
+  --season-primary-dark: #99445d;
+  --season-soft: rgba(255, 241, 246, 0.88);
+  --season-card: rgba(255, 253, 249, 0.92);
+  --season-line: rgba(190, 89, 118, 0.22);
+  --season-shadow: rgba(125, 49, 69, 0.16);
+  --season-petal: rgba(255, 203, 216, 0.4);
+}
+
+body.season-summer {
+  --season-bg-1: #f5fff1;
+  --season-bg-2: #d9edc5;
+  --season-bg-3: #90c06d;
+  --season-ink: #233720;
+  --season-muted: #506c47;
+  --season-primary: #72a544;
+  --season-primary-dark: #3f7030;
+  --season-soft: rgba(241, 250, 229, 0.88);
+  --season-card: rgba(253, 255, 247, 0.92);
+  --season-line: rgba(88, 133, 55, 0.22);
+  --season-shadow: rgba(54, 92, 40, 0.16);
+  --season-petal: rgba(186, 222, 130, 0.42);
+}
+
+body.season-autumn {
+  --season-bg-1: #fff6ec;
+  --season-bg-2: #f0ceb0;
+  --season-bg-3: #bd5d42;
+  --season-ink: #41271f;
+  --season-muted: #78503f;
+  --season-primary: #bb5a3d;
+  --season-primary-dark: #813429;
+  --season-soft: rgba(255, 241, 224, 0.88);
+  --season-card: rgba(255, 251, 244, 0.92);
+  --season-line: rgba(178, 80, 52, 0.23);
+  --season-shadow: rgba(111, 50, 32, 0.17);
+  --season-petal: rgba(231, 150, 84, 0.38);
+}
+
+body.season-winter {
+  --season-bg-1: #fbfdff;
+  --season-bg-2: #e7f0f6;
+  --season-bg-3: #b8ccda;
+  --season-ink: #26333d;
+  --season-muted: #5a6873;
+  --season-primary: #7193aa;
+  --season-primary-dark: #435f73;
+  --season-soft: rgba(246, 251, 255, 0.9);
+  --season-card: rgba(255, 255, 255, 0.93);
+  --season-line: rgba(99, 132, 153, 0.23);
+  --season-shadow: rgba(57, 76, 91, 0.14);
+  --season-petal: rgba(220, 237, 248, 0.56);
+}
+
+body.season-spring,
+body.season-summer,
+body.season-autumn,
+body.season-winter {
+  color: var(--season-ink) !important;
+  background:
+    radial-gradient(circle at 12% 8%, var(--season-petal), transparent 26%),
+    radial-gradient(circle at 88% 0%, color-mix(in srgb, var(--season-primary) 20%, transparent), transparent 24%),
+    linear-gradient(90deg, color-mix(in srgb, var(--season-primary) 7%, transparent) 1px, transparent 1px),
+    linear-gradient(180deg, color-mix(in srgb, var(--season-primary) 5%, transparent) 1px, transparent 1px),
+    linear-gradient(135deg, var(--season-bg-1), var(--season-bg-2) 58%, color-mix(in srgb, var(--season-bg-3) 46%, #fff) 100%) !important;
+  background-size: auto, auto, 48px 48px, 48px 48px, auto !important;
+}
+
+body.season-spring::before,
+body.season-summer::before,
+body.season-autumn::before,
+body.season-winter::before {
+  background:
+    radial-gradient(circle, color-mix(in srgb, var(--season-primary) 18%, transparent) 0 2px, transparent 2px),
+    linear-gradient(90deg, color-mix(in srgb, var(--season-primary) 7%, transparent), transparent) !important;
+  background-size: 30px 30px, auto !important;
+  opacity: 0.72 !important;
+  transition: background 520ms ease, opacity 520ms ease !important;
+}
+
+body.season-spring .site-header,
+body.season-summer .site-header,
+body.season-autumn .site-header,
+body.season-winter .site-header {
+  background: color-mix(in srgb, var(--season-card) 92%, transparent) !important;
+  border-color: var(--season-line) !important;
+  box-shadow: 0 16px 36px var(--season-shadow) !important;
+}
+
+body.season-spring .brand,
+body.season-summer .brand,
+body.season-autumn .brand,
+body.season-winter .brand,
+body.season-spring h1,
+body.season-summer h1,
+body.season-autumn h1,
+body.season-winter h1,
+body.season-spring h2,
+body.season-summer h2,
+body.season-autumn h2,
+body.season-winter h2,
+body.season-spring h3,
+body.season-summer h3,
+body.season-autumn h3,
+body.season-winter h3 {
+  color: var(--season-ink) !important;
+}
+
+body.season-spring .brand::before,
+body.season-summer .brand::before,
+body.season-autumn .brand::before,
+body.season-winter .brand::before {
+  background:
+    radial-gradient(circle at 34% 32%, rgba(255, 255, 255, 0.72) 0 20%, transparent 21%),
+    linear-gradient(135deg, var(--season-primary-dark), var(--season-primary)) !important;
+  border-radius: 13px !important;
+}
+
+body.season-spring .home-hero,
+body.season-summer .home-hero,
+body.season-autumn .home-hero,
+body.season-winter .home-hero {
+  border: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+body.season-spring .hero-copy-block,
+body.season-summer .hero-copy-block,
+body.season-autumn .hero-copy-block,
+body.season-winter .hero-copy-block {
+  min-height: 600px !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+body.season-spring .hero-slides,
+body.season-summer .hero-slides,
+body.season-autumn .hero-slides,
+body.season-winter .hero-slides,
+body.season-spring .hero-slide,
+body.season-summer .hero-slide,
+body.season-autumn .hero-slide,
+body.season-winter .hero-slide {
+  min-height: 600px !important;
+}
+
+body.season-spring .hero-slide,
+body.season-summer .hero-slide,
+body.season-autumn .hero-slide,
+body.season-winter .hero-slide {
+  grid-template-columns: minmax(0, 1.08fr) minmax(330px, 0.74fr) !important;
+  gap: 24px !important;
+}
+
+body.season-spring .hero-slide-media,
+body.season-summer .hero-slide-media,
+body.season-autumn .hero-slide-media,
+body.season-winter .hero-slide-media {
+  overflow: hidden !important;
+  background: var(--season-soft) !important;
+  border: 0 !important;
+  border-radius: 34px !important;
+  box-shadow: 0 28px 70px var(--season-shadow) !important;
+}
+
+body.season-spring .hero-slide-media img,
+body.season-summer .hero-slide-media img,
+body.season-autumn .hero-slide-media img,
+body.season-winter .hero-slide-media img {
+  min-height: 600px !important;
+  filter: saturate(1.02) contrast(0.98) brightness(0.98) !important;
+}
+
+body.season-spring .hero-slide-media::after,
+body.season-summer .hero-slide-media::after,
+body.season-autumn .hero-slide-media::after,
+body.season-winter .hero-slide-media::after {
+  background:
+    radial-gradient(circle at 20% 12%, rgba(255, 255, 255, 0.34), transparent 28%),
+    linear-gradient(180deg, transparent 58%, color-mix(in srgb, var(--season-primary-dark) 18%, transparent)) !important;
+}
+
+body.season-spring .hero-slide-content,
+body.season-summer .hero-slide-content,
+body.season-autumn .hero-slide-content,
+body.season-winter .hero-slide-content,
+body.season-spring .hero-card,
+body.season-summer .hero-card,
+body.season-autumn .hero-card,
+body.season-winter .hero-card,
+body.season-spring .summary-card,
+body.season-summer .summary-card,
+body.season-autumn .summary-card,
+body.season-winter .summary-card,
+body.season-spring .featured-section,
+body.season-summer .featured-section,
+body.season-autumn .featured-section,
+body.season-winter .featured-section {
+  background:
+    linear-gradient(145deg, color-mix(in srgb, var(--season-card) 94%, #fff), color-mix(in srgb, var(--season-soft) 72%, #fff)) !important;
+  border: 1px solid var(--season-line) !important;
+  border-radius: 28px !important;
+  box-shadow: 0 18px 42px var(--season-shadow) !important;
+}
+
+body.season-spring .hero-slide-content,
+body.season-summer .hero-slide-content,
+body.season-autumn .hero-slide-content,
+body.season-winter .hero-slide-content {
+  justify-content: center !important;
+  padding: clamp(30px, 4vw, 50px) !important;
+}
+
+body.season-spring .hero-slide-content::before,
+body.season-summer .hero-slide-content::before,
+body.season-autumn .hero-slide-content::before,
+body.season-winter .hero-slide-content::before {
+  background: var(--season-primary) !important;
+  box-shadow: 58px 0 0 color-mix(in srgb, var(--season-primary) 42%, #fff) !important;
+}
+
+body.season-spring .hero-slide-content .eyebrow,
+body.season-summer .hero-slide-content .eyebrow,
+body.season-autumn .hero-slide-content .eyebrow,
+body.season-winter .hero-slide-content .eyebrow,
+body.season-spring .eyebrow.dark,
+body.season-summer .eyebrow.dark,
+body.season-autumn .eyebrow.dark,
+body.season-winter .eyebrow.dark,
+body.season-spring .menu-meta,
+body.season-summer .menu-meta,
+body.season-autumn .menu-meta,
+body.season-winter .menu-meta {
+  color: var(--season-primary-dark) !important;
+  background: color-mix(in srgb, var(--season-primary) 13%, #fff) !important;
+  border-color: var(--season-line) !important;
+}
+
+body.season-spring .hero-slide-content h2,
+body.season-summer .hero-slide-content h2,
+body.season-autumn .hero-slide-content h2,
+body.season-winter .hero-slide-content h2 {
+  max-width: 520px !important;
+  color: var(--season-ink) !important;
+  font-size: clamp(38px, 4.7vw, 66px) !important;
+  line-height: 1.08 !important;
+}
+
+body.season-spring .hero-slide-content > p:not(.eyebrow),
+body.season-summer .hero-slide-content > p:not(.eyebrow),
+body.season-autumn .hero-slide-content > p:not(.eyebrow),
+body.season-winter .hero-slide-content > p:not(.eyebrow),
+body.season-spring .summary-card p,
+body.season-summer .summary-card p,
+body.season-autumn .summary-card p,
+body.season-winter .summary-card p,
+body.season-spring .hero-card p,
+body.season-summer .hero-card p,
+body.season-autumn .hero-card p,
+body.season-winter .hero-card p,
+body.season-spring .featured-body p,
+body.season-summer .featured-body p,
+body.season-autumn .featured-body p,
+body.season-winter .featured-body p {
+  color: var(--season-muted) !important;
+}
+
+body.season-spring .primary-link,
+body.season-summer .primary-link,
+body.season-autumn .primary-link,
+body.season-winter .primary-link {
+  background: linear-gradient(135deg, var(--season-primary-dark), var(--season-primary)) !important;
+  border-color: color-mix(in srgb, var(--season-primary) 26%, #fff) !important;
+  color: #fffdf8 !important;
+  box-shadow: 0 14px 28px var(--season-shadow) !important;
+}
+
+body.season-spring .secondary-link,
+body.season-summer .secondary-link,
+body.season-autumn .secondary-link,
+body.season-winter .secondary-link,
+body.season-spring .detail-link,
+body.season-summer .detail-link,
+body.season-autumn .detail-link,
+body.season-winter .detail-link,
+body.season-spring .text-link,
+body.season-summer .text-link,
+body.season-autumn .text-link,
+body.season-winter .text-link {
+  background: color-mix(in srgb, var(--season-card) 82%, #fff) !important;
+  border-color: var(--season-line) !important;
+  color: var(--season-ink) !important;
+}
+
+body.season-spring .hero-arrow,
+body.season-summer .hero-arrow,
+body.season-autumn .hero-arrow,
+body.season-winter .hero-arrow {
+  color: var(--season-primary-dark) !important;
+  background: color-mix(in srgb, var(--season-card) 88%, #fff) !important;
+  border-color: var(--season-line) !important;
+  box-shadow: 0 12px 26px var(--season-shadow) !important;
+}
+
+body.season-spring .hero-dots button,
+body.season-summer .hero-dots button,
+body.season-autumn .hero-dots button,
+body.season-winter .hero-dots button {
+  background: color-mix(in srgb, var(--season-primary) 24%, #fff) !important;
+  border-color: color-mix(in srgb, var(--season-primary) 28%, #fff) !important;
+}
+
+body.season-spring .hero-dots button.is-active,
+body.season-summer .hero-dots button.is-active,
+body.season-autumn .hero-dots button.is-active,
+body.season-winter .hero-dots button.is-active {
+  background: var(--season-primary) !important;
+}
+
+body.season-spring .today-footer strong,
+body.season-summer .today-footer strong,
+body.season-autumn .today-footer strong,
+body.season-winter .today-footer strong,
+body.season-spring .featured-footer strong,
+body.season-summer .featured-footer strong,
+body.season-autumn .featured-footer strong,
+body.season-winter .featured-footer strong {
+  color: var(--season-primary-dark) !important;
+}
+
+body.season-spring .featured-card,
+body.season-summer .featured-card,
+body.season-autumn .featured-card,
+body.season-winter .featured-card {
+  background: color-mix(in srgb, var(--season-card) 92%, #fff) !important;
+  border-color: var(--season-line) !important;
+  border-radius: 24px !important;
+  box-shadow: 0 14px 30px color-mix(in srgb, var(--season-shadow) 76%, transparent) !important;
+}
+
+@media (max-width: 980px) {
+  body.season-spring .hero-copy-block,
+  body.season-summer .hero-copy-block,
+  body.season-autumn .hero-copy-block,
+  body.season-winter .hero-copy-block,
+  body.season-spring .hero-slides,
+  body.season-summer .hero-slides,
+  body.season-autumn .hero-slides,
+  body.season-winter .hero-slides,
+  body.season-spring .hero-slide,
+  body.season-summer .hero-slide,
+  body.season-autumn .hero-slide,
+  body.season-winter .hero-slide {
+    min-height: 720px !important;
+  }
+
+  body.season-spring .hero-slide,
+  body.season-summer .hero-slide,
+  body.season-autumn .hero-slide,
+  body.season-winter .hero-slide {
+    grid-template-columns: 1fr !important;
+    grid-template-rows: minmax(340px, 1fr) auto !important;
+  }
+
+  body.season-spring .hero-slide-media img,
+  body.season-summer .hero-slide-media img,
+  body.season-autumn .hero-slide-media img,
+  body.season-winter .hero-slide-media img {
+    min-height: 340px !important;
+  }
+}
+
+@media (max-width: 640px) {
+  body.season-spring .hero-copy-block,
+  body.season-summer .hero-copy-block,
+  body.season-autumn .hero-copy-block,
+  body.season-winter .hero-copy-block,
+  body.season-spring .hero-slides,
+  body.season-summer .hero-slides,
+  body.season-autumn .hero-slides,
+  body.season-winter .hero-slides,
+  body.season-spring .hero-slide,
+  body.season-summer .hero-slide,
+  body.season-autumn .hero-slide,
+  body.season-winter .hero-slide {
+    min-height: 670px !important;
+  }
+
+  body.season-spring .hero-slide,
+  body.season-summer .hero-slide,
+  body.season-autumn .hero-slide,
+  body.season-winter .hero-slide {
+    gap: 14px !important;
+  }
+
+  body.season-spring .hero-slide-content,
+  body.season-summer .hero-slide-content,
+  body.season-autumn .hero-slide-content,
+  body.season-winter .hero-slide-content {
+    padding: 24px !important;
+  }
+
+  body.season-spring .hero-slide-content h2,
+  body.season-summer .hero-slide-content h2,
+  body.season-autumn .hero-slide-content h2,
+  body.season-winter .hero-slide-content h2 {
+    font-size: clamp(31px, 9vw, 45px) !important;
+  }
+}
+
+/* Full-image hero refinement */
+body.season-spring .site-header,
+body.season-summer .site-header,
+body.season-autumn .site-header,
+body.season-winter .site-header,
+.site-header {
+  top: 0 !important;
+  width: 100% !important;
+  margin: 0 !important;
+  border-top: 0 !important;
+  border-right: 0 !important;
+  border-left: 0 !important;
+  border-radius: 0 !important;
+}
+
+.page-shell {
+  padding-top: 24px !important;
+}
+
+body.season-spring .home-hero,
+body.season-summer .home-hero,
+body.season-autumn .home-hero,
+body.season-winter .home-hero {
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 350px) !important;
+  gap: 22px !important;
+}
+
+body.season-spring .hero-copy-block,
+body.season-summer .hero-copy-block,
+body.season-autumn .hero-copy-block,
+body.season-winter .hero-copy-block {
+  min-height: 620px !important;
+  overflow: hidden !important;
+  border-radius: 34px !important;
+}
+
+body.season-spring .hero-slides,
+body.season-summer .hero-slides,
+body.season-autumn .hero-slides,
+body.season-winter .hero-slides,
+body.season-spring .hero-slide,
+body.season-summer .hero-slide,
+body.season-autumn .hero-slide,
+body.season-winter .hero-slide {
+  min-height: 620px !important;
+}
+
+body.season-spring .hero-slide,
+body.season-summer .hero-slide,
+body.season-autumn .hero-slide,
+body.season-winter .hero-slide {
+  display: block !important;
+  overflow: hidden !important;
+  border-radius: 34px !important;
+  box-shadow: 0 30px 76px var(--season-shadow) !important;
+}
+
+body.season-spring .hero-slide-media,
+body.season-summer .hero-slide-media,
+body.season-autumn .hero-slide-media,
+body.season-winter .hero-slide-media {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: 34px !important;
+  box-shadow: none !important;
+}
+
+body.season-spring .hero-slide-media img,
+body.season-summer .hero-slide-media img,
+body.season-autumn .hero-slide-media img,
+body.season-winter .hero-slide-media img {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 620px !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  filter: saturate(1.03) contrast(1.01) brightness(0.94) !important;
+}
+
+body.season-spring .hero-slide-media::after,
+body.season-summer .hero-slide-media::after,
+body.season-autumn .hero-slide-media::after,
+body.season-winter .hero-slide-media::after {
+  background:
+    linear-gradient(90deg, rgba(24, 26, 22, 0.66) 0%, rgba(24, 26, 22, 0.42) 35%, rgba(24, 26, 22, 0.14) 68%, rgba(24, 26, 22, 0.04) 100%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(0, 0, 0, 0.18)) !important;
+}
+
+body.season-spring .hero-slide-content,
+body.season-summer .hero-slide-content,
+body.season-autumn .hero-slide-content,
+body.season-winter .hero-slide-content {
+  position: relative !important;
+  z-index: 2 !important;
+  width: min(560px, calc(100% - 64px)) !important;
+  min-height: 620px !important;
+  justify-content: center !important;
+  padding: clamp(34px, 5vw, 66px) !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+body.season-spring .hero-slide-content::before,
+body.season-summer .hero-slide-content::before,
+body.season-autumn .hero-slide-content::before,
+body.season-winter .hero-slide-content::before {
+  width: 54px !important;
+  height: 4px !important;
+  margin-bottom: 22px !important;
+  background: rgba(255, 253, 248, 0.92) !important;
+  box-shadow: 64px 0 0 color-mix(in srgb, var(--season-primary) 74%, #fff) !important;
+}
+
+body.season-spring .hero-slide-content .eyebrow,
+body.season-summer .hero-slide-content .eyebrow,
+body.season-autumn .hero-slide-content .eyebrow,
+body.season-winter .hero-slide-content .eyebrow {
+  color: #fffdf8 !important;
+  background: rgba(255, 253, 248, 0.16) !important;
+  border-color: rgba(255, 253, 248, 0.32) !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+body.season-spring .hero-slide-content h2,
+body.season-summer .hero-slide-content h2,
+body.season-autumn .hero-slide-content h2,
+body.season-winter .hero-slide-content h2 {
+  max-width: 500px !important;
+  color: #fffdf8 !important;
+  font-size: clamp(42px, 5.2vw, 72px) !important;
+  line-height: 1.05 !important;
+  text-shadow: 0 12px 28px rgba(0, 0, 0, 0.28) !important;
+}
+
+body.season-spring .hero-slide-content > p:not(.eyebrow),
+body.season-summer .hero-slide-content > p:not(.eyebrow),
+body.season-autumn .hero-slide-content > p:not(.eyebrow),
+body.season-winter .hero-slide-content > p:not(.eyebrow) {
+  max-width: 430px !important;
+  color: rgba(255, 253, 248, 0.88) !important;
+  font-size: 17px !important;
+  text-shadow: 0 8px 20px rgba(0, 0, 0, 0.24) !important;
+}
+
+body.season-spring .hero-slide-content .hero-actions,
+body.season-summer .hero-slide-content .hero-actions,
+body.season-autumn .hero-slide-content .hero-actions,
+body.season-winter .hero-slide-content .hero-actions {
+  margin-top: 30px !important;
+}
+
+body.season-spring .hero-slide-content .secondary-link,
+body.season-summer .hero-slide-content .secondary-link,
+body.season-autumn .hero-slide-content .secondary-link,
+body.season-winter .hero-slide-content .secondary-link {
+  background: rgba(255, 253, 248, 0.82) !important;
+  color: var(--season-ink) !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+@media (max-width: 980px) {
+  body.season-spring .home-hero,
+  body.season-summer .home-hero,
+  body.season-autumn .home-hero,
+  body.season-winter .home-hero {
+    grid-template-columns: 1fr !important;
+  }
+
+  body.season-spring .hero-copy-block,
+  body.season-summer .hero-copy-block,
+  body.season-autumn .hero-copy-block,
+  body.season-winter .hero-copy-block,
+  body.season-spring .hero-slides,
+  body.season-summer .hero-slides,
+  body.season-autumn .hero-slides,
+  body.season-winter .hero-slides,
+  body.season-spring .hero-slide,
+  body.season-summer .hero-slide,
+  body.season-autumn .hero-slide,
+  body.season-winter .hero-slide,
+  body.season-spring .hero-slide-content,
+  body.season-summer .hero-slide-content,
+  body.season-autumn .hero-slide-content,
+  body.season-winter .hero-slide-content {
+    min-height: 560px !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .page-shell {
+    padding-top: 18px !important;
+  }
+
+  body.season-spring .hero-copy-block,
+  body.season-summer .hero-copy-block,
+  body.season-autumn .hero-copy-block,
+  body.season-winter .hero-copy-block,
+  body.season-spring .hero-slides,
+  body.season-summer .hero-slides,
+  body.season-autumn .hero-slides,
+  body.season-winter .hero-slides,
+  body.season-spring .hero-slide,
+  body.season-summer .hero-slide,
+  body.season-autumn .hero-slide,
+  body.season-winter .hero-slide,
+  body.season-spring .hero-slide-content,
+  body.season-summer .hero-slide-content,
+  body.season-autumn .hero-slide-content,
+  body.season-winter .hero-slide-content {
+    min-height: 540px !important;
+  }
+
+  body.season-spring .hero-slide-content,
+  body.season-summer .hero-slide-content,
+  body.season-autumn .hero-slide-content,
+  body.season-winter .hero-slide-content {
+    width: 100% !important;
+    padding: 32px 24px 96px !important;
+    justify-content: flex-end !important;
+  }
+
+  body.season-spring .hero-slide-content h2,
+  body.season-summer .hero-slide-content h2,
+  body.season-autumn .hero-slide-content h2,
+  body.season-winter .hero-slide-content h2 {
+    font-size: clamp(34px, 11vw, 52px) !important;
+  }
+}
+
+/* Hero carousel polish: clear arrows, matched card height, smoother motion. */
+body.season-spring,
+body.season-summer,
+body.season-autumn,
+body.season-winter {
+  transition:
+    background 950ms cubic-bezier(0.22, 1, 0.36, 1),
+    color 650ms ease !important;
+}
+
+body.season-spring .home-hero,
+body.season-summer .home-hero,
+body.season-autumn .home-hero,
+body.season-winter .home-hero {
+  align-items: stretch !important;
+}
+
+body.season-spring .hero-card,
+body.season-summer .hero-card,
+body.season-autumn .hero-card,
+body.season-winter .hero-card {
+  align-self: stretch !important;
+  min-height: 620px !important;
+  height: 620px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  padding: 26px !important;
+}
+
+body.season-spring .today-visual,
+body.season-summer .today-visual,
+body.season-autumn .today-visual,
+body.season-winter .today-visual {
+  min-height: 300px !important;
+  flex: 1 1 auto !important;
+}
+
+body.season-spring .hero-slide,
+body.season-summer .hero-slide,
+body.season-autumn .hero-slide,
+body.season-winter .hero-slide {
+  opacity: 0 !important;
+  transform: scale(1.018) translateX(18px) !important;
+  transition:
+    opacity 900ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 1050ms cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+body.season-spring .hero-slide.is-active,
+body.season-summer .hero-slide.is-active,
+body.season-autumn .hero-slide.is-active,
+body.season-winter .hero-slide.is-active {
+  opacity: 1 !important;
+  transform: scale(1) translateX(0) !important;
+}
+
+body.season-spring .hero-slide-media img,
+body.season-summer .hero-slide-media img,
+body.season-autumn .hero-slide-media img,
+body.season-winter .hero-slide-media img {
+  transform: scale(1.045) !important;
+  transition:
+    transform 1600ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 900ms ease !important;
+}
+
+body.season-spring .hero-slide.is-active .hero-slide-media img,
+body.season-summer .hero-slide.is-active .hero-slide-media img,
+body.season-autumn .hero-slide.is-active .hero-slide-media img,
+body.season-winter .hero-slide.is-active .hero-slide-media img {
+  transform: scale(1) !important;
+}
+
+body.season-spring .hero-slide-content,
+body.season-summer .hero-slide-content,
+body.season-autumn .hero-slide-content,
+body.season-winter .hero-slide-content {
+  width: min(590px, calc(100% - 132px)) !important;
+  padding: clamp(42px, 5vw, 72px) clamp(40px, 5vw, 74px) clamp(42px, 5vw, 72px) clamp(86px, 7vw, 118px) !important;
+  opacity: 0 !important;
+  transform: translateY(18px) !important;
+  transition:
+    opacity 850ms ease 120ms,
+    transform 900ms cubic-bezier(0.22, 1, 0.36, 1) 120ms !important;
+}
+
+body.season-spring .hero-slide.is-active .hero-slide-content,
+body.season-summer .hero-slide.is-active .hero-slide-content,
+body.season-autumn .hero-slide.is-active .hero-slide-content,
+body.season-winter .hero-slide.is-active .hero-slide-content {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+body.season-spring .hero-arrow,
+body.season-summer .hero-arrow,
+body.season-autumn .hero-arrow,
+body.season-winter .hero-arrow {
+  z-index: 8 !important;
+  width: 46px !important;
+  height: 46px !important;
+  color: rgba(255, 253, 248, 0.94) !important;
+  background: rgba(28, 30, 26, 0.24) !important;
+  border: 1px solid rgba(255, 253, 248, 0.34) !important;
+  border-radius: 999px !important;
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.18) !important;
+  backdrop-filter: blur(14px) !important;
+  transition:
+    transform 180ms ease,
+    background 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease !important;
+}
+
+body.season-spring .hero-arrow:hover,
+body.season-summer .hero-arrow:hover,
+body.season-autumn .hero-arrow:hover,
+body.season-winter .hero-arrow:hover {
+  color: #fffdf8 !important;
+  background: rgba(28, 30, 26, 0.42) !important;
+  border-color: rgba(255, 253, 248, 0.58) !important;
+}
+
+body.season-spring #hero-prev,
+body.season-summer #hero-prev,
+body.season-autumn #hero-prev,
+body.season-winter #hero-prev {
+  left: 24px !important;
+  right: auto !important;
+  transform: translateY(-50%) !important;
+}
+
+body.season-spring #hero-next,
+body.season-summer #hero-next,
+body.season-autumn #hero-next,
+body.season-winter #hero-next {
+  right: 24px !important;
+  left: auto !important;
+  transform: translateY(-50%) !important;
+}
+
+body.season-spring #hero-prev:hover,
+body.season-summer #hero-prev:hover,
+body.season-autumn #hero-prev:hover,
+body.season-winter #hero-prev:hover {
+  transform: translateY(-50%) translateX(-2px) !important;
+}
+
+body.season-spring #hero-next:hover,
+body.season-summer #hero-next:hover,
+body.season-autumn #hero-next:hover,
+body.season-winter #hero-next:hover {
+  transform: translateY(-50%) translateX(2px) !important;
+}
+
+body.season-spring .hero-dots,
+body.season-summer .hero-dots,
+body.season-autumn .hero-dots,
+body.season-winter .hero-dots {
+  right: 34px !important;
+  bottom: 30px !important;
+  padding: 8px 10px !important;
+  background: rgba(28, 30, 26, 0.18) !important;
+  border: 1px solid rgba(255, 253, 248, 0.22) !important;
+  border-radius: 999px !important;
+  backdrop-filter: blur(12px) !important;
+}
+
+body.season-spring .hero-dots button,
+body.season-summer .hero-dots button,
+body.season-autumn .hero-dots button,
+body.season-winter .hero-dots button {
+  background: rgba(255, 253, 248, 0.52) !important;
+  border-color: transparent !important;
+}
+
+body.season-spring .hero-dots button.is-active,
+body.season-summer .hero-dots button.is-active,
+body.season-autumn .hero-dots button.is-active,
+body.season-winter .hero-dots button.is-active {
+  background: #fffdf8 !important;
+}
+
+@media (max-width: 980px) {
+  body.season-spring .hero-card,
+  body.season-summer .hero-card,
+  body.season-autumn .hero-card,
+  body.season-winter .hero-card {
+    height: auto !important;
+    min-height: 0 !important;
+  }
+
+  body.season-spring .today-visual,
+  body.season-summer .today-visual,
+  body.season-autumn .today-visual,
+  body.season-winter .today-visual {
+    min-height: 250px !important;
+  }
+}
+
+@media (max-width: 640px) {
+  body.season-spring .hero-slide-content,
+  body.season-summer .hero-slide-content,
+  body.season-autumn .hero-slide-content,
+  body.season-winter .hero-slide-content {
+    width: 100% !important;
+    padding: 34px 24px 100px !important;
+  }
+
+  body.season-spring .hero-arrow,
+  body.season-summer .hero-arrow,
+  body.season-autumn .hero-arrow,
+  body.season-winter .hero-arrow {
+    top: auto !important;
+    bottom: 26px !important;
+    width: 40px !important;
+    height: 40px !important;
+  }
+
+  body.season-spring #hero-prev,
+  body.season-summer #hero-prev,
+  body.season-autumn #hero-prev,
+  body.season-winter #hero-prev {
+    left: 24px !important;
+    transform: none !important;
+  }
+
+  body.season-spring #hero-next,
+  body.season-summer #hero-next,
+  body.season-autumn #hero-next,
+  body.season-winter #hero-next {
+    right: auto !important;
+    left: 72px !important;
+    transform: none !important;
+  }
+
+  body.season-spring #hero-prev:hover,
+  body.season-summer #hero-prev:hover,
+  body.season-autumn #hero-prev:hover,
+  body.season-winter #hero-prev:hover,
+  body.season-spring #hero-next:hover,
+  body.season-summer #hero-next:hover,
+  body.season-autumn #hero-next:hover,
+  body.season-winter #hero-next:hover {
+    transform: translateY(-1px) !important;
+  }
+}
+
+/* Exact hero alignment fix */
+body.season-spring .home-hero,
+body.season-summer .home-hero,
+body.season-autumn .home-hero,
+body.season-winter .home-hero {
+  --hero-main-height: 620px;
+  align-items: stretch !important;
+}
+
+body.season-spring .hero-copy-block,
+body.season-summer .hero-copy-block,
+body.season-autumn .hero-copy-block,
+body.season-winter .hero-copy-block,
+body.season-spring .hero-card,
+body.season-summer .hero-card,
+body.season-autumn .hero-card,
+body.season-winter .hero-card {
+  height: var(--hero-main-height) !important;
+  min-height: var(--hero-main-height) !important;
+  max-height: var(--hero-main-height) !important;
+  align-self: stretch !important;
+}
+
+body.season-spring .hero-copy-block,
+body.season-summer .hero-copy-block,
+body.season-autumn .hero-copy-block,
+body.season-winter .hero-copy-block {
+  position: relative !important;
+  display: block !important;
+}
+
+body.season-spring .hero-slides,
+body.season-summer .hero-slides,
+body.season-autumn .hero-slides,
+body.season-winter .hero-slides,
+body.season-spring .hero-slide,
+body.season-summer .hero-slide,
+body.season-autumn .hero-slide,
+body.season-winter .hero-slide,
+body.season-spring .hero-slide-media,
+body.season-summer .hero-slide-media,
+body.season-autumn .hero-slide-media,
+body.season-winter .hero-slide-media,
+body.season-spring .hero-slide-media img,
+body.season-summer .hero-slide-media img,
+body.season-autumn .hero-slide-media img,
+body.season-winter .hero-slide-media img,
+body.season-spring .hero-slide-content,
+body.season-summer .hero-slide-content,
+body.season-autumn .hero-slide-content,
+body.season-winter .hero-slide-content {
+  height: 100% !important;
+  min-height: 100% !important;
+  max-height: 100% !important;
+}
+
+body.season-spring .hero-card,
+body.season-summer .hero-card,
+body.season-autumn .hero-card,
+body.season-winter .hero-card {
+  overflow: hidden !important;
+  display: grid !important;
+  grid-template-rows: auto minmax(0, 1fr) auto auto !important;
+  gap: 18px !important;
+  padding: 26px !important;
+}
+
+body.season-spring .today-visual,
+body.season-summer .today-visual,
+body.season-autumn .today-visual,
+body.season-winter .today-visual {
+  min-height: 0 !important;
+  height: 100% !important;
+}
+
+body.season-spring .hero-arrow,
+body.season-summer .hero-arrow,
+body.season-autumn .hero-arrow,
+body.season-winter .hero-arrow {
+  display: grid !important;
+  place-items: center !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  font-size: 0 !important;
+  line-height: 1 !important;
+  text-indent: -999px !important;
+}
+
+body.season-spring .hero-arrow::before,
+body.season-summer .hero-arrow::before,
+body.season-autumn .hero-arrow::before,
+body.season-winter .hero-arrow::before {
+  display: grid !important;
+  place-items: center !important;
+  width: 100% !important;
+  height: 100% !important;
+  text-indent: 0 !important;
+  font-size: 28px !important;
+  font-weight: 400 !important;
+  line-height: 1 !important;
+  transform: translateY(-1px) !important;
+}
+
+body.season-spring #hero-prev::before,
+body.season-summer #hero-prev::before,
+body.season-autumn #hero-prev::before,
+body.season-winter #hero-prev::before {
+  content: '\2039' !important;
+}
+
+body.season-spring #hero-next::before,
+body.season-summer #hero-next::before,
+body.season-autumn #hero-next::before,
+body.season-winter #hero-next::before {
+  content: '\203A' !important;
+}
+
+@media (max-width: 980px) {
+  body.season-spring .home-hero,
+  body.season-summer .home-hero,
+  body.season-autumn .home-hero,
+  body.season-winter .home-hero {
+    --hero-main-height: auto;
+  }
+
+  body.season-spring .hero-copy-block,
+  body.season-summer .hero-copy-block,
+  body.season-autumn .hero-copy-block,
+  body.season-winter .hero-copy-block {
+    height: 560px !important;
+    min-height: 560px !important;
+    max-height: none !important;
+  }
+
+  body.season-spring .hero-card,
+  body.season-summer .hero-card,
+  body.season-autumn .hero-card,
+  body.season-winter .hero-card {
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+  }
+}
+
+@media (max-width: 640px) {
+  body.season-spring .hero-copy-block,
+  body.season-summer .hero-copy-block,
+  body.season-autumn .hero-copy-block,
+  body.season-winter .hero-copy-block {
+    height: 540px !important;
+    min-height: 540px !important;
+  }
+}
+
+/* Match hero slide top accent with seasonal pick cards. */
+body.season-spring .hero-copy-block::before,
+body.season-summer .hero-copy-block::before,
+body.season-autumn .hero-copy-block::before,
+body.season-winter .hero-copy-block::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  right: 0 !important;
+  left: 0 !important;
+  z-index: 9 !important;
+  display: block !important;
+  width: 100% !important;
+  height: 8px !important;
+  background: linear-gradient(90deg, var(--season-primary-dark), var(--season-primary), color-mix(in srgb, var(--season-primary) 38%, #fff)) !important;
+  border: 0 !important;
+  border-radius: 34px 34px 0 0 !important;
+  pointer-events: none !important;
+}
+
+body.season-spring .hero-copy-block::after,
+body.season-summer .hero-copy-block::after,
+body.season-autumn .hero-copy-block::after,
+body.season-winter .hero-copy-block::after {
+  content: '' !important;
+  position: absolute !important;
+  inset: 8px 0 auto !important;
+  z-index: 8 !important;
+  display: block !important;
+  height: 34px !important;
+  background: linear-gradient(180deg, rgba(255, 253, 248, 0.18), transparent) !important;
+  border: 0 !important;
+  pointer-events: none !important;
+}
+
+/* Slightly taller hero so the top accent feels integrated. */
+body.season-spring .home-hero,
+body.season-summer .home-hero,
+body.season-autumn .home-hero,
+body.season-winter .home-hero {
+  --hero-main-height: 650px;
+}
+
+@media (max-width: 980px) {
+  body.season-spring .hero-copy-block,
+  body.season-summer .hero-copy-block,
+  body.season-autumn .hero-copy-block,
+  body.season-winter .hero-copy-block {
+    height: 590px !important;
+    min-height: 590px !important;
+  }
+}
+
+@media (max-width: 640px) {
+  body.season-spring .hero-copy-block,
+  body.season-summer .hero-copy-block,
+  body.season-autumn .hero-copy-block,
+  body.season-winter .hero-copy-block {
+    height: 560px !important;
+    min-height: 560px !important;
+  }
+}
+
+/* Keep the hero at the preferred larger image scale and make the top accent feel built-in. */
+body.season-spring .hero-copy-block,
+body.season-summer .hero-copy-block,
+body.season-autumn .hero-copy-block,
+body.season-winter .hero-copy-block {
+  background: linear-gradient(90deg, var(--season-primary-dark), var(--season-primary), color-mix(in srgb, var(--season-primary) 38%, #fff)) !important;
+  padding-top: 8px !important;
+  box-shadow: 0 30px 76px var(--season-shadow) !important;
+}
+
+body.season-spring .hero-copy-block::before,
+body.season-summer .hero-copy-block::before,
+body.season-autumn .hero-copy-block::before,
+body.season-winter .hero-copy-block::before,
+body.season-spring .hero-copy-block::after,
+body.season-summer .hero-copy-block::after,
+body.season-autumn .hero-copy-block::after,
+body.season-winter .hero-copy-block::after {
+  display: none !important;
+}
+
+body.season-spring .hero-slides,
+body.season-summer .hero-slides,
+body.season-autumn .hero-slides,
+body.season-winter .hero-slides {
+  height: calc(100% - 8px) !important;
+  min-height: calc(100% - 8px) !important;
+  max-height: calc(100% - 8px) !important;
+  border-radius: 0 0 34px 34px !important;
+}
+
+body.season-spring .hero-slide,
+body.season-summer .hero-slide,
+body.season-autumn .hero-slide,
+body.season-winter .hero-slide {
+  border-radius: 0 0 34px 34px !important;
+  box-shadow: none !important;
+  transform: translateX(18px) !important;
+}
+
+body.season-spring .hero-slide.is-active,
+body.season-summer .hero-slide.is-active,
+body.season-autumn .hero-slide.is-active,
+body.season-winter .hero-slide.is-active {
+  transform: translateX(0) !important;
+}
+
+body.season-spring .hero-slide-media,
+body.season-summer .hero-slide-media,
+body.season-autumn .hero-slide-media,
+body.season-winter .hero-slide-media {
+  border-radius: 0 0 34px 34px !important;
+}
+
+body.season-spring .hero-slide-media img,
+body.season-summer .hero-slide-media img,
+body.season-autumn .hero-slide-media img,
+body.season-winter .hero-slide-media img,
+body.season-spring .hero-slide.is-active .hero-slide-media img,
+body.season-summer .hero-slide.is-active .hero-slide-media img,
+body.season-autumn .hero-slide.is-active .hero-slide-media img,
+body.season-winter .hero-slide.is-active .hero-slide-media img {
+  transform: scale(1.045) !important;
+}
+
+body.season-spring .hero-slide-media::after,
+body.season-summer .hero-slide-media::after,
+body.season-autumn .hero-slide-media::after,
+body.season-winter .hero-slide-media::after {
+  border-radius: 0 0 34px 34px !important;
+}
+
+/* Thin matching accent and no horizontal slide drift. */
+body.season-spring .hero-copy-block,
+body.season-summer .hero-copy-block,
+body.season-autumn .hero-copy-block,
+body.season-winter .hero-copy-block {
+  padding-top: 4px !important;
+}
+
+body.season-spring .hero-slides,
+body.season-summer .hero-slides,
+body.season-autumn .hero-slides,
+body.season-winter .hero-slides {
+  height: calc(100% - 4px) !important;
+  min-height: calc(100% - 4px) !important;
+  max-height: calc(100% - 4px) !important;
+}
+
+body.season-spring .hero-slide,
+body.season-summer .hero-slide,
+body.season-autumn .hero-slide,
+body.season-winter .hero-slide,
+body.season-spring .hero-slide.is-active,
+body.season-summer .hero-slide.is-active,
+body.season-autumn .hero-slide.is-active,
+body.season-winter .hero-slide.is-active {
+  transform: none !important;
+  transition: opacity 900ms cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+body.season-spring .hero-slide-content,
+body.season-summer .hero-slide-content,
+body.season-autumn .hero-slide-content,
+body.season-winter .hero-slide-content {
+  transform: translateY(12px) !important;
+}
+
+body.season-spring .hero-slide.is-active .hero-slide-content,
+body.season-summer .hero-slide.is-active .hero-slide-content,
+body.season-autumn .hero-slide.is-active .hero-slide-content,
+body.season-winter .hero-slide.is-active .hero-slide-content {
+  transform: translateY(0) !important;
+}
+
+/* Exact same top accent thickness as the seasonal pick card. */
+body.season-spring .hero-copy-block,
+body.season-summer .hero-copy-block,
+body.season-autumn .hero-copy-block,
+body.season-winter .hero-copy-block {
+  padding-top: 8px !important;
+}
+
+body.season-spring .hero-slides,
+body.season-summer .hero-slides,
+body.season-autumn .hero-slides,
+body.season-winter .hero-slides {
+  height: calc(100% - 8px) !important;
+  min-height: calc(100% - 8px) !important;
+  max-height: calc(100% - 8px) !important;
+}
+
+/* Remove fake top spacing: use the same overlay accent style as seasonal pick. */
+body.season-spring .hero-copy-block,
+body.season-summer .hero-copy-block,
+body.season-autumn .hero-copy-block,
+body.season-winter .hero-copy-block {
+  padding-top: 0 !important;
+  background: transparent !important;
+}
+
+body.season-spring .hero-slides,
+body.season-summer .hero-slides,
+body.season-autumn .hero-slides,
+body.season-winter .hero-slides {
+  height: 100% !important;
+  min-height: 100% !important;
+  max-height: 100% !important;
+  border-radius: 34px !important;
+}
+
+body.season-spring .hero-slide,
+body.season-summer .hero-slide,
+body.season-autumn .hero-slide,
+body.season-winter .hero-slide,
+body.season-spring .hero-slide-media,
+body.season-summer .hero-slide-media,
+body.season-autumn .hero-slide-media,
+body.season-winter .hero-slide-media,
+body.season-spring .hero-slide-media::after,
+body.season-summer .hero-slide-media::after,
+body.season-autumn .hero-slide-media::after,
+body.season-winter .hero-slide-media::after {
+  border-radius: 34px !important;
+}
+
+body.season-spring .hero-copy-block::before,
+body.season-summer .hero-copy-block::before,
+body.season-autumn .hero-copy-block::before,
+body.season-winter .hero-copy-block::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  right: 0 !important;
+  left: 0 !important;
+  z-index: 20 !important;
+  display: block !important;
+  height: 8px !important;
+  background: linear-gradient(90deg, var(--season-primary-dark), var(--season-primary), color-mix(in srgb, var(--season-primary) 38%, #fff)) !important;
+  border-radius: 34px 34px 0 0 !important;
+  pointer-events: none !important;
+}
+
+body.season-spring .hero-copy-block::after,
+body.season-summer .hero-copy-block::after,
+body.season-autumn .hero-copy-block::after,
+body.season-winter .hero-copy-block::after {
+  display: none !important;
+}
+
+/* Integrate the accent strip and slide into one clipped card. */
+body.season-spring .hero-copy-block,
+body.season-summer .hero-copy-block,
+body.season-autumn .hero-copy-block,
+body.season-winter .hero-copy-block {
+  --hero-radius: 24px;
+  overflow: hidden !important;
+  background: transparent !important;
+  border-radius: var(--hero-radius) !important;
+  box-shadow: 0 26px 62px var(--season-shadow) !important;
+}
+
+body.season-spring .hero-slides,
+body.season-summer .hero-slides,
+body.season-autumn .hero-slides,
+body.season-winter .hero-slides,
+body.season-spring .hero-slide,
+body.season-summer .hero-slide,
+body.season-autumn .hero-slide,
+body.season-winter .hero-slide,
+body.season-spring .hero-slide-media,
+body.season-summer .hero-slide-media,
+body.season-autumn .hero-slide-media,
+body.season-winter .hero-slide-media,
+body.season-spring .hero-slide-media::after,
+body.season-summer .hero-slide-media::after,
+body.season-autumn .hero-slide-media::after,
+body.season-winter .hero-slide-media::after {
+  border-radius: var(--hero-radius) !important;
+}
+
+body.season-spring .hero-copy-block::before,
+body.season-summer .hero-copy-block::before,
+body.season-autumn .hero-copy-block::before,
+body.season-winter .hero-copy-block::before {
+  z-index: 30 !important;
+  height: 8px !important;
+  border-radius: var(--hero-radius) var(--hero-radius) 0 0 !important;
+  box-shadow: 0 1px 0 rgba(255, 253, 248, 0.24) inset !important;
+}
+
+body.season-spring .hero-slide-media img,
+body.season-summer .hero-slide-media img,
+body.season-autumn .hero-slide-media img,
+body.season-winter .hero-slide-media img {
+  border-radius: var(--hero-radius) !important;
+}
+
+/* Make the hero strip and image read as one piece. */
+body.season-spring .hero-copy-block,
+body.season-summer .hero-copy-block,
+body.season-autumn .hero-copy-block,
+body.season-winter .hero-copy-block {
+  --hero-radius: 24px;
+  overflow: hidden !important;
+  background: transparent !important;
+  border-radius: var(--hero-radius) !important;
+}
+
+body.season-spring .hero-slides,
+body.season-summer .hero-slides,
+body.season-autumn .hero-slides,
+body.season-winter .hero-slides,
+body.season-spring .hero-slide,
+body.season-summer .hero-slide,
+body.season-autumn .hero-slide,
+body.season-winter .hero-slide,
+body.season-spring .hero-slide-media,
+body.season-summer .hero-slide-media,
+body.season-autumn .hero-slide-media,
+body.season-winter .hero-slide-media {
+  inset: 0 !important;
+  height: 100% !important;
+  min-height: 100% !important;
+  max-height: 100% !important;
+  border-radius: var(--hero-radius) !important;
+}
+
+body.season-spring .hero-slide-media img,
+body.season-summer .hero-slide-media img,
+body.season-autumn .hero-slide-media img,
+body.season-winter .hero-slide-media img {
+  height: 100% !important;
+  min-height: 100% !important;
+  border-radius: 0 !important;
+}
+
+body.season-spring .hero-slide-media::after,
+body.season-summer .hero-slide-media::after,
+body.season-autumn .hero-slide-media::after,
+body.season-winter .hero-slide-media::after {
+  border-radius: var(--hero-radius) !important;
+}
+
+body.season-spring .hero-copy-block::before,
+body.season-summer .hero-copy-block::before,
+body.season-autumn .hero-copy-block::before,
+body.season-winter .hero-copy-block::before {
+  height: 8px !important;
+  border-radius: var(--hero-radius) var(--hero-radius) 0 0 !important;
+  box-shadow: none !important;
+}
+
+/* Final hero fix: only the outer hero card owns the radius. */
+body.season-spring .hero-copy-block,
+body.season-summer .hero-copy-block,
+body.season-autumn .hero-copy-block,
+body.season-winter .hero-copy-block {
+  --hero-radius: 24px;
+  position: relative !important;
+  overflow: hidden !important;
+  border-radius: var(--hero-radius) !important;
+  background: transparent !important;
+}
+
+body.season-spring .hero-slides,
+body.season-summer .hero-slides,
+body.season-autumn .hero-slides,
+body.season-winter .hero-slides,
+body.season-spring .hero-slide,
+body.season-summer .hero-slide,
+body.season-autumn .hero-slide,
+body.season-winter .hero-slide,
+body.season-spring .hero-slide-media,
+body.season-summer .hero-slide-media,
+body.season-autumn .hero-slide-media,
+body.season-winter .hero-slide-media,
+body.season-spring .hero-slide-media img,
+body.season-summer .hero-slide-media img,
+body.season-autumn .hero-slide-media img,
+body.season-winter .hero-slide-media img,
+body.season-spring .hero-slide-media::after,
+body.season-summer .hero-slide-media::after,
+body.season-autumn .hero-slide-media::after,
+body.season-winter .hero-slide-media::after {
+  border-radius: 0 !important;
+}
+
+body.season-spring .hero-slides,
+body.season-summer .hero-slides,
+body.season-autumn .hero-slides,
+body.season-winter .hero-slides,
+body.season-spring .hero-slide,
+body.season-summer .hero-slide,
+body.season-autumn .hero-slide,
+body.season-winter .hero-slide,
+body.season-spring .hero-slide-media,
+body.season-summer .hero-slide-media,
+body.season-autumn .hero-slide-media,
+body.season-winter .hero-slide-media {
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 100% !important;
+  max-height: 100% !important;
+}
+
+body.season-spring .hero-copy-block::before,
+body.season-summer .hero-copy-block::before,
+body.season-autumn .hero-copy-block::before,
+body.season-winter .hero-copy-block::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 40 !important;
+  display: block !important;
+  height: 8px !important;
+  background: linear-gradient(90deg, var(--season-primary-dark), var(--season-primary), color-mix(in srgb, var(--season-primary) 38%, #fff)) !important;
+  border-radius: var(--hero-radius) var(--hero-radius) 0 0 !important;
+  pointer-events: none !important;
+}
+/* Shared header alignment: match the main page header. */
+.site-header,
+.admin-header {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 10 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: var(--sp-md) !important;
+  width: 100% !important;
+  min-height: 70px !important;
+  margin: 0 !important;
+  padding: 0 18px !important;
+  background: color-mix(in srgb, var(--menu-card, var(--season-card, rgba(255, 253, 245, 0.86))) 92%, transparent) !important;
+  border: 0 !important;
+  border-bottom: 1px solid var(--menu-line, var(--season-line, rgba(100, 143, 77, 0.18))) !important;
+  border-radius: 0 !important;
+  box-shadow: 0 14px 34px var(--menu-shadow, var(--season-shadow, rgba(72, 97, 54, 0.11))) !important;
+  backdrop-filter: blur(18px) !important;
+}
+
+.brand {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  color: var(--menu-ink, var(--season-ink, #1f2d22)) !important;
+  font-size: 22px !important;
+  font-weight: 900 !important;
+  letter-spacing: 0 !important;
+}
+
+.brand::before {
+  content: '' !important;
+  width: 30px !important;
+  height: 30px !important;
+  flex: 0 0 auto !important;
+  background:
+    radial-gradient(circle at 36% 35%, rgba(255, 253, 245, 0.72) 0 22%, transparent 23%),
+    linear-gradient(135deg, var(--menu-primary-dark, var(--season-primary-dark, #4d7c3a)), var(--menu-primary, var(--season-primary, #b1cc6c))) !important;
+  border: 6px solid #fffdf5 !important;
+  border-radius: 12px !important;
+  box-shadow: 0 0 0 1px var(--menu-line, var(--season-line, rgba(100, 143, 77, 0.18))) !important;
+  transform: rotate(-7deg) !important;
+}
+
+.site-nav,
+.admin-nav {
+  display: flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  max-width: 100% !important;
+  padding: 5px !important;
+  color: var(--menu-muted, var(--season-muted, #52624d)) !important;
+  background: color-mix(in srgb, var(--menu-primary, var(--season-primary, #8aa35f)) 12%, #fffdf5) !important;
+  border: 1px solid var(--menu-line, var(--season-line, rgba(100, 143, 77, 0.16))) !important;
+  border-radius: 18px !important;
+  overflow-x: auto !important;
+}
+
+.site-nav a,
+.admin-nav a,
+.nav-logout {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 36px !important;
+  padding: 8px 13px !important;
+  color: var(--menu-muted, var(--season-muted, #52624d)) !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 14px !important;
+  font-weight: 900 !important;
+  white-space: nowrap !important;
+}
+
+.site-nav a:hover,
+.site-nav a[aria-current='page'],
+.admin-nav a:hover,
+.admin-nav a[aria-current='page'],
+.nav-logout:hover {
+  color: var(--menu-ink, var(--season-ink, #1f2d22)) !important;
+  background: color-mix(in srgb, var(--menu-primary, var(--season-primary, #8aa35f)) 12%, #fffdf5) !important;
+  box-shadow: 0 7px 16px var(--menu-shadow, var(--season-shadow, rgba(77, 124, 58, 0.12))) !important;
+}
+
+.cart-count {
+  color: #fffdf5 !important;
+  background: var(--menu-primary, var(--season-primary, #6f963f)) !important;
+}
+
+@media (max-width: 640px) {
+  .site-header,
+  .admin-header {
+    align-items: flex-start !important;
+    flex-direction: column !important;
+    padding-top: 12px !important;
+    padding-bottom: 12px !important;
+  }
+
+  .site-nav,
+  .admin-nav {
+    width: 100% !important;
+  }
 }

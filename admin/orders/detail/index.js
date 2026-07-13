@@ -1,9 +1,11 @@
-﻿renderAdminNav();
+renderAdminNav();
 const currentAdmin = requireAuth('admin');
-if (!currentAdmin) throw new Error('Admin authentication required');
+if (!currentAdmin) throw new Error('관리자 로그인이 필요해요.');
+
 const orderDetail = $('#order-detail');
 const notFound = $('#not-found');
 const orderTitle = $('#order-title');
+const orderSeason = $('#order-season');
 const orderStatus = $('#order-status');
 const orderDate = $('#order-date');
 const orderCount = $('#order-count');
@@ -15,51 +17,122 @@ const itemsList = $('#items-list');
 
 let currentOrder = null;
 
+const SEASON_NAMES = {
+  spring: '봄 향기',
+  summer: '여름 햇살',
+  autumn: '가을 단풍',
+  winter: '겨울 눈꽃'
+};
+
+const STATUS_NAMES = {
+  pending: '접수 대기',
+  confirmed: '주문 확인',
+  preparing: '준비 중',
+  ready: '픽업 가능',
+  completed: '완료',
+  cancelled: '취소'
+};
+
 function getItemCount(items) {
   return items.reduce((sum, item) => sum + item.quantity, 0);
+}
+
+function getStatusName(statusValue) {
+  return STATUS_NAMES[statusValue] || getStatusLabel(statusValue);
+}
+
+function getMenuForOrderItem(item) {
+  return getMenuById(item.menuId) || item;
+}
+
+function getRepresentativeSeason(items) {
+  if (!items || items.length === 0) return 'all';
+
+  const scores = items.reduce((acc, item) => {
+    const menu = getMenuForOrderItem(item);
+    const season = menu.category;
+    if (!SEASON_NAMES[season]) return acc;
+
+    if (!acc[season]) acc[season] = { quantity: 0, total: 0 };
+    acc[season].quantity += item.quantity;
+    acc[season].total += item.price * item.quantity;
+    return acc;
+  }, {});
+
+  const [winner] = Object.entries(scores).sort((a, b) => {
+    if (b[1].quantity !== a[1].quantity) return b[1].quantity - a[1].quantity;
+    return b[1].total - a[1].total;
+  })[0] || ['all'];
+
+  return winner;
+}
+
+function getOrderMood(order) {
+  const season = getRepresentativeSeason(order.items);
+  return {
+    season,
+    label: SEASON_NAMES[season] || '사계절'
+  };
+}
+
+function applyOrderTheme(order) {
+  const mood = getOrderMood(order);
+  document.body.dataset.season = mood.season === 'all' ? '' : mood.season;
+  orderDetail.dataset.season = mood.season;
+  orderSeason.textContent = `${mood.label} 분위기의 주문이에요.`;
 }
 
 function populateStatusSelect() {
   Object.values(ORDER_STATUS).forEach((status) => {
     const option = document.createElement('option');
     option.value = status.value;
-    option.textContent = status.label;
+    option.textContent = getStatusName(status.value);
     statusSelect.append(option);
   });
 }
 
 function renderStatus(order) {
-  orderStatus.innerHTML = `<span class="status-pill status-${escapeHtml(order.status)}">${escapeHtml(getStatusLabel(order.status))}</span>`;
+  orderStatus.innerHTML = `<span class="status-pill status-${escapeHtml(order.status)}">${escapeHtml(getStatusName(order.status))}</span>`;
   statusSelect.value = order.status;
 }
 
 function renderOrder(order) {
   const itemCount = getItemCount(order.items);
-  orderTitle.textContent = `Order ${order.id.slice(-6).toUpperCase()}`;
+  const mood = getOrderMood(order);
+  document.title = `${mood.label} 주문 상세 | Minicafe`;
+  applyOrderTheme(order);
+
+  orderTitle.textContent = `${mood.label} 주문 ${order.id.slice(-6).toUpperCase()}`;
   orderDate.textContent = formatDate(order.createdAt);
-  orderCount.textContent = `${itemCount} ${itemCount === 1 ? 'item' : 'items'}`;
+  orderCount.textContent = `${itemCount}개 메뉴`;
   orderTotal.textContent = formatPrice(order.total);
   renderStatus(order);
 
   renderList(
     itemsList,
     order.items,
-    (item) => `
-      <article class="order-item">
-        <div>
-          <p class="item-meta">${escapeHtml(getCategoryName(item.category))} · ${formatPrice(item.price)}</p>
-          <h3>${escapeHtml(item.name)}</h3>
-          <p>${escapeHtml(item.quantity)} ${item.quantity === 1 ? 'item' : 'items'}</p>
-        </div>
-        <strong>${formatPrice(item.price * item.quantity)}</strong>
-      </article>
-    `
+    (item) => {
+      const menu = getMenuForOrderItem(item);
+      const season = menu.category || item.category || 'all';
+      return `
+        <article class="order-item" data-season="${escapeHtml(season)}">
+          <div class="item-thumb" style="--menu-image: url('${escapeHtml(menu.image || SEASON_IMAGES[season] || SEASON_IMAGES.spring)}')" aria-hidden="true"></div>
+          <div class="item-main">
+            <p class="item-meta">${escapeHtml(getCategoryName(season))} · ${formatPrice(item.price)}</p>
+            <h3>${escapeHtml(item.name)}</h3>
+            <p>${escapeHtml(item.quantity)}개 담김</p>
+          </div>
+          <strong>${formatPrice(item.price * item.quantity)}</strong>
+        </article>
+      `;
+    }
   );
 }
 
 function renderPage() {
   currentOrder = getOrderById(getQueryParam('id'));
   if (!currentOrder) {
+    document.body.dataset.season = '';
     orderDetail.hidden = true;
     notFound.hidden = false;
     return;
@@ -77,7 +150,7 @@ saveStatus.addEventListener('click', () => {
 
   currentOrder = updated;
   renderStatus(currentOrder);
-  statusMessage.textContent = `Status changed to ${getStatusLabel(currentOrder.status)}.`;
+  statusMessage.textContent = `상태가 ${getStatusName(currentOrder.status)}(으)로 변경됐어요.`;
   window.clearTimeout(statusMessage.timer);
   statusMessage.timer = window.setTimeout(() => {
     statusMessage.textContent = '';

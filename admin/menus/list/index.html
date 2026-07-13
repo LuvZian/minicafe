@@ -1,60 +1,60 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Admin Menu | Minicafe</title>
+    <title>메뉴 관리 | Minicafe</title>
     <link rel="stylesheet" href="/css/variables.css" />
     <link rel="stylesheet" href="/admin/menus/list/index.css" />
   </head>
   <body>
     <header class="admin-header">
       <a class="brand" href="/">Minicafe</a>
-      <nav class="admin-nav" aria-label="Admin navigation"></nav>
+      <nav class="admin-nav" aria-label="관리자 메뉴"></nav>
     </header>
 
     <main class="page-shell">
       <section class="page-head">
         <div>
-          <p class="eyebrow">Admin</p>
-          <h1>Menu management</h1>
-          <p class="head-copy">Keep the cafe menu tidy, calm, and easy to browse.</p>
+          <p class="eyebrow">메뉴 관리</p>
+          <h1>계절 메뉴를 정리해요</h1>
+          <p class="head-copy">사계절 음료, 디저트, 굿즈를 한눈에 확인하고 필요한 메뉴를 바로 손볼 수 있어요.</p>
         </div>
-        <a class="primary-link" href="/admin/menus/create/">Add menu</a>
+        <a class="primary-link" href="/admin/menus/create/">메뉴 추가</a>
       </section>
 
-      <section class="stats-grid" aria-label="Menu summary">
+      <section class="stats-grid" aria-label="메뉴 요약">
         <article>
-          <span>Total menus</span>
+          <span>전체 메뉴</span>
           <strong id="total-count">0</strong>
         </article>
         <article>
-          <span>Categories</span>
+          <span>계절 카테고리</span>
           <strong id="category-count">0</strong>
         </article>
       </section>
 
-      <section class="toolbar" aria-label="Menu filters">
+      <section class="toolbar" aria-label="메뉴 검색과 필터">
         <label class="field search-field">
-          <span>Search</span>
-          <input id="search-input" type="search" placeholder="Name, category, description" autocomplete="off" />
+          <span>검색</span>
+          <input id="search-input" type="search" placeholder="메뉴명, 계절, 설명으로 찾기" autocomplete="off" />
         </label>
         <label class="field">
-          <span>Category</span>
+          <span>계절</span>
           <select id="category-filter"></select>
         </label>
       </section>
 
       <section class="menu-panel" aria-live="polite">
         <div class="panel-head">
-          <h2>Menus</h2>
-          <span id="result-count">0 items</span>
+          <h2>메뉴 목록</h2>
+          <span id="result-count">0개 메뉴</span>
         </div>
         <div id="menu-list" class="menu-list"></div>
         <div id="empty-state" class="empty-state" hidden>
-          <h2>No menus found</h2>
-          <p>Try a different keyword or add a new menu item.</p>
-          <a href="/admin/menus/create/">Add menu</a>
+          <h2>찾는 메뉴가 없어요</h2>
+          <p>다른 검색어를 입력하거나 새 계절 메뉴를 추가해보세요.</p>
+          <a href="/admin/menus/create/">메뉴 추가</a>
         </div>
       </section>
     </main>
@@ -64,5 +64,3 @@
     <script src="/admin/menus/list/index.js"></script>
   </body>
 </html>
-
-

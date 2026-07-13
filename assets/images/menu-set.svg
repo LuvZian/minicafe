@@ -1,0 +1,15 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" role="img" aria-label="Starter Set">
+  <defs>
+    <pattern id="grid" width="36" height="36" patternUnits="userSpaceOnUse">
+      <path d="M36 0H0v36" fill="none" stroke="#6b814f" stroke-opacity=".08" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="720" height="480" fill="#eee5d5"/>
+  <rect width="720" height="480" fill="url(#grid)"/>
+  <circle cx="116" cy="92" r="62" fill="#d0b66f" opacity=".18"/>
+  <circle cx="620" cy="392" r="96" fill="#5f7d43" opacity=".12"/>
+  <path d="M96 390C172 320 228 316 294 366s132 46 210-24 118-54 160-18" fill="none" stroke="#fffdf4" stroke-width="18" stroke-linecap="round" opacity=".42"/>
+  <ellipse cx="306" cy="322" rx="94" ry="36" fill="#fffaf0"/><path d="M228 318h156c-14 58-42 84-78 84s-64-26-78-84z" fill="#5f7d43"/><path d="M448 148l-82 218" stroke="#b88b54" stroke-width="10" stroke-linecap="round"/><path d="M482 152c-34 72-44 132-30 210" stroke="#d7b870" stroke-width="6" stroke-linecap="round"/><path d="M502 166c-30 68-38 120-24 186" stroke="#d7b870" stroke-width="6" stroke-linecap="round"/>
+  <text x="56" y="78" font-family="Georgia, 'Times New Roman', serif" font-size="32" font-weight="700" fill="#263826">Starter Set</text>
+  <text x="56" y="112" font-family="Arial, sans-serif" font-size="15" fill="#52624d">Minicafe matcha selection</text>
+</svg>

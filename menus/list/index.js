@@ -1,7 +1,9 @@
-﻿renderCustomerNav();
+renderCustomerNav();
+const SEASONS = ['spring', 'summer', 'autumn', 'winter'];
 const state = {
   category: 'all',
-  query: ''
+  query: '',
+  themeSeason: getRandomSeason()
 };
 
 const menuGrid = $('#menu-grid');
@@ -11,36 +13,74 @@ const categoryTabs = $('#category-tabs');
 const searchInput = $('#search-input');
 const cartCount = $('#cart-count');
 const toast = $('#toast');
+const pageBody = document.body;
 
-const MENU_IMAGES = {
-  1: 'https://images.unsplash.com/photo-1570968915860-54d5c301fa9f?auto=format&fit=crop&w=900&q=80',
-  2: 'https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&w=900&q=80',
-  3: 'https://images.unsplash.com/photo-1561047029-3000c68339ca?auto=format&fit=crop&w=900&q=80',
-  4: 'https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=900&q=80',
-  5: 'https://images.unsplash.com/photo-1597318181409-cf64d0b5d8a2?auto=format&fit=crop&w=900&q=80',
-  6: 'https://images.unsplash.com/photo-1515823064-d6e0c04616a7?auto=format&fit=crop&w=900&q=80',
-  7: 'https://images.unsplash.com/photo-1621263764928-df1444c5e859?auto=format&fit=crop&w=900&q=80',
-  8: 'https://images.unsplash.com/photo-1622597467836-f3285f2131b8?auto=format&fit=crop&w=900&q=80',
-  9: 'https://images.unsplash.com/photo-1621303837174-89787a7d4729?auto=format&fit=crop&w=900&q=80',
-  10: 'https://marketlanemadras.com/cdn/shop/products/IMG_1907_85791865-8441-4fb0-abc1-5d747e6da6f7_900x900.jpg?v=1594190467',
-  11: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=900&q=80',
-  12: 'https://images.unsplash.com/photo-1608198093002-ad4e005484ec?auto=format&fit=crop&w=900&q=80'
-};
+const SEASON_THEME_CLASS = ['season-spring', 'season-summer', 'season-autumn', 'season-winter'];
 
 const CATEGORY_IMAGES = {
-  coffee: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=900&q=80',
-  tea: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&w=900&q=80',
-  ade: 'https://images.unsplash.com/photo-1621263764928-df1444c5e859?auto=format&fit=crop&w=900&q=80',
-  dessert: 'https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=900&q=80',
-  bakery: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=900&q=80'
+  spring: SEASON_IMAGES.spring,
+  summer: SEASON_IMAGES.summer,
+  autumn: SEASON_IMAGES.autumn,
+  winter: SEASON_IMAGES.winter
 };
+
+const CATEGORY_COPY = {
+  all: {
+    kicker: 'Seasonal menu',
+    title: '계절별 음료, 디저트, 굿즈를 한눈에',
+    copy: '전체 메뉴를 둘러보면서 오늘 어울리는 계절의 분위기를 느껴보세요.'
+  },
+  spring: {
+    kicker: 'Spring',
+    title: '봄의 분홍빛 차와 작은 선물',
+    copy: '꽃향이 은은한 음료와 부드러운 디저트, 봄빛 굿즈를 모았어요.'
+  },
+  summer: {
+    kicker: 'Summer',
+    title: '초록 그늘 아래 시원한 계절 메뉴',
+    copy: '맑은 차, 차가운 디저트, 바람이 느껴지는 여름 굿즈를 만나보세요.'
+  },
+  autumn: {
+    kicker: 'Autumn',
+    title: '붉은 잎과 구운 차의 따뜻함',
+    copy: '로스티한 음료와 밤, 단풍빛 디저트, 차분한 가을 굿즈를 준비했어요.'
+  },
+  winter: {
+    kicker: 'Winter',
+    title: '하얀 겨울에 어울리는 따뜻한 한 잔',
+    copy: '김이 오르는 차와 눈처럼 부드러운 디저트, 조용한 겨울 굿즈를 골라보세요.'
+  }
+};
+
+function getRandomSeason() {
+  return SEASONS[Math.floor(Math.random() * SEASONS.length)];
+}
 
 function updateCartCount() {
   if (cartCount) cartCount.textContent = getCart().reduce((sum, item) => sum + item.quantity, 0);
 }
 
 function getMenuImage(menu) {
-  return menu.image || MENU_IMAGES[menu.id] || CATEGORY_IMAGES[menu.category] || CATEGORY_IMAGES.coffee;
+  return menu.image || CATEGORY_IMAGES[menu.category] || SEASON_IMAGES.spring;
+}
+
+function applySeasonTheme() {
+  const themeSeason = state.category === 'all' ? state.themeSeason : state.category;
+  pageBody.classList.remove(...SEASON_THEME_CLASS);
+  pageBody.classList.add(`season-${themeSeason}`);
+  pageBody.dataset.season = themeSeason;
+
+  const copy = CATEGORY_COPY[state.category] || CATEGORY_COPY.all;
+  document.documentElement.style.setProperty('--menu-hero-image', `url('${CATEGORY_IMAGES[themeSeason]}')`);
+
+  const hero = $('.menu-hero');
+  if (!hero) return;
+  const eyebrow = $('.eyebrow', hero);
+  const title = $('#page-title');
+  const heroCopy = $('.hero-copy', hero);
+  if (eyebrow) eyebrow.textContent = copy.kicker;
+  if (title) title.textContent = copy.title;
+  if (heroCopy) heroCopy.textContent = copy.copy;
 }
 
 function getFilteredMenus() {
@@ -59,7 +99,7 @@ function getFilteredMenus() {
 }
 
 function renderCategoryTabs() {
-  const tabs = [{ id: 'all', name: 'All' }, ...CATEGORIES];
+  const tabs = [{ id: 'all', name: '전체' }, ...CATEGORIES];
 
   categoryTabs.innerHTML = tabs
     .map(
@@ -78,7 +118,7 @@ function renderCategoryTabs() {
 }
 
 function renderMenus() {
-  const menus = getFilteredMenus();
+  const menus = sortMenusBySeasonKindPrice(getFilteredMenus());
   resultCount.textContent = `${menus.length} menus`;
   emptyState.hidden = menus.length > 0;
   menuGrid.hidden = menus.length === 0;
@@ -87,7 +127,7 @@ function renderMenus() {
     menuGrid,
     menus,
     (menu) => `
-      <article class="menu-card">
+      <article class="menu-card" data-season="${escapeHtml(menu.category)}">
         <a
           class="menu-visual"
           style="--menu-image: url('${escapeHtml(getMenuImage(menu))}')"
@@ -97,8 +137,7 @@ function renderMenus() {
           <span>${escapeHtml(getCategoryName(menu.category))}</span>
         </a>
         <div class="menu-body">
-          <div class="menu-meta">
-            <span>${escapeHtml(getCategoryName(menu.category))}</span>
+          <div class="menu-meta price-only">
             <strong>${formatPrice(menu.price)}</strong>
           </div>
           <h2 class="menu-title">${escapeHtml(menu.name)}</h2>
@@ -113,7 +152,8 @@ function renderMenus() {
   );
 }
 
-function showToast(message) {
+function showToast(message, season = state.themeSeason) {
+  toast.dataset.season = season;
   toast.textContent = message;
   toast.classList.add('is-visible');
   window.clearTimeout(showToast.timer);
@@ -125,6 +165,8 @@ categoryTabs.addEventListener('click', (event) => {
   if (!button) return;
 
   state.category = button.dataset.category;
+  if (state.category === 'all') state.themeSeason = getRandomSeason();
+  applySeasonTheme();
   renderCategoryTabs();
   renderMenus();
 });
@@ -143,10 +185,10 @@ menuGrid.addEventListener('click', (event) => {
 
   addToCart(menu.id, 1);
   updateCartCount();
-  showToast(`${menu.name} added to basket`);
+  showToast(`${menu.name} 장바구니에 담았어요`, menu.category);
 });
 
+applySeasonTheme();
 renderCategoryTabs();
 renderMenus();
 updateCartCount();
-

@@ -1,6 +1,6 @@
-﻿renderAdminNav();
+renderAdminNav();
 const currentAdmin = requireAuth('admin');
-if (!currentAdmin) throw new Error('Admin authentication required');
+if (!currentAdmin) throw new Error('관리자 로그인이 필요해요.');
 const menuCount = $('#menu-count');
 const orderCount = $('#order-count');
 const openCount = $('#open-count');
@@ -34,19 +34,22 @@ function renderDashboard() {
   renderList(
     recentOrders,
     latest,
-    (order) => `
-      <article class="recent-row">
-        <div>
-          <p class="status-pill status-${escapeHtml(order.status)}">${escapeHtml(getStatusLabel(order.status))}</p>
-          <h3>Order ${escapeHtml(order.id.slice(-6).toUpperCase())}</h3>
-          <p>${getItemCount(order.items)} ${getItemCount(order.items) === 1 ? 'item' : 'items'} · ${escapeHtml(formatDate(order.createdAt))}</p>
-        </div>
-        <div class="recent-side">
-          <strong>${formatPrice(order.total)}</strong>
-          <a class="secondary-link" href="/admin/orders/detail/?id=${encodeURIComponent(order.id)}">Open</a>
-        </div>
-      </article>
-    `
+    (order) => {
+      const itemCount = getItemCount(order.items);
+      return `
+        <article class="recent-row">
+          <div>
+            <p class="status-pill status-${escapeHtml(order.status)}">${escapeHtml(getStatusLabel(order.status))}</p>
+            <h3>주문 ${escapeHtml(order.id.slice(-6).toUpperCase())}</h3>
+            <p>${itemCount}개 메뉴 · ${escapeHtml(formatDate(order.createdAt))}</p>
+          </div>
+          <div class="recent-side">
+            <strong>${formatPrice(order.total)}</strong>
+            <a class="secondary-link" href="/admin/orders/detail/?id=${encodeURIComponent(order.id)}">상세 보기</a>
+          </div>
+        </article>
+      `;
+    }
   );
 }
 

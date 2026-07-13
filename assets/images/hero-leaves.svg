@@ -1,0 +1,15 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" role="img" aria-label="Tea Leaves">
+  <defs>
+    <pattern id="grid" width="36" height="36" patternUnits="userSpaceOnUse">
+      <path d="M36 0H0v36" fill="none" stroke="#6b814f" stroke-opacity=".08" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="720" height="480" fill="#e8f0d7"/>
+  <rect width="720" height="480" fill="url(#grid)"/>
+  <circle cx="116" cy="92" r="62" fill="#97b769" opacity=".18"/>
+  <circle cx="620" cy="392" r="96" fill="#638f44" opacity=".12"/>
+  <path d="M96 390C172 320 228 316 294 366s132 46 210-24 118-54 160-18" fill="none" stroke="#fffdf4" stroke-width="18" stroke-linecap="round" opacity=".42"/>
+  <path d="M240 328c42-98 118-142 196-142-12 90-82 154-196 142z" fill="#638f44"/><path d="M300 366c26-108 98-178 190-206 8 98-58 186-190 206z" fill="#97b769" opacity=".85"/><path d="M282 318c54-44 96-78 146-110" stroke="#f5fbeb" stroke-width="7" stroke-linecap="round" opacity=".8"/>
+  <text x="56" y="78" font-family="Georgia, 'Times New Roman', serif" font-size="32" font-weight="700" fill="#263826">Tea Leaves</text>
+  <text x="56" y="112" font-family="Arial, sans-serif" font-size="15" fill="#52624d">Minicafe matcha selection</text>
+</svg>

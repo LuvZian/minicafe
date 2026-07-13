@@ -1,4 +1,4 @@
-﻿body {
+body {
   background: var(--bg-page-pattern), var(--bg-page-soft);
 }
 
@@ -104,7 +104,7 @@
   color: var(--text-on-dark);
   background:
     linear-gradient(105deg, rgba(51, 42, 37, 0.84), rgba(184, 121, 92, 0.42)),
-    url('https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=1600&q=80');
+    url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Green_tea_3_appearances.jpg/1200px-Green_tea_3_appearances.jpg');
   background-position: center;
   background-size: cover;
   border: 1px solid rgba(255, 250, 243, 0.5);
@@ -335,4 +335,2157 @@ button.nav-logout {
   color: inherit;
   background: transparent;
   border: 0;
+}
+/* Seasonal oriental cafe redesign */
+body {
+  background-color: #f5f2e8 !important;
+  background-image: var(--bg-page-soft) !important;
+  background-size: 56px 56px, 56px 56px, auto !important;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(31, 45, 34, 0.08), transparent 1px),
+    linear-gradient(180deg, rgba(31, 45, 34, 0.04), transparent 1px);
+  background-size: 120px 120px;
+  mask-image: linear-gradient(180deg, black, transparent 78%);
+}
+
+.site-header,
+.admin-header {
+  min-height: 76px !important;
+  padding: 0 clamp(18px, 4vw, 56px) !important;
+  background: rgba(255, 253, 244, 0.9) !important;
+  border-bottom: 1px solid rgba(47, 75, 50, 0.16) !important;
+  box-shadow: 0 14px 34px rgba(31, 45, 34, 0.08) !important;
+  backdrop-filter: blur(18px) !important;
+}
+
+.brand {
+  gap: 12px !important;
+  color: #1f2d22 !important;
+  font-size: 23px !important;
+  letter-spacing: 0 !important;
+}
+
+.brand::before {
+  content: '' !important;
+  width: 34px !important;
+  height: 34px !important;
+  background:
+    linear-gradient(135deg, #213b28, #7fa34b) !important;
+  border: 7px solid #fffdf4 !important;
+  border-radius: 50% !important;
+  box-shadow:
+    0 0 0 1px rgba(47, 75, 50, 0.25),
+    inset 0 0 0 1px rgba(255, 253, 244, 0.5) !important;
+}
+
+.site-nav,
+.admin-nav,
+.role-tabs {
+  gap: 4px !important;
+  padding: 5px !important;
+  background: rgba(238, 242, 223, 0.7) !important;
+  border: 1px solid rgba(47, 75, 50, 0.14) !important;
+  border-radius: 999px !important;
+}
+
+.site-nav a,
+.admin-nav a,
+.nav-logout,
+.role-tabs button {
+  border-radius: 999px !important;
+  color: #52624d !important;
+}
+
+.site-nav a:hover,
+.site-nav a[aria-current='page'],
+.admin-nav a:hover,
+.admin-nav a[aria-current='page'],
+.role-tabs button.is-active {
+  color: #1f2d22 !important;
+  background: #fffdf4 !important;
+  box-shadow: 0 7px 16px rgba(31, 45, 34, 0.09) !important;
+}
+
+.cart-count {
+  background: #6f913e !important;
+}
+
+.page-shell {
+  width: min(1180px, calc(100% - 36px)) !important;
+  padding: 40px 0 72px !important;
+}
+
+.home-hero,
+.menu-hero,
+.basket-hero,
+.page-head,
+.auth-visual {
+  isolation: isolate;
+  border-radius: 0 !important;
+  border: 1px solid rgba(47, 75, 50, 0.18) !important;
+  box-shadow: var(--shadow-lg) !important;
+}
+
+.home-hero {
+  grid-template-columns: minmax(0, 1.08fr) minmax(300px, 0.55fr) !important;
+  gap: 18px !important;
+  align-items: stretch !important;
+}
+
+.hero-copy-block,
+.menu-hero,
+.basket-hero,
+.auth-visual {
+  min-height: 520px !important;
+  padding: clamp(28px, 5vw, 58px) !important;
+  background:
+    linear-gradient(90deg, rgba(18, 33, 21, 0.88), rgba(18, 33, 21, 0.55) 48%, rgba(18, 33, 21, 0.18)),
+    url('/assets/photos/season-spring.png') !important;
+  background-position: center !important;
+  background-size: cover !important;
+}
+
+.hero-copy-block::before,
+.menu-hero::before,
+.basket-hero::before,
+.auth-visual::before {
+  content: 'MINICAFE' !important;
+  position: absolute !important;
+  top: 28px !important;
+  right: 28px !important;
+  z-index: 0 !important;
+  writing-mode: vertical-rl !important;
+  color: rgba(255, 253, 244, 0.62) !important;
+  border: 1px solid rgba(255, 253, 244, 0.32) !important;
+  padding: 12px 7px !important;
+  font-size: 11px !important;
+  font-weight: 900 !important;
+  letter-spacing: 0 !important;
+}
+
+.hero-copy-block::after,
+.menu-hero::after,
+.basket-hero::after,
+.auth-visual::after {
+  content: '' !important;
+  position: absolute !important;
+  inset: 18px !important;
+  z-index: 0 !important;
+  border: 1px solid rgba(255, 253, 244, 0.22) !important;
+  pointer-events: none !important;
+}
+
+.hero-copy-block > *,
+.menu-hero > *,
+.basket-hero > *,
+.auth-visual > * {
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+.home-hero h1,
+.menu-hero h1,
+.basket-hero h1,
+.auth-visual h1 {
+  max-width: 780px !important;
+  color: #fffdf4 !important;
+  font-size: clamp(42px, 7vw, 86px) !important;
+  line-height: 0.98 !important;
+}
+
+.hero-copy,
+.auth-visual p {
+  max-width: 620px !important;
+  color: rgba(255, 253, 244, 0.86) !important;
+  font-size: 18px !important;
+}
+
+.eyebrow {
+  width: max-content !important;
+  margin-bottom: 14px !important;
+  padding: 7px 13px !important;
+  color: #fffdf4 !important;
+  background: rgba(255, 253, 244, 0.14) !important;
+  border: 1px solid rgba(255, 253, 244, 0.28) !important;
+  border-radius: 0 !important;
+  font-size: 11px !important;
+  letter-spacing: 0 !important;
+}
+
+.eyebrow.dark,
+.menu-meta,
+.category-pill,
+.item-meta {
+  color: #2f4b32 !important;
+  background: rgba(138, 163, 95, 0.15) !important;
+  border: 1px solid rgba(47, 75, 50, 0.14) !important;
+  border-radius: 999px !important;
+}
+
+.primary-link,
+.hero-action,
+.cart-button,
+.order-button,
+.primary-button,
+.empty-state a {
+  min-height: 46px !important;
+  color: #fffdf4 !important;
+  background: linear-gradient(135deg, #213b28, #7fa34b) !important;
+  border: 1px solid rgba(255, 253, 244, 0.2) !important;
+  border-radius: 999px !important;
+  box-shadow: 0 14px 24px rgba(47, 75, 50, 0.22) !important;
+}
+
+.secondary-link,
+.detail-link,
+.text-link,
+.back-link,
+.ghost-button,
+.not-found a {
+  min-height: 42px !important;
+  color: #1f2d22 !important;
+  background: rgba(255, 253, 244, 0.86) !important;
+  border: 1px solid rgba(47, 75, 50, 0.16) !important;
+  border-radius: 999px !important;
+}
+
+.hero-card,
+.summary-card,
+.featured-section,
+.menu-toolbar,
+.basket-panel,
+.summary-panel,
+.detail-panel,
+.not-found,
+.form-shell,
+.menu-panel,
+.toolbar,
+.stats-grid article,
+.auth-panel {
+  position: relative !important;
+  overflow: hidden !important;
+  background:
+    linear-gradient(145deg, rgba(255, 253, 244, 0.97), rgba(238, 242, 223, 0.9)) !important;
+  border: 1px solid rgba(47, 75, 50, 0.16) !important;
+  border-radius: 0 !important;
+  box-shadow: var(--shadow-md) !important;
+}
+
+.hero-card::before,
+.summary-card::before,
+.featured-section::before,
+.menu-toolbar::before,
+.basket-panel::before,
+.summary-panel::before,
+.detail-panel::before,
+.form-shell::before,
+.menu-panel::before,
+.toolbar::before,
+.auth-panel::before {
+  content: '' !important;
+  position: absolute !important;
+  inset: 0 auto 0 0 !important;
+  width: 6px !important;
+  height: auto !important;
+  background: linear-gradient(180deg, #213b28, #8aa35f, #cfb45b) !important;
+}
+
+.hero-card {
+  display: grid !important;
+  align-content: start !important;
+  gap: 18px !important;
+  padding: 24px !important;
+}
+
+.today-visual,
+.featured-visual,
+.menu-visual,
+.item-image {
+  background-image: var(--image-shade), var(--menu-image, none) !important;
+  background-position: center !important;
+  background-size: cover !important;
+}
+
+.today-visual {
+  min-height: 260px !important;
+  border-radius: 0 !important;
+  border: 1px solid rgba(47, 75, 50, 0.15) !important;
+}
+
+.summary-grid {
+  grid-template-columns: 1.1fr 0.9fr 0.9fr !important;
+  gap: 18px !important;
+  margin-top: 18px !important;
+}
+
+.summary-card {
+  min-height: 220px !important;
+  padding: 26px !important;
+}
+
+.summary-card h2,
+.hero-card h2,
+.section-head h2,
+.panel-head h2 {
+  font-size: 28px !important;
+}
+
+.featured-section {
+  margin-top: 18px !important;
+  padding: 28px !important;
+}
+
+.featured-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 18px !important;
+}
+
+.featured-card,
+.menu-card,
+.basket-item,
+.menu-row,
+.order-card,
+.detail-card,
+.order-row {
+  overflow: hidden !important;
+  background: rgba(255, 253, 244, 0.92) !important;
+  border: 1px solid rgba(47, 75, 50, 0.16) !important;
+  border-radius: 0 !important;
+  box-shadow: 0 12px 26px rgba(31, 45, 34, 0.08) !important;
+}
+
+.featured-card:hover,
+.menu-card:hover,
+.basket-item:hover,
+.menu-row:hover,
+.order-card:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: var(--shadow-lift) !important;
+}
+
+.featured-visual {
+  height: 190px !important;
+}
+
+.menu-hero,
+.basket-hero {
+  grid-template-columns: minmax(0, 1fr) auto !important;
+  align-items: end !important;
+}
+
+.menu-toolbar,
+.toolbar {
+  display: grid !important;
+  grid-template-columns: minmax(220px, 320px) 1fr !important;
+  gap: 16px !important;
+  margin: 22px 0 !important;
+  padding: 16px !important;
+}
+
+.category-tabs button,
+.search-field input,
+.field input,
+.field select,
+.field textarea,
+.quantity-control {
+  background: rgba(255, 253, 244, 0.92) !important;
+  border: 1px solid rgba(47, 75, 50, 0.16) !important;
+  border-radius: 999px !important;
+}
+
+.field textarea {
+  border-radius: 14px !important;
+}
+
+.category-tabs button.is-active,
+.category-tabs button:hover {
+  color: #fffdf4 !important;
+  background: #2f4b32 !important;
+  border-color: #2f4b32 !important;
+}
+
+.result-line {
+  padding: 0 4px !important;
+  color: #7d8b75 !important;
+}
+
+.menu-grid {
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)) !important;
+  gap: 20px !important;
+}
+
+.menu-card {
+  grid-template-rows: 240px auto !important;
+}
+
+.menu-card .menu-visual {
+  height: 240px !important;
+  align-items: flex-start !important;
+  padding: 16px !important;
+}
+
+.menu-visual span {
+  color: #fffdf4 !important;
+  background: rgba(31, 45, 34, 0.66) !important;
+  border-radius: 999px !important;
+}
+
+.menu-body,
+.featured-body {
+  gap: 10px !important;
+  padding: 18px !important;
+}
+
+.menu-title,
+.item-name {
+  font-size: 22px !important;
+}
+
+.menu-description,
+.featured-body p,
+.detail-description,
+.summary-note {
+  color: #52624d !important;
+}
+
+.menu-actions {
+  grid-template-columns: 1fr 88px !important;
+}
+
+.detail-layout {
+  grid-template-columns: minmax(360px, 0.95fr) minmax(0, 1fr) !important;
+  gap: 20px !important;
+}
+
+.detail-layout > .menu-visual {
+  min-height: 620px !important;
+  border-radius: 0 !important;
+  border: 1px solid rgba(47, 75, 50, 0.18) !important;
+  box-shadow: var(--shadow-lg) !important;
+}
+
+.detail-panel {
+  padding: clamp(28px, 5vw, 54px) !important;
+  justify-content: center !important;
+}
+
+.detail-title {
+  font-size: clamp(42px, 7vw, 76px) !important;
+}
+
+.detail-price {
+  color: #213b28 !important;
+  background: #fffdf4 !important;
+  border-color: rgba(47, 75, 50, 0.16) !important;
+  border-radius: 0 !important;
+}
+
+.purchase-box,
+.panel-head,
+.section-head,
+.auth-note {
+  border-top-color: rgba(47, 75, 50, 0.14) !important;
+  border-bottom-color: rgba(47, 75, 50, 0.14) !important;
+}
+
+.basket-layout,
+.my-layout,
+.dashboard-grid,
+.order-layout {
+  gap: 20px !important;
+}
+
+.basket-panel,
+.summary-panel {
+  padding: 24px !important;
+}
+
+.basket-item {
+  grid-template-columns: 132px minmax(0, 1fr) auto !important;
+  padding: 16px !important;
+}
+
+.item-image {
+  width: 132px !important;
+  border-radius: 0 !important;
+}
+
+.summary-list {
+  background: rgba(255, 253, 244, 0.58) !important;
+  border-color: rgba(47, 75, 50, 0.14) !important;
+  border-radius: 0 !important;
+}
+
+.auth-shell {
+  width: min(1160px, calc(100% - 36px)) !important;
+}
+
+.auth-panel {
+  padding: clamp(28px, 4vw, 46px) !important;
+}
+
+.auth-form {
+  gap: 18px !important;
+}
+
+.form-shell {
+  display: grid !important;
+  grid-template-columns: minmax(220px, 0.4fr) minmax(0, 1fr) !important;
+  gap: 28px !important;
+  padding: clamp(24px, 4vw, 42px) !important;
+}
+
+.form-intro h1,
+.page-head h1 {
+  font-size: clamp(36px, 6vw, 62px) !important;
+}
+
+.admin-header + .page-shell .page-head,
+.admin-header + .page-shell .form-shell,
+.admin-header + .page-shell .menu-panel,
+.admin-header + .page-shell .toolbar {
+  background:
+    linear-gradient(145deg, rgba(255, 253, 244, 0.96), rgba(238, 242, 223, 0.9)),
+    var(--bg-admin-pattern) !important;
+}
+
+.menu-row {
+  grid-template-columns: minmax(0, 1fr) auto auto !important;
+  padding: 18px !important;
+}
+
+.toast {
+  background: linear-gradient(135deg, #213b28, #6f913e) !important;
+  border-radius: 0 !important;
+}
+
+.remove-button,
+.danger-button {
+  color: #7a342a !important;
+  background: #fff4ef !important;
+  border: 1px solid #e6beb2 !important;
+  border-radius: 999px !important;
+}
+
+@media (max-width: 960px) {
+  .home-hero,
+  .summary-grid,
+  .featured-grid,
+  .detail-layout,
+  .basket-layout,
+  .form-shell,
+  .auth-shell {
+    grid-template-columns: 1fr !important;
+  }
+
+  .hero-copy-block,
+  .menu-hero,
+  .basket-hero,
+  .auth-visual {
+    min-height: 430px !important;
+  }
+
+  .menu-toolbar,
+  .toolbar {
+    grid-template-columns: 1fr !important;
+  }
+
+  .category-tabs {
+    justify-content: flex-start !important;
+  }
+
+  .detail-layout > .menu-visual {
+    min-height: 440px !important;
+  }
+
+  .basket-item,
+  .menu-row {
+    grid-template-columns: 1fr !important;
+  }
+
+  .item-image {
+    width: 100% !important;
+    aspect-ratio: 16 / 9 !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .site-header,
+  .admin-header {
+    align-items: flex-start !important;
+    flex-direction: column !important;
+    padding-top: 12px !important;
+    padding-bottom: 12px !important;
+  }
+
+  .site-nav,
+  .admin-nav {
+    width: 100% !important;
+    overflow-x: auto !important;
+    border-radius: 14px !important;
+  }
+
+  .page-shell {
+    width: min(100% - 24px, 1180px) !important;
+  }
+
+  .home-hero h1,
+  .menu-hero h1,
+  .basket-hero h1,
+  .auth-visual h1 {
+    font-size: clamp(36px, 12vw, 54px) !important;
+  }
+}
+/* Cozy seasonal cafe redesign */
+body {
+  background-color: #f8f5e9 !important;
+  background-image:
+    radial-gradient(circle at 12% 10%, rgba(176, 205, 118, 0.28), transparent 24%),
+    radial-gradient(circle at 88% 8%, rgba(233, 202, 130, 0.22), transparent 22%),
+    linear-gradient(90deg, rgba(78, 119, 61, 0.045) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(78, 119, 61, 0.035) 1px, transparent 1px),
+    linear-gradient(135deg, #fffdf5 0%, #f8f5e9 54%, #edf4d8 100%) !important;
+  background-size: auto, auto, 42px 42px, 42px 42px, auto !important;
+}
+
+body::before {
+  background:
+    radial-gradient(circle, rgba(126, 166, 82, 0.12) 0 2px, transparent 2px) !important;
+  background-size: 28px 28px !important;
+  opacity: 0.7 !important;
+  mask-image: linear-gradient(180deg, black, transparent 86%) !important;
+}
+
+.site-header,
+.admin-header {
+  min-height: 70px !important;
+  margin: 12px auto 0 !important;
+  width: min(1180px, calc(100% - 28px)) !important;
+  padding: 0 18px !important;
+  background: rgba(255, 253, 245, 0.86) !important;
+  border: 1px solid rgba(100, 143, 77, 0.18) !important;
+  border-radius: 24px !important;
+  box-shadow: 0 14px 34px rgba(72, 97, 54, 0.11) !important;
+}
+
+.brand {
+  font-size: 22px !important;
+  font-weight: 900 !important;
+}
+
+.brand::before {
+  width: 30px !important;
+  height: 30px !important;
+  background:
+    radial-gradient(circle at 36% 35%, #e6f2c2 0 22%, transparent 23%),
+    linear-gradient(135deg, #4d7c3a, #b1cc6c) !important;
+  border: 6px solid #fffdf5 !important;
+  border-radius: 12px !important;
+  transform: rotate(-7deg) !important;
+}
+
+.site-nav,
+.admin-nav,
+.role-tabs {
+  background: #edf5d8 !important;
+  border-color: rgba(100, 143, 77, 0.16) !important;
+  border-radius: 18px !important;
+}
+
+.site-nav a,
+.admin-nav a,
+.nav-logout,
+.role-tabs button {
+  min-height: 36px !important;
+  padding: 8px 13px !important;
+  border-radius: 14px !important;
+  font-weight: 900 !important;
+}
+
+.site-nav a:hover,
+.site-nav a[aria-current='page'],
+.admin-nav a:hover,
+.admin-nav a[aria-current='page'],
+.role-tabs button.is-active {
+  background: #fffdf5 !important;
+  box-shadow: 0 7px 16px rgba(77, 124, 58, 0.12) !important;
+}
+
+.page-shell {
+  padding: 28px 0 70px !important;
+}
+
+.home-hero,
+.menu-hero,
+.basket-hero {
+  gap: 18px !important;
+}
+
+.hero-copy-block,
+.menu-hero,
+.basket-hero,
+.auth-visual {
+  min-height: 430px !important;
+  padding: clamp(26px, 5vw, 52px) !important;
+  background:
+    linear-gradient(90deg, rgba(33, 63, 35, 0.8), rgba(73, 111, 55, 0.43)),
+    url('/assets/photos/season-spring.png') !important;
+  border: 1px solid rgba(100, 143, 77, 0.2) !important;
+  border-radius: 30px !important;
+  box-shadow: 0 24px 58px rgba(61, 84, 46, 0.16) !important;
+}
+
+.hero-copy-block::before,
+.menu-hero::before,
+.basket-hero::before,
+.auth-visual::before {
+  content: 'season' !important;
+  top: 22px !important;
+  right: 22px !important;
+  writing-mode: horizontal-tb !important;
+  padding: 7px 12px !important;
+  color: #fffdf5 !important;
+  background: rgba(255, 253, 245, 0.16) !important;
+  border-radius: 999px !important;
+  border: 1px solid rgba(255, 253, 245, 0.28) !important;
+  font-size: 12px !important;
+  text-transform: lowercase !important;
+}
+
+.hero-copy-block::after,
+.menu-hero::after,
+.basket-hero::after,
+.auth-visual::after {
+  inset: 14px !important;
+  border: 1px dashed rgba(255, 253, 245, 0.34) !important;
+  border-radius: 22px !important;
+}
+
+.home-hero h1,
+.menu-hero h1,
+.basket-hero h1,
+.auth-visual h1 {
+  font-size: clamp(34px, 6vw, 66px) !important;
+  line-height: 1.04 !important;
+}
+
+.hero-copy,
+.auth-visual p {
+  font-size: 17px !important;
+}
+
+.eyebrow {
+  padding: 7px 12px !important;
+  border-radius: 999px !important;
+  text-transform: none !important;
+  font-size: 12px !important;
+  background: rgba(255, 253, 245, 0.18) !important;
+}
+
+.hero-card,
+.summary-card,
+.featured-section,
+.menu-toolbar,
+.basket-panel,
+.summary-panel,
+.detail-panel,
+.not-found,
+.form-shell,
+.menu-panel,
+.toolbar,
+.stats-grid article,
+.auth-panel {
+  background:
+    linear-gradient(145deg, rgba(255, 253, 245, 0.98), rgba(241, 248, 222, 0.92)) !important;
+  border: 1px solid rgba(100, 143, 77, 0.18) !important;
+  border-radius: 24px !important;
+  box-shadow: 0 16px 36px rgba(72, 97, 54, 0.11) !important;
+}
+
+.hero-card::before,
+.summary-card::before,
+.featured-section::before,
+.menu-toolbar::before,
+.basket-panel::before,
+.summary-panel::before,
+.detail-panel::before,
+.form-shell::before,
+.menu-panel::before,
+.toolbar::before,
+.auth-panel::before {
+  inset: 0 0 auto !important;
+  width: auto !important;
+  height: 8px !important;
+  background: repeating-linear-gradient(90deg, #88aa55 0 18px, #d8c16f 18px 36px, #f4e7b6 36px 54px) !important;
+}
+
+.hero-card,
+.summary-card {
+  padding: 22px !important;
+}
+
+.today-visual,
+.featured-visual,
+.menu-card .menu-visual,
+.item-image,
+.menu-thumb,
+.detail-layout > .menu-visual {
+  border-radius: 20px !important;
+  border: 1px solid rgba(100, 143, 77, 0.16) !important;
+}
+
+.today-visual {
+  min-height: 230px !important;
+}
+
+.summary-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+}
+
+.summary-card h2,
+.hero-card h2,
+.section-head h2,
+.panel-head h2 {
+  font-size: 24px !important;
+}
+
+.featured-grid {
+  gap: 16px !important;
+}
+
+.featured-card,
+.menu-card,
+.basket-item,
+.menu-row,
+.order-card,
+.detail-card,
+.order-row {
+  background: rgba(255, 253, 245, 0.94) !important;
+  border: 1px solid rgba(100, 143, 77, 0.17) !important;
+  border-radius: 24px !important;
+  box-shadow: 0 12px 26px rgba(72, 97, 54, 0.09) !important;
+}
+
+.featured-card:hover,
+.menu-card:hover,
+.basket-item:hover,
+.menu-row:hover,
+.order-card:hover {
+  transform: translateY(-3px) rotate(-0.2deg) !important;
+  box-shadow: 0 20px 42px rgba(72, 97, 54, 0.14) !important;
+}
+
+.menu-card {
+  grid-template-rows: 210px auto !important;
+}
+
+.menu-card .menu-visual {
+  height: 210px !important;
+  margin: 12px 12px 0 !important;
+  width: auto !important;
+}
+
+.menu-body,
+.featured-body {
+  padding: 16px 18px 18px !important;
+}
+
+.menu-title,
+.item-name {
+  font-size: 21px !important;
+}
+
+.menu-meta,
+.category-pill,
+.item-meta,
+.eyebrow.dark {
+  color: #3d6735 !important;
+  background: #eef7d9 !important;
+  border-color: rgba(100, 143, 77, 0.16) !important;
+  border-radius: 999px !important;
+}
+
+.primary-link,
+.hero-action,
+.cart-button,
+.order-button,
+.primary-button,
+.empty-state a {
+  min-height: 42px !important;
+  background: linear-gradient(135deg, #4d7c3a, #9fbd5a) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 10px 20px rgba(77, 124, 58, 0.2) !important;
+}
+
+.secondary-link,
+.detail-link,
+.text-link,
+.back-link,
+.ghost-button,
+.not-found a {
+  min-height: 40px !important;
+  background: #fffdf5 !important;
+  border-color: rgba(100, 143, 77, 0.17) !important;
+  border-radius: 16px !important;
+}
+
+.menu-toolbar,
+.toolbar {
+  border-radius: 22px !important;
+}
+
+.search-field input,
+.field input,
+.field select,
+.field textarea,
+.quantity-control,
+.category-tabs button {
+  border-radius: 16px !important;
+  background: #fffdf5 !important;
+  border-color: rgba(100, 143, 77, 0.17) !important;
+}
+
+.category-tabs button.is-active,
+.category-tabs button:hover {
+  color: #fffdf5 !important;
+  background: #6f963f !important;
+}
+
+.detail-layout > .menu-visual {
+  min-height: 540px !important;
+}
+
+.detail-price {
+  border-radius: 18px !important;
+  background: #fffdf5 !important;
+}
+
+.basket-item {
+  grid-template-columns: 120px minmax(0, 1fr) auto !important;
+}
+
+.item-image {
+  width: 120px !important;
+}
+
+.form-shell {
+  border-radius: 26px !important;
+}
+
+.toast {
+  border-radius: 18px !important;
+  background: linear-gradient(135deg, #4d7c3a, #8aaa50) !important;
+}
+
+@media (max-width: 960px) {
+  .home-hero,
+  .summary-grid,
+  .featured-grid,
+  .detail-layout,
+  .basket-layout,
+  .form-shell,
+  .auth-shell {
+    grid-template-columns: 1fr !important;
+  }
+
+  .hero-copy-block,
+  .menu-hero,
+  .basket-hero,
+  .auth-visual {
+    min-height: 380px !important;
+  }
+
+  .detail-layout > .menu-visual {
+    min-height: 360px !important;
+  }
+
+  .basket-item {
+    grid-template-columns: 1fr !important;
+  }
+
+  .item-image {
+    width: 100% !important;
+  }
+}
+/* Shared header alignment: match the main page header. */
+.site-header,
+.admin-header {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 10 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: var(--sp-md) !important;
+  width: 100% !important;
+  min-height: 70px !important;
+  margin: 0 !important;
+  padding: 0 18px !important;
+  background: color-mix(in srgb, var(--menu-card, var(--season-card, rgba(255, 253, 245, 0.86))) 92%, transparent) !important;
+  border: 0 !important;
+  border-bottom: 1px solid var(--menu-line, var(--season-line, rgba(100, 143, 77, 0.18))) !important;
+  border-radius: 0 !important;
+  box-shadow: 0 14px 34px var(--menu-shadow, var(--season-shadow, rgba(72, 97, 54, 0.11))) !important;
+  backdrop-filter: blur(18px) !important;
+}
+
+.brand {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  color: var(--menu-ink, var(--season-ink, #1f2d22)) !important;
+  font-size: 22px !important;
+  font-weight: 900 !important;
+  letter-spacing: 0 !important;
+}
+
+.brand::before {
+  content: '' !important;
+  width: 30px !important;
+  height: 30px !important;
+  flex: 0 0 auto !important;
+  background:
+    radial-gradient(circle at 36% 35%, rgba(255, 253, 245, 0.72) 0 22%, transparent 23%),
+    linear-gradient(135deg, var(--menu-primary-dark, var(--season-primary-dark, #4d7c3a)), var(--menu-primary, var(--season-primary, #b1cc6c))) !important;
+  border: 6px solid #fffdf5 !important;
+  border-radius: 12px !important;
+  box-shadow: 0 0 0 1px var(--menu-line, var(--season-line, rgba(100, 143, 77, 0.18))) !important;
+  transform: rotate(-7deg) !important;
+}
+
+.site-nav,
+.admin-nav {
+  display: flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  max-width: 100% !important;
+  padding: 5px !important;
+  color: var(--menu-muted, var(--season-muted, #52624d)) !important;
+  background: color-mix(in srgb, var(--menu-primary, var(--season-primary, #8aa35f)) 12%, #fffdf5) !important;
+  border: 1px solid var(--menu-line, var(--season-line, rgba(100, 143, 77, 0.16))) !important;
+  border-radius: 18px !important;
+  overflow-x: auto !important;
+}
+
+.site-nav a,
+.admin-nav a,
+.nav-logout {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 36px !important;
+  padding: 8px 13px !important;
+  color: var(--menu-muted, var(--season-muted, #52624d)) !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 14px !important;
+  font-weight: 900 !important;
+  white-space: nowrap !important;
+}
+
+.site-nav a:hover,
+.site-nav a[aria-current='page'],
+.admin-nav a:hover,
+.admin-nav a[aria-current='page'],
+.nav-logout:hover {
+  color: var(--menu-ink, var(--season-ink, #1f2d22)) !important;
+  background: color-mix(in srgb, var(--menu-primary, var(--season-primary, #8aa35f)) 12%, #fffdf5) !important;
+  box-shadow: 0 7px 16px var(--menu-shadow, var(--season-shadow, rgba(77, 124, 58, 0.12))) !important;
+}
+
+.cart-count {
+  color: #fffdf5 !important;
+  background: var(--menu-primary, var(--season-primary, #6f963f)) !important;
+}
+
+@media (max-width: 640px) {
+  .site-header,
+  .admin-header {
+    align-items: flex-start !important;
+    flex-direction: column !important;
+    padding-top: 12px !important;
+    padding-bottom: 12px !important;
+  }
+
+  .site-nav,
+  .admin-nav {
+    width: 100% !important;
+  }
+}
+/* My page redesign: personal seasonal shelf */
+body {
+  --my-ink: #2e2b25;
+  --my-muted: #73685d;
+  --my-card: rgba(255, 253, 247, 0.92);
+  --my-line: rgba(103, 84, 69, 0.14);
+  --my-shadow: rgba(67, 47, 35, 0.13);
+  --my-spring: #d78398;
+  --my-summer: #769e5b;
+  --my-autumn: #b66b43;
+  --my-winter: #89a5b5;
+  color: var(--my-ink) !important;
+  background:
+    radial-gradient(circle at 8% 12%, rgba(245, 198, 211, 0.38), transparent 28%),
+    radial-gradient(circle at 92% 10%, rgba(218, 232, 238, 0.52), transparent 32%),
+    linear-gradient(135deg, #fff7f4 0%, #f7f1df 38%, #eef5e6 64%, #f4f8fb 100%) !important;
+}
+
+.site-header {
+  background: rgba(255, 253, 248, 0.88) !important;
+  border-bottom-color: rgba(103, 84, 69, 0.12) !important;
+  box-shadow: 0 12px 30px rgba(67, 47, 35, 0.08) !important;
+}
+
+.brand::before {
+  background:
+    radial-gradient(circle at 36% 35%, rgba(255, 253, 245, 0.75) 0 22%, transparent 23%),
+    conic-gradient(from 215deg, var(--my-spring), var(--my-summer), var(--my-autumn), var(--my-winter), var(--my-spring)) !important;
+  border-color: #fffdf8 !important;
+}
+
+.site-nav {
+  background: linear-gradient(90deg, rgba(215, 131, 152, 0.14), rgba(118, 158, 91, 0.14), rgba(182, 107, 67, 0.14), rgba(137, 165, 181, 0.14)) !important;
+  border-color: rgba(103, 84, 69, 0.12) !important;
+}
+
+.site-nav a:hover,
+.site-nav a[aria-current='page'],
+.nav-logout:hover {
+  background: rgba(255, 253, 248, 0.9) !important;
+}
+
+.cart-count {
+  background: linear-gradient(135deg, var(--my-spring), var(--my-summer), var(--my-autumn), var(--my-winter)) !important;
+}
+
+.my-page {
+  width: min(1180px, calc(100% - 32px)) !important;
+  margin: 0 auto !important;
+  padding: 34px 0 70px !important;
+}
+
+.my-hero {
+  position: relative !important;
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) minmax(250px, 340px) !important;
+  align-items: end !important;
+  gap: 28px !important;
+  min-height: 390px !important;
+  margin-bottom: 24px !important;
+  padding: clamp(28px, 5vw, 52px) !important;
+  overflow: hidden !important;
+  color: #fffdf8 !important;
+  background:
+    linear-gradient(90deg, rgba(32, 25, 21, 0.66) 0%, rgba(32, 25, 21, 0.35) 47%, rgba(32, 25, 21, 0.12) 100%),
+    url('/assets/photos/orders-seasons-hero.png') center/cover no-repeat !important;
+  border: 1px solid rgba(255, 253, 248, 0.46) !important;
+  border-radius: 30px !important;
+  box-shadow: 0 26px 70px rgba(67, 47, 35, 0.18) !important;
+}
+
+.my-hero::before {
+  content: '' !important;
+  position: absolute !important;
+  inset: 0 !important;
+  pointer-events: none !important;
+  background:
+    linear-gradient(135deg, rgba(215, 131, 152, 0.26), transparent 34%),
+    linear-gradient(245deg, rgba(137, 165, 181, 0.26), transparent 42%) !important;
+}
+
+.my-hero > * {
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+.hero-copy-block {
+  max-width: 720px !important;
+}
+
+.my-hero .eyebrow {
+  display: inline-flex !important;
+  width: fit-content !important;
+  margin-bottom: 18px !important;
+  padding: 9px 14px !important;
+  color: #fffdf8 !important;
+  background: rgba(255, 253, 248, 0.18) !important;
+  border: 1px solid rgba(255, 253, 248, 0.38) !important;
+  border-radius: 999px !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+.my-hero h1 {
+  max-width: 760px !important;
+  margin: 0 !important;
+  color: #fffdf8 !important;
+  font-size: clamp(42px, 6vw, 76px) !important;
+  line-height: 1.04 !important;
+  letter-spacing: 0 !important;
+  text-shadow: 0 12px 34px rgba(32, 25, 21, 0.36) !important;
+}
+
+.hero-copy {
+  max-width: 650px !important;
+  margin: 20px 0 0 !important;
+  color: rgba(255, 253, 248, 0.92) !important;
+  font-size: clamp(17px, 2vw, 21px) !important;
+  line-height: 1.75 !important;
+}
+
+.hero-meta {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 10px !important;
+  margin-top: 24px !important;
+}
+
+.hero-meta span,
+.hero-season-card span,
+.order-season {
+  display: inline-flex !important;
+  align-items: center !important;
+  width: fit-content !important;
+  padding: 8px 12px !important;
+  border-radius: 999px !important;
+  font-size: 13px !important;
+  font-weight: 900 !important;
+  letter-spacing: 0 !important;
+}
+
+.hero-meta span {
+  color: #fffdf8 !important;
+  background: rgba(255, 253, 248, 0.16) !important;
+  border: 1px solid rgba(255, 253, 248, 0.26) !important;
+}
+
+.hero-season-card {
+  align-self: stretch !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-end !important;
+  min-height: 240px !important;
+  padding: 24px !important;
+  background: rgba(255, 253, 248, 0.18) !important;
+  border: 1px solid rgba(255, 253, 248, 0.36) !important;
+  border-radius: 24px !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.24) !important;
+  backdrop-filter: blur(16px) !important;
+}
+
+.hero-season-card span {
+  color: #fffdf8 !important;
+  background: rgba(255, 253, 248, 0.18) !important;
+}
+
+.hero-season-card strong {
+  margin-top: 16px !important;
+  color: #fffdf8 !important;
+  font-size: clamp(34px, 4vw, 48px) !important;
+  line-height: 1.05 !important;
+}
+
+.hero-season-card p {
+  margin: 14px 0 0 !important;
+  color: rgba(255, 253, 248, 0.9) !important;
+  line-height: 1.7 !important;
+}
+
+.my-dashboard {
+  display: grid !important;
+  grid-template-columns: minmax(280px, 370px) minmax(0, 1fr) !important;
+  gap: 20px !important;
+  margin-bottom: 20px !important;
+}
+
+.profile-panel,
+.activity-panel,
+.recent-panel,
+.quick-card {
+  position: relative !important;
+  overflow: hidden !important;
+  background: var(--my-card) !important;
+  border: 1px solid var(--my-line) !important;
+  border-radius: 26px !important;
+  box-shadow: 0 18px 48px rgba(67, 47, 35, 0.1) !important;
+}
+
+.profile-panel::before,
+.activity-panel::before,
+.recent-panel::before,
+.quick-card::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  height: 7px !important;
+  background: linear-gradient(90deg, var(--my-spring), var(--my-summer), var(--my-autumn), var(--my-winter)) !important;
+}
+
+.profile-panel,
+.activity-panel,
+.recent-panel {
+  padding: 30px !important;
+}
+
+.profile-panel h2,
+.activity-panel h2,
+.recent-panel h2,
+.quick-card h2 {
+  margin: 8px 0 0 !important;
+  color: var(--my-ink) !important;
+  font-size: 28px !important;
+  line-height: 1.25 !important;
+}
+
+.panel-copy,
+.quick-card p,
+.stat-card p,
+.mini-order-card p,
+.empty-state p {
+  color: var(--my-muted) !important;
+  line-height: 1.7 !important;
+}
+
+.profile-form {
+  display: grid !important;
+  gap: 14px !important;
+  margin-top: 22px !important;
+}
+
+.field {
+  display: grid !important;
+  gap: 8px !important;
+}
+
+.field span {
+  color: var(--my-muted) !important;
+  font-size: 14px !important;
+  font-weight: 900 !important;
+}
+
+.field input {
+  width: 100% !important;
+  min-height: 52px !important;
+  padding: 0 16px !important;
+  color: var(--my-ink) !important;
+  background: #fffdf8 !important;
+  border: 1px solid rgba(103, 84, 69, 0.16) !important;
+  border-radius: 18px !important;
+  outline: none !important;
+}
+
+.field input:focus {
+  border-color: rgba(118, 158, 91, 0.62) !important;
+  box-shadow: 0 0 0 4px rgba(118, 158, 91, 0.12) !important;
+}
+
+.primary-button,
+.secondary-link,
+.empty-state a,
+.mini-order-meta a {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 44px !important;
+  padding: 11px 16px !important;
+  border-radius: 16px !important;
+  font-weight: 900 !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+}
+
+.primary-button {
+  color: #fffdf8 !important;
+  background: linear-gradient(135deg, #7a9b5f, #c37c65) !important;
+  border: 0 !important;
+  box-shadow: 0 12px 24px rgba(118, 92, 66, 0.18) !important;
+  cursor: pointer !important;
+}
+
+.secondary-link,
+.empty-state a,
+.mini-order-meta a {
+  color: var(--my-ink) !important;
+  background: #fffdf8 !important;
+  border: 1px solid rgba(103, 84, 69, 0.14) !important;
+}
+
+.profile-message {
+  min-height: 24px !important;
+  margin: 14px 0 0 !important;
+  color: #6f8c53 !important;
+  font-weight: 900 !important;
+}
+
+.panel-head {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 16px !important;
+  margin-bottom: 22px !important;
+}
+
+.stat-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 14px !important;
+}
+
+.stat-card {
+  min-height: 190px !important;
+  padding: 20px !important;
+  background: #fffdf8 !important;
+  border: 1px solid rgba(103, 84, 69, 0.12) !important;
+  border-radius: 22px !important;
+}
+
+.stat-card span {
+  color: var(--my-muted) !important;
+  font-size: 14px !important;
+  font-weight: 900 !important;
+}
+
+.stat-card strong {
+  display: block !important;
+  margin-top: 12px !important;
+  color: var(--my-ink) !important;
+  font-size: 44px !important;
+  line-height: 1 !important;
+}
+
+.stat-card small {
+  display: inline-flex !important;
+  margin-top: 8px !important;
+  padding: 7px 10px !important;
+  color: #fffdf8 !important;
+  background: linear-gradient(135deg, var(--my-summer), var(--my-autumn)) !important;
+  border-radius: 999px !important;
+  font-weight: 900 !important;
+}
+
+.recent-list {
+  display: grid !important;
+  gap: 12px !important;
+}
+
+.mini-order-card {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) auto !important;
+  align-items: center !important;
+  gap: 18px !important;
+  padding: 18px !important;
+  background: #fffdf8 !important;
+  border: 1px solid rgba(103, 84, 69, 0.12) !important;
+  border-radius: 22px !important;
+}
+
+.mini-order-card h3 {
+  margin: 12px 0 4px !important;
+  color: var(--my-ink) !important;
+  font-size: 21px !important;
+}
+
+.mini-order-meta {
+  display: grid !important;
+  justify-items: end !important;
+  gap: 10px !important;
+}
+
+.mini-order-meta strong {
+  color: var(--my-ink) !important;
+  font-size: 20px !important;
+}
+
+.mini-order-card[data-season='spring'] .order-season,
+.quick-card[data-season='spring']::before {
+  background: linear-gradient(90deg, #d78398, #f0c7d4) !important;
+}
+
+.mini-order-card[data-season='summer'] .order-season,
+.quick-card[data-season='summer']::before {
+  background: linear-gradient(90deg, #6f963f, #c8d88a) !important;
+}
+
+.mini-order-card[data-season='autumn'] .order-season,
+.quick-card[data-season='autumn']::before {
+  background: linear-gradient(90deg, #aa603a, #dfb071) !important;
+}
+
+.mini-order-card[data-season='winter'] .order-season,
+.quick-card[data-season='winter']::before {
+  background: linear-gradient(90deg, #7899aa, #d7e7ee) !important;
+}
+
+.order-season {
+  color: #fffdf8 !important;
+  border: 0 !important;
+}
+
+.empty-state {
+  padding: 34px !important;
+  text-align: center !important;
+  background: #fffdf8 !important;
+  border: 1px dashed rgba(103, 84, 69, 0.2) !important;
+  border-radius: 22px !important;
+}
+
+.empty-state h3 {
+  margin: 0 !important;
+  color: var(--my-ink) !important;
+  font-size: 24px !important;
+}
+
+.quick-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 18px !important;
+  margin-top: 20px !important;
+}
+
+.quick-card {
+  padding: 28px !important;
+}
+
+.quick-card h2 {
+  font-size: 24px !important;
+}
+
+.quick-card .secondary-link {
+  margin-top: 12px !important;
+}
+
+.eyebrow.dark {
+  display: inline-flex !important;
+  width: fit-content !important;
+  padding: 7px 11px !important;
+  color: #5e6f46 !important;
+  background: rgba(118, 158, 91, 0.14) !important;
+  border: 1px solid rgba(118, 158, 91, 0.16) !important;
+  border-radius: 999px !important;
+}
+
+@media (max-width: 920px) {
+  .my-hero,
+  .my-dashboard,
+  .quick-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .stat-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .hero-season-card {
+    min-height: 190px !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .my-page {
+    width: min(100% - 22px, 1180px) !important;
+    padding-top: 18px !important;
+  }
+
+  .my-hero,
+  .profile-panel,
+  .activity-panel,
+  .recent-panel,
+  .quick-card {
+    border-radius: 22px !important;
+  }
+
+  .my-hero {
+    min-height: 520px !important;
+    padding: 26px !important;
+  }
+
+  .panel-head,
+  .mini-order-card {
+    align-items: stretch !important;
+    grid-template-columns: 1fr !important;
+    flex-direction: column !important;
+  }
+
+  .mini-order-meta {
+    justify-items: start !important;
+  }
+}
+/* My hero refinement: stacked title, seasonal hero photo, menu recommendation. */
+.my-hero h1 {
+  display: grid !important;
+  gap: 6px !important;
+  max-width: 760px !important;
+}
+
+.hero-name-line,
+.hero-title-line {
+  display: block !important;
+  letter-spacing: 0 !important;
+}
+
+.hero-name-line {
+  color: rgba(255, 253, 248, 0.92) !important;
+  font-size: clamp(30px, 4.4vw, 54px) !important;
+  font-weight: 800 !important;
+  line-height: 1.08 !important;
+}
+
+.hero-title-line {
+  color: #fffdf8 !important;
+  font-size: clamp(58px, 9vw, 104px) !important;
+  font-weight: 950 !important;
+  line-height: 0.95 !important;
+  text-shadow: 0 16px 38px rgba(32, 25, 21, 0.4) !important;
+}
+
+body[data-favorite-season='spring'] .my-hero {
+  background:
+    linear-gradient(90deg, rgba(53, 32, 39, 0.72) 0%, rgba(93, 57, 67, 0.36) 48%, rgba(53, 32, 39, 0.1) 100%),
+    url('/assets/photos/season-spring.png') center/cover no-repeat !important;
+}
+
+body[data-favorite-season='summer'] .my-hero {
+  background:
+    linear-gradient(90deg, rgba(27, 45, 30, 0.72) 0%, rgba(55, 84, 45, 0.36) 48%, rgba(27, 45, 30, 0.1) 100%),
+    url('/assets/photos/season-summer.png') center/cover no-repeat !important;
+}
+
+body[data-favorite-season='autumn'] .my-hero {
+  background:
+    linear-gradient(90deg, rgba(55, 32, 24, 0.74) 0%, rgba(104, 58, 35, 0.38) 48%, rgba(55, 32, 24, 0.1) 100%),
+    url('/assets/photos/season-autumn.png') center/cover no-repeat !important;
+}
+
+body[data-favorite-season='winter'] .my-hero {
+  background:
+    linear-gradient(90deg, rgba(28, 43, 52, 0.72) 0%, rgba(62, 82, 92, 0.36) 48%, rgba(28, 43, 52, 0.1) 100%),
+    url('/assets/photos/season-winter.png') center/cover no-repeat !important;
+}
+
+.season-menu-pick {
+  display: grid !important;
+  grid-template-columns: 84px minmax(0, 1fr) !important;
+  align-items: center !important;
+  gap: 14px !important;
+  margin-top: 18px !important;
+  padding: 10px !important;
+  color: #fffdf8 !important;
+  text-decoration: none !important;
+  background: rgba(255, 253, 248, 0.17) !important;
+  border: 1px solid rgba(255, 253, 248, 0.3) !important;
+  border-radius: 20px !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16) !important;
+  transition: transform 180ms ease, background 180ms ease !important;
+}
+
+.season-menu-pick:hover {
+  transform: translateY(-2px) !important;
+  background: rgba(255, 253, 248, 0.24) !important;
+}
+
+.season-menu-image {
+  display: block !important;
+  width: 84px !important;
+  height: 84px !important;
+  background-position: center !important;
+  background-size: cover !important;
+  border: 1px solid rgba(255, 253, 248, 0.34) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 12px 26px rgba(32, 25, 21, 0.18) !important;
+}
+
+.season-menu-text {
+  display: grid !important;
+  min-width: 0 !important;
+  gap: 4px !important;
+}
+
+.season-menu-text small {
+  color: rgba(255, 253, 248, 0.72) !important;
+  font-size: 12px !important;
+  font-style: normal !important;
+  font-weight: 900 !important;
+}
+
+.season-menu-text strong {
+  overflow: hidden !important;
+  color: #fffdf8 !important;
+  font-size: 18px !important;
+  line-height: 1.24 !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+.season-menu-text em {
+  color: rgba(255, 253, 248, 0.82) !important;
+  font-size: 13px !important;
+  font-style: normal !important;
+  font-weight: 900 !important;
+}
+
+@media (max-width: 640px) {
+  .hero-title-line {
+    font-size: clamp(52px, 18vw, 82px) !important;
+  }
+
+  .season-menu-pick {
+    grid-template-columns: 72px minmax(0, 1fr) !important;
+  }
+
+  .season-menu-image {
+    width: 72px !important;
+    height: 72px !important;
+  }
+}
+/* My hero final fix: remove old green block, use seasonal photo/color, simplify recommendation card. */
+.my-hero .hero-copy-block {
+  min-height: auto !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+.my-hero .hero-copy-block::before,
+.my-hero .hero-copy-block::after {
+  content: none !important;
+  display: none !important;
+}
+
+body[data-favorite-season='spring'] {
+  --my-hero-1: rgba(54, 31, 39, 0.76);
+  --my-hero-2: rgba(132, 69, 85, 0.38);
+  --my-hero-soft: rgba(245, 194, 209, 0.3);
+  --my-pick-1: #d78398;
+  --my-pick-2: #f0c7d4;
+  --my-hero-photo: url('/assets/photos/season-spring.png');
+}
+
+body[data-favorite-season='summer'] {
+  --my-hero-1: rgba(25, 45, 29, 0.78);
+  --my-hero-2: rgba(64, 103, 52, 0.4);
+  --my-hero-soft: rgba(196, 220, 143, 0.28);
+  --my-pick-1: #6f963f;
+  --my-pick-2: #c8d88a;
+  --my-hero-photo: url('/assets/photos/season-summer.png');
+}
+
+body[data-favorite-season='autumn'] {
+  --my-hero-1: rgba(56, 31, 23, 0.78);
+  --my-hero-2: rgba(135, 70, 39, 0.4);
+  --my-hero-soft: rgba(224, 158, 103, 0.28);
+  --my-pick-1: #aa603a;
+  --my-pick-2: #dfb071;
+  --my-hero-photo: url('/assets/photos/season-autumn.png');
+}
+
+body[data-favorite-season='winter'] {
+  --my-hero-1: rgba(27, 42, 52, 0.78);
+  --my-hero-2: rgba(73, 99, 113, 0.4);
+  --my-hero-soft: rgba(205, 226, 235, 0.32);
+  --my-pick-1: #7899aa;
+  --my-pick-2: #d7e7ee;
+  --my-hero-photo: url('/assets/photos/season-winter.png');
+}
+
+.my-hero,
+body[data-favorite-season='spring'] .my-hero,
+body[data-favorite-season='summer'] .my-hero,
+body[data-favorite-season='autumn'] .my-hero,
+body[data-favorite-season='winter'] .my-hero {
+  background:
+    linear-gradient(90deg, var(--my-hero-1, rgba(32, 25, 21, 0.7)) 0%, var(--my-hero-2, rgba(32, 25, 21, 0.34)) 47%, rgba(32, 25, 21, 0.08) 100%),
+    var(--my-hero-photo, url('/assets/photos/orders-seasons-hero.png')) center/cover no-repeat !important;
+}
+
+.my-hero::before {
+  background:
+    radial-gradient(circle at 18% 18%, var(--my-hero-soft, rgba(255, 253, 248, 0.16)), transparent 28%),
+    linear-gradient(180deg, rgba(255, 253, 248, 0.05), rgba(18, 18, 16, 0.18)) !important;
+}
+
+.hero-season-card {
+  justify-content: space-between !important;
+  gap: 14px !important;
+}
+
+.hero-season-card > span {
+  background: linear-gradient(90deg, var(--my-pick-1, #d78398), var(--my-pick-2, #769e5b)) !important;
+  color: #fffdf8 !important;
+}
+
+.season-menu-pick {
+  display: block !important;
+  margin-top: 6px !important;
+  padding: 10px !important;
+  color: #2e2b25 !important;
+  background: rgba(255, 253, 248, 0.9) !important;
+  border: 1px solid rgba(255, 253, 248, 0.56) !important;
+  border-radius: 22px !important;
+  box-shadow: 0 16px 34px rgba(32, 25, 21, 0.18) !important;
+}
+
+.season-menu-pick:hover {
+  transform: translateY(-2px) !important;
+  background: #fffdf8 !important;
+}
+
+.season-menu-image {
+  width: 100% !important;
+  height: 150px !important;
+  border: 0 !important;
+  border-radius: 16px !important;
+  box-shadow: none !important;
+}
+
+.season-menu-text {
+  display: grid !important;
+  gap: 5px !important;
+  padding: 12px 4px 4px !important;
+}
+
+.season-menu-text small {
+  color: var(--my-pick-1, #6f963f) !important;
+  font-size: 12px !important;
+  font-weight: 950 !important;
+}
+
+.season-menu-text strong {
+  display: block !important;
+  overflow: visible !important;
+  color: #2e2b25 !important;
+  font-size: 20px !important;
+  line-height: 1.28 !important;
+  white-space: normal !important;
+}
+
+.season-menu-text em {
+  display: none !important;
+}
+
+@media (max-width: 920px) {
+  .season-menu-image {
+    height: 190px !important;
+  }
+}
+/* My recommendation final layout: fixed type scale and real image card. */
+.hero-season-card {
+  display: grid !important;
+  grid-template-rows: auto auto auto minmax(230px, 1fr) !important;
+  align-content: start !important;
+  gap: 18px !important;
+  min-height: 520px !important;
+  padding: 26px !important;
+}
+
+.hero-season-card > span {
+  justify-self: start !important;
+  min-width: 118px !important;
+  min-height: 42px !important;
+  justify-content: center !important;
+  padding: 9px 18px !important;
+  font-size: 16px !important;
+  line-height: 1 !important;
+}
+
+.hero-season-card > strong {
+  display: block !important;
+  min-height: 72px !important;
+  margin: 8px 0 0 !important;
+  font-size: 58px !important;
+  line-height: 1.08 !important;
+  letter-spacing: 0 !important;
+  white-space: nowrap !important;
+}
+
+.hero-season-card > p {
+  min-height: 58px !important;
+  margin: 0 !important;
+  font-size: 17px !important;
+  line-height: 1.65 !important;
+}
+
+.season-menu-pick {
+  align-self: end !important;
+  display: grid !important;
+  grid-template-rows: minmax(156px, 1fr) auto !important;
+  gap: 0 !important;
+  min-height: 238px !important;
+  margin-top: 4px !important;
+  padding: 10px !important;
+  overflow: hidden !important;
+  background: rgba(255, 253, 248, 0.94) !important;
+  border-radius: 24px !important;
+}
+
+.season-menu-image {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 156px !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  background: color-mix(in srgb, var(--my-pick-1, #d78398) 12%, #fffdf8) !important;
+  border-radius: 18px !important;
+}
+
+.season-menu-text {
+  display: grid !important;
+  grid-template-columns: auto minmax(0, 1fr) !important;
+  align-items: baseline !important;
+  column-gap: 10px !important;
+  padding: 13px 8px 5px !important;
+}
+
+.season-menu-text small {
+  color: var(--my-pick-1, #d78398) !important;
+  font-size: 14px !important;
+  font-weight: 950 !important;
+  white-space: nowrap !important;
+}
+
+.season-menu-text strong {
+  overflow: hidden !important;
+  color: #2e2b25 !important;
+  font-size: 22px !important;
+  line-height: 1.22 !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+@media (max-width: 920px) {
+  .hero-season-card {
+    min-height: auto !important;
+    grid-template-rows: auto auto auto auto !important;
+  }
+
+  .hero-season-card > strong {
+    font-size: 52px !important;
+  }
+
+  .season-menu-pick {
+    min-height: 270px !important;
+  }
+
+  .season-menu-image {
+    min-height: 190px !important;
+  }
+}
+
+@media (max-width: 520px) {
+  .hero-season-card > strong {
+    font-size: 44px !important;
+  }
+
+  .season-menu-text {
+    grid-template-columns: 1fr !important;
+    gap: 4px !important;
+  }
+}
+/* My recommendation card hard fix: vertical menu-card layout, no horizontal overflow. */
+.hero-season-card {
+  overflow: hidden !important;
+}
+
+.season-menu-pick,
+.hero-season-card .season-menu-pick {
+  box-sizing: border-box !important;
+  align-self: stretch !important;
+  display: flex !important;
+  flex-direction: column !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  margin-top: 4px !important;
+  padding: 12px !important;
+  overflow: hidden !important;
+  color: #2e2b25 !important;
+  background: rgba(255, 253, 248, 0.95) !important;
+  border: 1px solid rgba(255, 253, 248, 0.62) !important;
+  border-radius: 24px !important;
+  box-shadow: 0 16px 34px rgba(32, 25, 21, 0.16) !important;
+}
+
+.season-menu-image,
+.hero-season-card .season-menu-image {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: 170px !important;
+  min-height: 170px !important;
+  aspect-ratio: auto !important;
+  flex: 0 0 auto !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  border-radius: 18px !important;
+}
+
+.season-menu-text,
+.hero-season-card .season-menu-text {
+  box-sizing: border-box !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  justify-content: center !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  gap: 6px !important;
+  padding: 14px 8px 6px !important;
+}
+
+.season-menu-text small,
+.hero-season-card .season-menu-text small {
+  display: block !important;
+  width: 100% !important;
+  color: var(--my-pick-1, #d78398) !important;
+  font-size: 14px !important;
+  line-height: 1.2 !important;
+  font-weight: 950 !important;
+  white-space: nowrap !important;
+}
+
+.season-menu-text strong,
+.hero-season-card .season-menu-text strong {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow: visible !important;
+  color: #2e2b25 !important;
+  font-size: 22px !important;
+  line-height: 1.28 !important;
+  font-weight: 950 !important;
+  letter-spacing: 0 !important;
+  text-overflow: clip !important;
+  white-space: normal !important;
+  word-break: keep-all !important;
+  overflow-wrap: anywhere !important;
+}
+
+.season-menu-text em,
+.hero-season-card .season-menu-text em {
+  display: none !important;
+}
+
+@media (max-width: 920px) {
+  .season-menu-image,
+  .hero-season-card .season-menu-image {
+    height: 210px !important;
+    min-height: 210px !important;
+  }
+}
+/* Ensure recommendation uses the exact menu image from the img src. */
+.season-menu-image,
+.hero-season-card .season-menu-image {
+  background-image: none !important;
+  background-color: color-mix(in srgb, var(--my-pick-1, #d78398) 10%, #fffdf8) !important;
+}
+/* My dashboard color refresh: lighter seasonal pastels, less muddy brown. */
+.profile-panel,
+.activity-panel,
+.recent-panel,
+.quick-card {
+  background:
+    linear-gradient(145deg, rgba(255, 254, 250, 0.98), rgba(250, 252, 242, 0.94)) !important;
+  border-color: rgba(142, 160, 121, 0.14) !important;
+  box-shadow: 0 18px 44px rgba(87, 104, 84, 0.1) !important;
+}
+
+.profile-panel::before,
+.activity-panel::before,
+.recent-panel::before,
+.quick-card::before {
+  height: 6px !important;
+  background: linear-gradient(90deg, #f0b8c8 0%, #b9d694 34%, #f2c998 66%, #bed9e8 100%) !important;
+}
+
+.eyebrow.dark {
+  color: #5f7950 !important;
+  background: rgba(213, 232, 190, 0.46) !important;
+  border-color: rgba(127, 160, 103, 0.18) !important;
+}
+
+.profile-panel h2,
+.activity-panel h2,
+.recent-panel h2,
+.quick-card h2,
+.stat-card strong {
+  color: #2f3029 !important;
+}
+
+.panel-copy,
+.quick-card p,
+.stat-card p,
+.mini-order-card p,
+.empty-state p {
+  color: #726c63 !important;
+}
+
+.field input,
+.stat-card,
+.mini-order-card,
+.empty-state {
+  background: rgba(255, 254, 250, 0.92) !important;
+  border-color: rgba(142, 160, 121, 0.14) !important;
+}
+
+.primary-button {
+  color: #fffdf8 !important;
+  background: linear-gradient(135deg, #7fa866 0%, #c995b0 100%) !important;
+  box-shadow: 0 14px 28px rgba(127, 168, 102, 0.18) !important;
+}
+
+.secondary-link,
+.empty-state a,
+.mini-order-meta a {
+  color: #34342d !important;
+  background: rgba(255, 254, 250, 0.96) !important;
+  border-color: rgba(142, 160, 121, 0.16) !important;
+  box-shadow: 0 8px 18px rgba(87, 104, 84, 0.07) !important;
+}
+
+.stat-card small {
+  color: #fffdf8 !important;
+  background: linear-gradient(135deg, #7fa866, #a9ca7c) !important;
+  box-shadow: 0 10px 22px rgba(127, 168, 102, 0.18) !important;
+}
+
+.stat-card[data-tone='orders'] small {
+  background: linear-gradient(135deg, #83afc3, #b7dce8) !important;
+}
+
+.stat-card[data-tone='favorite'] small {
+  background: linear-gradient(135deg, #d58aa4, #edbbc9) !important;
+}
+
+.stat-card[data-tone='basket'] {
+  background:
+    radial-gradient(circle at 90% 12%, rgba(185, 214, 148, 0.2), transparent 32%),
+    rgba(255, 254, 250, 0.94) !important;
+}
+
+.stat-card[data-tone='orders'] {
+  background:
+    radial-gradient(circle at 90% 12%, rgba(183, 220, 232, 0.28), transparent 32%),
+    rgba(255, 254, 250, 0.94) !important;
+}
+
+.stat-card[data-tone='favorite'] {
+  background:
+    radial-gradient(circle at 90% 12%, rgba(237, 187, 201, 0.25), transparent 32%),
+    rgba(255, 254, 250, 0.94) !important;
+}
+
+.profile-message {
+  color: #6f9d55 !important;
 }

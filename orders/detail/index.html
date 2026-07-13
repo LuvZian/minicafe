@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
@@ -14,7 +14,7 @@
     </header>
 
     <main class="page-shell">
-      <a class="back-link" href="/orders/list/">Back to orders</a>
+      <a class="back-link" href="/orders/list/">주문 목록으로</a>
 
       <section id="order-detail" class="detail-layout" hidden>
         <aside class="receipt-card" aria-label="Order summary">
@@ -22,30 +22,30 @@
           <h1 id="order-title">Order</h1>
           <dl class="receipt-list">
             <div>
-              <dt>Status</dt>
+              <dt>상태</dt>
               <dd id="order-status"></dd>
             </div>
             <div>
-              <dt>Ordered at</dt>
+              <dt>주문 시간</dt>
               <dd id="order-date"></dd>
             </div>
             <div>
-              <dt>Items</dt>
+              <dt>메뉴 수</dt>
               <dd id="order-count"></dd>
             </div>
             <div>
-              <dt>Total</dt>
+              <dt>합계</dt>
               <dd id="order-total"></dd>
             </div>
           </dl>
-          <a class="primary-link" href="/menus/list/">Order more</a>
+          <a class="primary-link" href="/menus/list/">메뉴 더 보기</a>
         </aside>
 
-        <section class="items-panel" aria-label="Ordered menu items">
+        <section class="items-panel" aria-label="주문한 메뉴 items">
           <div class="panel-head">
             <div>
-              <p class="eyebrow dark">Items</p>
-              <h2>Ordered menu</h2>
+              <p class="eyebrow dark">메뉴 수</p>
+              <h2>주문한 메뉴</h2>
             </div>
           </div>
           <div id="items-list" class="items-list"></div>
@@ -53,9 +53,9 @@
       </section>
 
       <section id="not-found" class="not-found" hidden>
-        <h1>Order not found</h1>
-        <p>The order may have been removed or the link is incorrect.</p>
-        <a href="/orders/list/">View orders</a>
+        <h1>주문을 찾을 수 없어요</h1>
+        <p>주문이 삭제되었거나 링크가 올바르지 않을 수 있어요.</p>
+        <a href="/orders/list/">주문 목록 보기</a>
       </section>
     </main>
 

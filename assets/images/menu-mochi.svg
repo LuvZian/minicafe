@@ -1,0 +1,15 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" role="img" aria-label="Matcha Mochi">
+  <defs>
+    <pattern id="grid" width="36" height="36" patternUnits="userSpaceOnUse">
+      <path d="M36 0H0v36" fill="none" stroke="#6b814f" stroke-opacity=".08" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="720" height="480" fill="#f4e9e2"/>
+  <rect width="720" height="480" fill="url(#grid)"/>
+  <circle cx="116" cy="92" r="62" fill="#d8b0aa" opacity=".18"/>
+  <circle cx="620" cy="392" r="96" fill="#91b15b" opacity=".12"/>
+  <path d="M96 390C172 320 228 316 294 366s132 46 210-24 118-54 160-18" fill="none" stroke="#fffdf4" stroke-width="18" stroke-linecap="round" opacity=".42"/>
+  <ellipse cx="306" cy="292" rx="62" ry="50" fill="#eef4dc"/><ellipse cx="378" cy="286" rx="64" ry="52" fill="#91b15b"/><ellipse cx="438" cy="304" rx="56" ry="44" fill="#f7eadf"/><circle cx="392" cy="284" r="12" fill="#7a4c41" opacity=".65"/><path d="M252 352h236" stroke="#b99066" stroke-width="8" stroke-linecap="round" opacity=".35"/>
+  <text x="56" y="78" font-family="Georgia, 'Times New Roman', serif" font-size="32" font-weight="700" fill="#263826">Matcha Mochi</text>
+  <text x="56" y="112" font-family="Arial, sans-serif" font-size="15" fill="#52624d">Minicafe matcha selection</text>
+</svg>

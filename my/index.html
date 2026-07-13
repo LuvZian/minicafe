@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Cafe | Minicafe</title>
+    <title>My | Minicafe</title>
     <link rel="stylesheet" href="/css/variables.css" />
     <link rel="stylesheet" href="/my/index.css" />
   </head>
@@ -13,26 +13,48 @@
       <nav class="site-nav" aria-label="Customer navigation"></nav>
     </header>
 
-    <main class="page-shell">
+    <main class="page-shell my-page">
       <section class="my-hero" aria-labelledby="page-title">
-        <div>
-          <p class="eyebrow">My cafe</p>
-          <h1 id="page-title">Your cozy cafe corner</h1>
-          <p class="hero-copy">Keep an eye on your basket, recent orders, and the little preferences that make Minicafe feel yours.</p>
+        <div class="hero-copy-block">
+          <p class="eyebrow">My Minicafe</p>
+          <h1 id="page-title">
+            <span class="hero-name-line"><span id="profile-display-name">회원</span>님의</span>
+            <span class="hero-title-line">계절 찬장</span>
+          </h1>
+          <p class="hero-copy">장바구니에 담긴 메뉴, 지나간 주문, 자주 찾은 계절을 한눈에 모아두었어요.</p>
+          <div class="hero-meta" aria-label="회원 정보">
+            <span id="profile-email">-</span>
+            <span id="member-since">-</span>
+            <span id="profile-season-label">사계절 취향</span>
+          </div>
         </div>
-        <a class="hero-action" href="/menus/list/">Browse menu</a>
+
+        <article class="hero-season-card" aria-label="대표 계절">
+          <span>대표 계절</span>
+          <strong id="season-stat">사계절</strong>
+          <p id="season-copy">주문이 쌓이면 가장 잘 어울리는 계절을 찾아드릴게요.</p>
+          <a id="season-menu-link" class="season-menu-pick" href="/menus/list/">
+            <img id="season-menu-image" class="season-menu-image" src="/assets/menu/sakura-wagashi-plate.png" alt="추천 메뉴 이미지" />
+            <span class="season-menu-text">
+              <small>오늘의 추천</small>
+              <strong id="season-menu-name">계절 메뉴</strong>
+              <em id="season-menu-price">메뉴 보러가기</em>
+            </span>
+          </a>
+        </article>
       </section>
 
-      <section class="my-layout" aria-label="My cafe dashboard">
+      <section class="my-dashboard" aria-label="My dashboard">
         <section class="profile-panel" aria-labelledby="profile-title">
           <p class="eyebrow dark">Profile</p>
-          <h2 id="profile-title">Cafe name</h2>
+          <h2 id="profile-title">내 정보</h2>
+          <p class="panel-copy">주문서와 My 페이지에 표시될 이름을 바꿀 수 있어요.</p>
           <form id="profile-form" class="profile-form">
             <label class="field">
-              <span>Name</span>
+              <span>표시 이름</span>
               <input id="profile-name" type="text" maxlength="24" autocomplete="nickname" placeholder="Minicafe guest" />
             </label>
-            <button class="primary-button" type="submit">Save</button>
+            <button class="primary-button" type="submit">이름 저장</button>
           </form>
           <p id="profile-message" class="profile-message" role="status" aria-live="polite"></p>
         </section>
@@ -41,47 +63,68 @@
           <div class="panel-head">
             <div>
               <p class="eyebrow dark">Activity</p>
-              <h2 id="activity-title">Your cafe summary</h2>
+              <h2 id="activity-title">나의 이용 요약</h2>
             </div>
+            <a class="secondary-link" href="/menus/list/">메뉴 보러가기</a>
           </div>
+
           <div class="stat-grid">
-            <article>
-              <span>Basket</span>
+            <article class="stat-card" data-tone="basket">
+              <span>장바구니</span>
               <strong id="basket-stat">0</strong>
-              <p id="basket-copy">No items waiting.</p>
+              <p id="basket-copy">담긴 메뉴가 없어요.</p>
+              <small id="basket-total">0원</small>
             </article>
-            <article>
-              <span>Orders</span>
+            <article class="stat-card" data-tone="orders">
+              <span>주문</span>
               <strong id="orders-stat">0</strong>
-              <p id="orders-copy">No orders yet.</p>
+              <p id="orders-copy">아직 주문 내역이 없어요.</p>
+              <small id="orders-total">0원</small>
             </article>
-            <article>
-              <span>Favorite</span>
+            <article class="stat-card" data-tone="favorite">
+              <span>취향 계절</span>
               <strong id="favorite-stat">-</strong>
-              <p id="favorite-copy">Order history will shape this.</p>
+              <p id="favorite-copy">주문 기록으로 취향을 보여드려요.</p>
+              <small id="favorite-count">0개 메뉴</small>
             </article>
           </div>
         </section>
       </section>
 
+      <section class="recent-panel" aria-labelledby="recent-title">
+        <div class="panel-head">
+          <div>
+            <p class="eyebrow dark">Recent</p>
+            <h2 id="recent-title">최근 주문</h2>
+          </div>
+          <a class="secondary-link" href="/orders/list/">전체 주문 보기</a>
+        </div>
+        <div id="recent-list" class="recent-list"></div>
+        <div id="recent-empty" class="empty-state" hidden>
+          <h3>아직 주문한 계절이 없어요</h3>
+          <p>마음에 드는 계절 메뉴를 담고 첫 주문을 시작해보세요.</p>
+          <a href="/menus/list/">메뉴 둘러보기</a>
+        </div>
+      </section>
+
       <section class="quick-grid" aria-label="Quick links">
-        <article class="quick-card">
+        <article class="quick-card" data-season="spring">
           <p class="eyebrow dark">Basket</p>
-          <h2>Ready to checkout?</h2>
-          <p>Review quantities and place your next order.</p>
-          <a class="secondary-link" href="/basket/list/">Open basket</a>
+          <h2>담아둔 메뉴 확인</h2>
+          <p>수량과 금액을 확인하고 주문으로 이어갈 수 있어요.</p>
+          <a class="secondary-link" href="/basket/list/">장바구니 열기</a>
         </article>
-        <article class="quick-card">
+        <article class="quick-card" data-season="summer">
           <p class="eyebrow dark">Orders</p>
-          <h2 id="recent-title">Recent order</h2>
-          <p id="recent-copy">Your latest order will appear here.</p>
-          <a id="recent-link" class="secondary-link" href="/orders/list/">View orders</a>
+          <h2>주문 흐름 보기</h2>
+          <p>최근 주문 상태와 지난 계절 주문을 모아볼 수 있어요.</p>
+          <a class="secondary-link" href="/orders/list/">주문 내역 보기</a>
         </article>
-        <article class="quick-card">
+        <article class="quick-card" data-season="autumn">
           <p class="eyebrow dark">Menu</p>
-          <h2>Find another comfort pick</h2>
-          <p>Explore soft drinks, desserts, and bakery favorites.</p>
-          <a class="secondary-link" href="/menus/list/">Browse menu</a>
+          <h2>새 계절 고르기</h2>
+          <p>봄, 여름, 가을, 겨울의 음료와 디저트를 둘러보세요.</p>
+          <a class="secondary-link" href="/menus/list/">메뉴 보기</a>
         </article>
       </section>
     </main>

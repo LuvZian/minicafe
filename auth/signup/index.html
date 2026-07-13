@@ -8,37 +8,47 @@
     <link rel="stylesheet" href="/auth/signup/index.css" />
   </head>
   <body>
-    <main class="auth-shell">
-      <section class="auth-visual" aria-labelledby="page-title">
+    <main class="auth-shell signup-shell">
+      <section class="auth-visual signup-visual" aria-labelledby="page-title">
         <a class="brand" href="/">Minicafe</a>
-        <div>
-          <p class="eyebrow">Join Minicafe</p>
-          <h1 id="page-title">Create your customer account</h1>
-          <p>Save your cafe name, keep order history nearby, and come back to your favorite moments.</p>
+        <div class="visual-copy">
+          <p class="eyebrow">Seasonal shelf</p>
+          <h1 id="page-title">
+            <span>나만의</span>
+            <span>계절 찬장을</span>
+            <span>열어보세요</span>
+          </h1>
+          <p>봄 향기부터 겨울 눈꽃까지, 좋아하는 계절 메뉴와 주문 기록을 차분하게 모아둘 수 있어요.</p>
         </div>
-      </section>
+</section>
 
-      <section class="auth-panel" aria-label="Signup form">
+      <section class="auth-panel signup-panel" aria-label="Signup form">
+        <div class="panel-intro">
+          <p class="eyebrow dark">Join Minicafe</p>
+          <h2>회원가입</h2>
+          <p>회원 계정으로 장바구니, 주문 내역, My 페이지를 이용할 수 있어요.</p>
+        </div>
+
         <form id="signup-form" class="auth-form">
           <label class="field">
-            <span>Name</span>
-            <input id="name-input" type="text" autocomplete="name" maxlength="32" required />
+            <span>이름</span>
+            <input id="name-input" type="text" autocomplete="name" maxlength="32" required placeholder="예: 김선아" />
           </label>
           <label class="field">
-            <span>Email</span>
-            <input id="email-input" type="email" autocomplete="email" required />
+            <span>이메일</span>
+            <input id="email-input" type="email" autocomplete="email" required placeholder="you@example.com" />
           </label>
           <label class="field">
-            <span>Password</span>
-            <input id="password-input" type="password" autocomplete="new-password" minlength="6" required />
+            <span>비밀번호</span>
+            <input id="password-input" type="password" autocomplete="new-password" minlength="6" required placeholder="6자 이상 입력" />
           </label>
           <p id="form-message" class="form-message" role="alert" aria-live="polite"></p>
-          <button class="primary-button" type="submit">Create account</button>
+          <button class="primary-button" type="submit">계절 찬장 만들기</button>
         </form>
 
         <div class="auth-note">
-          <p>Already have an account?</p>
-          <a href="/auth/login/">Log in</a>
+          <p>이미 계정이 있나요?</p>
+          <a href="/auth/login/">로그인하기</a>
         </div>
       </section>
     </main>

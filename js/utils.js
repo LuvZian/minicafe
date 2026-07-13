@@ -1,8 +1,10 @@
-﻿const MENU_STORAGE_KEY = 'minicafe_menus';
+const MENU_STORAGE_KEY = 'minicafe_menus';
 const CART_STORAGE_KEY = 'minicafe_cart';
 const ORDER_STORAGE_KEY = 'minicafe_orders';
 const AUTH_USERS_STORAGE_KEY = 'minicafe_users';
 const AUTH_SESSION_STORAGE_KEY = 'minicafe_session';
+const MENU_VERSION_STORAGE_KEY = 'minicafe_menu_version';
+const MENU_DATA_VERSION = 'season-menu-images-v4';
 
 function readStorage(key, fallback) {
   try {
@@ -22,7 +24,7 @@ function generateId() {
 }
 
 function formatPrice(price) {
-  return Number(price).toLocaleString('ko-KR') + '원';
+  return Number(price).toLocaleString('ko-KR') + '\uC6D0';
 }
 
 function formatDate(value) {
@@ -40,6 +42,58 @@ function getCategoryName(categoryId) {
   return category ? category.name : categoryId;
 }
 
+
+const MENU_KIND_ORDER = {
+  drink: 0,
+  dessert: 1,
+  goods: 2,
+  unknown: 3
+};
+
+function getMenuKind(menu) {
+  const image = String(menu.image || '').toLowerCase();
+  const text = [menu.name, menu.description].join(' ').toLowerCase();
+
+  const dessertImageKeywords = ['wagashi', 'castella', 'pudding', 'bingsu', 'cake', 'yakgwa', 'mochi', 'monaka'];
+  const goodsImageKeywords = ['cup', 'sachet', 'fan', 'bottle', 'tin', 'pouch', 'pot', 'towel'];
+  const drinkImageKeywords = ['tea', 'ade', 'latte', 'iced', 'roasted', 'yuja', 'pear'];
+
+  const dessertTextKeywords = ['디저트', '화과자', '카스텔라', '푸딩', '빙수', '케이크', '약과', '모찌', '모나카', '다과'];
+  const goodsTextKeywords = ['굿즈', '찻잔', '티백', '찻잎', '보틀', '부채', '향낭', '주전자', '타월'];
+  const drinkTextKeywords = ['음료', '차', '에이드', '라떼', '아이스티'];
+
+  if (dessertImageKeywords.some((keyword) => image.includes(keyword))) return 'dessert';
+  if (goodsImageKeywords.some((keyword) => image.includes(keyword))) return 'goods';
+  if (drinkImageKeywords.some((keyword) => image.includes(keyword))) return 'drink';
+  if (dessertTextKeywords.some((keyword) => text.includes(keyword))) return 'dessert';
+  if (goodsTextKeywords.some((keyword) => text.includes(keyword))) return 'goods';
+  if (drinkTextKeywords.some((keyword) => text.includes(keyword))) return 'drink';
+  return 'unknown';
+}
+
+function getMenuKindOrder(menu) {
+  return MENU_KIND_ORDER[getMenuKind(menu)] ?? MENU_KIND_ORDER.unknown;
+}
+
+function getMenuSeasonOrder(menu) {
+  const index = CATEGORIES.findIndex((category) => category.id === menu.category);
+  return index === -1 ? CATEGORIES.length : index;
+}
+
+function sortMenusBySeasonKindPrice(menus) {
+  return [...menus].sort((a, b) => {
+    const seasonDiff = getMenuSeasonOrder(a) - getMenuSeasonOrder(b);
+    if (seasonDiff) return seasonDiff;
+
+    const kindDiff = getMenuKindOrder(a) - getMenuKindOrder(b);
+    if (kindDiff) return kindDiff;
+
+    const priceDiff = Number(a.price || 0) - Number(b.price || 0);
+    if (priceDiff) return priceDiff;
+
+    return String(a.name || '').localeCompare(String(b.name || ''), 'ko-KR');
+  });
+}
 function getStatusLabel(statusValue) {
   const status = Object.values(ORDER_STATUS).find((item) => item.value === statusValue);
   return status ? status.label : statusValue;
@@ -50,22 +104,44 @@ function normalizeEmail(email) {
   return String(email || '').trim().toLowerCase();
 }
 
-function getUsers() {
-  const users = readStorage(AUTH_USERS_STORAGE_KEY, []);
-  const hasAdmin = users.some((user) => user.role === 'admin');
-  if (hasAdmin) return users;
-
-  const adminUser = {
+function getDefaultAdminUser() {
+  return {
     id: 'admin-default',
-    name: 'Cafe Admin',
+    name: 'Minicafe Admin',
     email: 'admin@minicafe.local',
     password: 'admin1234',
     role: 'admin',
     createdAt: new Date().toISOString()
   };
-  const nextUsers = [adminUser, ...users];
-  writeStorage(AUTH_USERS_STORAGE_KEY, nextUsers);
-  return nextUsers;
+}
+
+function getUsers() {
+  const users = readStorage(AUTH_USERS_STORAGE_KEY, []);
+  const defaultAdmin = getDefaultAdminUser();
+  const adminIndex = users.findIndex((user) => normalizeEmail(user.email) === defaultAdmin.email);
+
+  if (adminIndex === -1) {
+    const nextUsers = [defaultAdmin, ...users];
+    writeStorage(AUTH_USERS_STORAGE_KEY, nextUsers);
+    return nextUsers;
+  }
+
+  const savedAdmin = users[adminIndex];
+  if (savedAdmin.role !== 'admin' || savedAdmin.password !== defaultAdmin.password) {
+    const nextUsers = [...users];
+    nextUsers[adminIndex] = {
+      ...savedAdmin,
+      id: savedAdmin.id || defaultAdmin.id,
+      name: savedAdmin.name || defaultAdmin.name,
+      email: defaultAdmin.email,
+      password: defaultAdmin.password,
+      role: 'admin'
+    };
+    writeStorage(AUTH_USERS_STORAGE_KEY, nextUsers);
+    return nextUsers;
+  }
+
+  return users;
 }
 
 function saveUsers(users) {
@@ -110,7 +186,7 @@ function registerUser({ name, email, password, role = 'customer' }) {
 function loginUser(email, password) {
   const normalizedEmail = normalizeEmail(email);
   const user = getUsers().find((item) => normalizeEmail(item.email) === normalizedEmail && item.password === password);
-  if (!user) return { ok: false, message: 'Email or password is not correct.' };
+  if (!user) return { ok: false, message: '이메일 또는 비밀번호가 맞지 않아요.' };
 
   writeStorage(AUTH_SESSION_STORAGE_KEY, { userId: user.id });
   return { ok: true, user };
@@ -158,19 +234,19 @@ function renderCustomerNav(cartCount = getCart().reduce((sum, item) => sum + ite
   const user = getCurrentUser();
   if (!user || user.role !== 'customer') {
     nav.innerHTML = [
-      makeNavLink('/menus/list/', 'Menu'),
-      makeNavLink('/auth/login/', 'Log in'),
-      makeNavLink('/auth/signup/', 'Sign up')
+      makeNavLink('/menus/list/', '메뉴'),
+      makeNavLink('/auth/login/', '로그인'),
+      makeNavLink('/auth/signup/', '회원가입')
     ].join('');
     return;
   }
 
   nav.innerHTML = [
-    makeNavLink('/menus/list/', 'Menu'),
-    makeNavLink('/basket/list/', `Basket <span id="cart-count" class="cart-count">${cartCount}</span>`),
-    makeNavLink('/orders/list/', 'Orders'),
-    makeNavLink('/my/', 'My'),
-    '<button class="nav-logout" type="button" data-logout>Log out</button>'
+    makeNavLink('/menus/list/', '메뉴'),
+    makeNavLink('/basket/list/', `장바구니 <span id="cart-count" class="cart-count">${cartCount}</span>`),
+    makeNavLink('/orders/list/', '주문'),
+    makeNavLink('/my/', '마이'),
+    '<button class="nav-logout" type="button" data-logout>로그아웃</button>'
   ].join('');
 
   const logoutButton = $('[data-logout]', nav);
@@ -188,15 +264,15 @@ function renderAdminNav() {
 
   const user = getCurrentUser();
   if (!user || user.role !== 'admin') {
-    nav.innerHTML = [makeNavLink('/auth/login/?role=admin', 'Admin login')].join('');
+    nav.innerHTML = [makeNavLink('/auth/login/?role=admin', '관리자 로그인')].join('');
     return;
   }
 
   nav.innerHTML = [
-    makeNavLink('/admin/', 'Dashboard'),
-    makeNavLink('/admin/menus/list/', 'Menus'),
-    makeNavLink('/admin/orders/list/', 'Orders'),
-    '<button class="nav-logout" type="button" data-logout>Log out</button>'
+    makeNavLink('/admin/', '대시보드'),
+    makeNavLink('/admin/menus/list/', '메뉴'),
+    makeNavLink('/admin/orders/list/', '주문'),
+    '<button class="nav-logout" type="button" data-logout>로그아웃</button>'
   ].join('');
 
   const logoutButton = $('[data-logout]', nav);
@@ -209,14 +285,17 @@ function renderAdminNav() {
 }
 function getMenus() {
   const menus = readStorage(MENU_STORAGE_KEY, null);
-  if (menus) return menus;
+  const version = readStorage(MENU_VERSION_STORAGE_KEY, null);
+  if (Array.isArray(menus) && menus.length > 0 && version === MENU_DATA_VERSION) return menus;
 
   writeStorage(MENU_STORAGE_KEY, MENU_ITEMS);
+  writeStorage(MENU_VERSION_STORAGE_KEY, MENU_DATA_VERSION);
   return [...MENU_ITEMS];
 }
 
 function saveMenus(menus) {
   writeStorage(MENU_STORAGE_KEY, menus);
+  writeStorage(MENU_VERSION_STORAGE_KEY, MENU_DATA_VERSION);
 }
 
 function getMenuById(id) {

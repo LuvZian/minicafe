@@ -19,12 +19,12 @@ function setRole(role) {
 
   if (role === 'admin') {
     emailInput.value = emailInput.value || 'admin@minicafe.local';
-    helperText.textContent = 'Default admin account';
+    helperText.textContent = '관리자 기본 계정';
     signupLink.textContent = 'admin@minicafe.local / admin1234';
     signupLink.removeAttribute('href');
   } else {
-    helperText.textContent = 'New here?';
-    signupLink.textContent = 'Create customer account';
+    helperText.textContent = '처음 방문했나요?';
+    signupLink.textContent = '회원가입하기';
     signupLink.href = '/auth/signup/';
   }
 }
@@ -47,7 +47,7 @@ loginForm.addEventListener('submit', (event) => {
 
   if (roleInput.value === 'admin' && result.user.role !== 'admin') {
     logoutUser();
-    formMessage.textContent = 'This is not an admin account.';
+    formMessage.textContent = '관리자 계정이 아니에요.';
     return;
   }
 

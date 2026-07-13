@@ -1,74 +1,75 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Admin Dashboard | Minicafe</title>
+    <title>관리자 대시보드 | Minicafe</title>
     <link rel="stylesheet" href="/css/variables.css" />
     <link rel="stylesheet" href="/admin/index.css" />
   </head>
   <body>
     <header class="admin-header">
       <a class="brand" href="/">Minicafe</a>
-      <nav class="admin-nav" aria-label="Admin navigation"></nav>
+      <nav class="admin-nav" aria-label="관리자 메뉴"></nav>
     </header>
 
     <main class="page-shell">
       <section class="dashboard-hero" aria-labelledby="page-title">
         <div>
-          <p class="eyebrow">Admin room</p>
-          <h1 id="page-title">Keep the cafe running calmly</h1>
-          <p class="hero-copy">Check menu counts, order flow, and the next tickets waiting for attention.</p>
+          <p class="eyebrow">관리자 공간</p>
+          <h1 id="page-title">계절의 흐름을 살피는 작은 찻집</h1>
+          <p class="hero-copy">메뉴 구성과 주문 상태, 오늘 확인해야 할 흐름을 한눈에 정리했어요.</p>
         </div>
-        <a class="hero-action" href="/admin/orders/list/">Manage orders</a>
+        <a class="hero-action" href="/admin/orders/list/">주문 관리</a>
       </section>
 
-      <section class="stats-grid" aria-label="Cafe stats">
+      <section class="stats-grid" aria-label="Minicafe 운영 요약">
         <article>
-          <span>Menus</span>
+          <span>메뉴</span>
           <strong id="menu-count">0</strong>
-          <p>Active items in the cafe shelf</p>
+          <p>현재 판매 중인 계절 음료, 디저트, 굿즈</p>
         </article>
         <article>
-          <span>Orders</span>
+          <span>주문</span>
           <strong id="order-count">0</strong>
-          <p>Total customer orders</p>
+          <p>고객이 남긴 전체 주문 기록</p>
         </article>
         <article>
-          <span>Open</span>
+          <span>진행 중</span>
           <strong id="open-count">0</strong>
-          <p>Orders not completed yet</p>
+          <p>아직 완료되지 않은 주문</p>
         </article>
         <article>
-          <span>Revenue</span>
+          <span>매출</span>
           <strong id="revenue-total">0원</strong>
-          <p>Total order amount</p>
+          <p>누적 주문 금액</p>
         </article>
       </section>
 
-      <section class="dashboard-grid" aria-label="Admin shortcuts">
+      <section class="dashboard-grid" aria-label="관리자 바로가기">
         <article class="panel-card">
           <div class="panel-head">
             <div>
-              <p class="eyebrow dark">Recent</p>
-              <h2>Latest orders</h2>
+              <p class="eyebrow dark">최근 흐름</p>
+              <h2>최근 주문</h2>
             </div>
-            <a class="text-link" href="/admin/orders/list/">All orders</a>
+            <a class="text-link" href="/admin/orders/list/">전체 주문</a>
           </div>
           <div id="recent-orders" class="recent-list"></div>
           <div id="empty-orders" class="empty-state" hidden>
-            <h3>No orders yet</h3>
-            <p>Customer orders will appear here.</p>
+            <h3>아직 주문이 없어요</h3>
+            <p>고객 주문이 들어오면 이곳에 차분히 쌓여요.</p>
           </div>
         </article>
 
         <article class="panel-card shortcut-card">
-          <p class="eyebrow dark">Actions</p>
-          <h2>Quick actions</h2>
+          <p class="eyebrow dark">빠른 작업</p>
+          <h2>운영 바로가기</h2>
+          <p>자주 쓰는 관리 기능을 모아두었어요.</p>
           <div class="action-list">
-            <a class="primary-link" href="/admin/menus/create/">Add menu</a>
-            <a class="secondary-link" href="/admin/menus/list/">Manage menus</a>
-            <a class="secondary-link" href="/admin/orders/list/">Review orders</a>
+            <a class="primary-link" href="/admin/menus/create/">메뉴 추가</a>
+            <a class="secondary-link" href="/admin/menus/list/">메뉴 관리</a>
+            <a class="secondary-link" href="/admin/orders/list/">주문 확인</a>
           </div>
         </article>
       </section>

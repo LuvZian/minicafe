@@ -1,58 +1,61 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Add Menu | Minicafe</title>
+    <title>메뉴 추가 | Minicafe</title>
     <link rel="stylesheet" href="/css/variables.css" />
     <link rel="stylesheet" href="/admin/menus/create/index.css" />
   </head>
-  <body>
+  <body data-season="spring">
     <header class="admin-header">
       <a class="brand" href="/">Minicafe</a>
-      <nav class="admin-nav" aria-label="Admin navigation"></nav>
+      <nav class="admin-nav" aria-label="관리자 메뉴"></nav>
     </header>
 
     <main class="page-shell">
-      <a class="back-link" href="/admin/menus/list/">Back to list</a>
-      <section class="form-shell" aria-labelledby="page-title">
+      <a class="back-link" href="/admin/menus/list/">목록으로 돌아가기</a>
+      <section class="form-shell" data-season="spring" aria-labelledby="page-title">
         <div class="form-intro">
-          <p class="eyebrow">Create</p>
-          <h1 id="page-title">Add menu</h1>
-          <p>Register a new menu item with a clear name, category, and price.</p>
+          <p class="eyebrow">메뉴 추가</p>
+          <h1 id="page-title">새 계절 메뉴를 올려요</h1>
+          <p>계절을 고르면 화면 분위기도 함께 바뀌어요. 메뉴 이미지와 설명을 차분하게 정리해보세요.</p>
+          <div class="create-preview" style="--menu-image: url('/assets/photos/season-spring.png')" aria-hidden="true">
+            <span>새 계절 메뉴</span>
+          </div>
         </div>
 
         <form id="menu-form" class="menu-form">
           <label class="field">
-            <span>Name</span>
-            <input id="name" name="name" type="text" required maxlength="60" placeholder="Slow Morning Latte" />
+            <span>메뉴 이름</span>
+            <input id="name" name="name" type="text" required maxlength="60" placeholder="벚꽃 화과자 플레이트" />
           </label>
 
           <label class="field">
-            <span>Category</span>
+            <span>계절</span>
             <select id="category" name="category" required></select>
           </label>
 
           <label class="field">
-            <span>Price</span>
-            <input id="price" name="price" type="number" min="0" step="100" required placeholder="4800" />
+            <span>가격</span>
+            <input id="price" name="price" type="number" min="0" step="100" required placeholder="6800" />
           </label>
 
           <label class="field field-wide">
-            <span>Image URL</span>
-            <input id="image" name="image" type="url" placeholder="https://example.com/menu.jpg" />
+            <span>이미지 경로</span>
+            <input id="image" name="image" type="text" placeholder="/assets/menu/new-season-menu.png" />
           </label>
 
           <label class="field field-wide">
-            <span>Description</span>
-            <textarea id="description" name="description" rows="5" required maxlength="180" placeholder="Describe the menu in a calm, simple way."></textarea>
+            <span>설명</span>
+            <textarea id="description" name="description" rows="5" required maxlength="180" placeholder="계절의 향과 식감이 느껴지도록 메뉴 설명을 적어주세요."></textarea>
           </label>
 
           <p id="form-error" class="form-error" role="alert" hidden></p>
 
           <div class="form-actions">
-            <button class="primary-button" type="submit">Save menu</button>
-            <a class="secondary-link" href="/admin/menus/list/">Cancel</a>
+            <button class="primary-button" type="submit">메뉴 저장</button>
+            <a class="secondary-link" href="/admin/menus/list/">취소</a>
           </div>
         </form>
       </section>
@@ -63,5 +66,3 @@
     <script src="/admin/menus/create/index.js"></script>
   </body>
 </html>
-
-
