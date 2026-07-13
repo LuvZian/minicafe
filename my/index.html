@@ -1,0 +1,99 @@
+﻿<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Cafe | Minicafe</title>
+    <link rel="stylesheet" href="/css/variables.css" />
+    <link rel="stylesheet" href="/my/index.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/">Minicafe</a>
+      <nav class="site-nav" aria-label="Customer navigation">
+        <a href="/">Home</a>
+        <a href="/menus/list/">Menu</a>
+        <a href="/basket/list/">Basket <span id="cart-count" class="cart-count">0</span></a>
+        <a href="/orders/list/">Orders</a>
+        <a href="/my/" aria-current="page">My</a>
+      </nav>
+    </header>
+
+    <main class="page-shell">
+      <section class="my-hero" aria-labelledby="page-title">
+        <div>
+          <p class="eyebrow">My cafe</p>
+          <h1 id="page-title">Your cozy cafe corner</h1>
+          <p class="hero-copy">Keep an eye on your basket, recent orders, and the little preferences that make Minicafe feel yours.</p>
+        </div>
+        <a class="hero-action" href="/menus/list/">Browse menu</a>
+      </section>
+
+      <section class="my-layout" aria-label="My cafe dashboard">
+        <section class="profile-panel" aria-labelledby="profile-title">
+          <p class="eyebrow dark">Profile</p>
+          <h2 id="profile-title">Cafe name</h2>
+          <form id="profile-form" class="profile-form">
+            <label class="field">
+              <span>Name</span>
+              <input id="profile-name" type="text" maxlength="24" autocomplete="nickname" placeholder="Minicafe guest" />
+            </label>
+            <button class="primary-button" type="submit">Save</button>
+          </form>
+          <p id="profile-message" class="profile-message" role="status" aria-live="polite"></p>
+        </section>
+
+        <section class="activity-panel" aria-labelledby="activity-title">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow dark">Activity</p>
+              <h2 id="activity-title">Your cafe summary</h2>
+            </div>
+          </div>
+          <div class="stat-grid">
+            <article>
+              <span>Basket</span>
+              <strong id="basket-stat">0</strong>
+              <p id="basket-copy">No items waiting.</p>
+            </article>
+            <article>
+              <span>Orders</span>
+              <strong id="orders-stat">0</strong>
+              <p id="orders-copy">No orders yet.</p>
+            </article>
+            <article>
+              <span>Favorite</span>
+              <strong id="favorite-stat">-</strong>
+              <p id="favorite-copy">Order history will shape this.</p>
+            </article>
+          </div>
+        </section>
+      </section>
+
+      <section class="quick-grid" aria-label="Quick links">
+        <article class="quick-card">
+          <p class="eyebrow dark">Basket</p>
+          <h2>Ready to checkout?</h2>
+          <p>Review quantities and place your next order.</p>
+          <a class="secondary-link" href="/basket/list/">Open basket</a>
+        </article>
+        <article class="quick-card">
+          <p class="eyebrow dark">Orders</p>
+          <h2 id="recent-title">Recent order</h2>
+          <p id="recent-copy">Your latest order will appear here.</p>
+          <a id="recent-link" class="secondary-link" href="/orders/list/">View orders</a>
+        </article>
+        <article class="quick-card">
+          <p class="eyebrow dark">Menu</p>
+          <h2>Find another comfort pick</h2>
+          <p>Explore soft drinks, desserts, and bakery favorites.</p>
+          <a class="secondary-link" href="/menus/list/">Browse menu</a>
+        </article>
+      </section>
+    </main>
+
+    <script src="/js/data.js"></script>
+    <script src="/js/utils.js"></script>
+    <script src="/my/index.js"></script>
+  </body>
+</html>
