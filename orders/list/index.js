@@ -1,4 +1,7 @@
-﻿const ordersList = $('#orders-list');
+﻿renderCustomerNav();
+const currentUser = requireAuth('customer');
+if (!currentUser) throw new Error('Authentication required');
+const ordersList = $('#orders-list');
 const emptyState = $('#empty-state');
 const statusFilter = $('#status-filter');
 const resultCount = $('#result-count');
@@ -11,7 +14,7 @@ function getItemCount(items) {
 
 function getFilteredOrders() {
   const status = statusFilter.value;
-  const orders = getOrders();
+  const orders = getCustomerOrders();
   return status === 'all' ? orders : orders.filter((order) => order.status === status);
 }
 
@@ -29,7 +32,7 @@ function renderOrders() {
   const hasOrders = orders.length > 0;
   const total = orders.reduce((sum, order) => sum + order.total, 0);
 
-  cartCount.textContent = getItemCount(getCart());
+  if (cartCount) cartCount.textContent = getItemCount(getCart());
   ordersList.hidden = !hasOrders;
   emptyState.hidden = hasOrders;
   resultCount.textContent = `${orders.length} ${orders.length === 1 ? 'order' : 'orders'}`;

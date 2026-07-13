@@ -1,6 +1,8 @@
 ﻿const MENU_STORAGE_KEY = 'minicafe_menus';
 const CART_STORAGE_KEY = 'minicafe_cart';
 const ORDER_STORAGE_KEY = 'minicafe_orders';
+const AUTH_USERS_STORAGE_KEY = 'minicafe_users';
+const AUTH_SESSION_STORAGE_KEY = 'minicafe_session';
 
 function readStorage(key, fallback) {
   try {
@@ -43,6 +45,168 @@ function getStatusLabel(statusValue) {
   return status ? status.label : statusValue;
 }
 
+
+function normalizeEmail(email) {
+  return String(email || '').trim().toLowerCase();
+}
+
+function getUsers() {
+  const users = readStorage(AUTH_USERS_STORAGE_KEY, []);
+  const hasAdmin = users.some((user) => user.role === 'admin');
+  if (hasAdmin) return users;
+
+  const adminUser = {
+    id: 'admin-default',
+    name: 'Cafe Admin',
+    email: 'admin@minicafe.local',
+    password: 'admin1234',
+    role: 'admin',
+    createdAt: new Date().toISOString()
+  };
+  const nextUsers = [adminUser, ...users];
+  writeStorage(AUTH_USERS_STORAGE_KEY, nextUsers);
+  return nextUsers;
+}
+
+function saveUsers(users) {
+  writeStorage(AUTH_USERS_STORAGE_KEY, users);
+}
+
+function getCurrentUser() {
+  const session = readStorage(AUTH_SESSION_STORAGE_KEY, null);
+  if (!session) return null;
+  return getUsers().find((user) => user.id === session.userId) || null;
+}
+
+function registerUser({ name, email, password, role = 'customer' }) {
+  const normalizedEmail = normalizeEmail(email);
+  const users = getUsers();
+
+  if (!name || !normalizedEmail || !password) {
+    return { ok: false, message: 'Please fill in every field.' };
+  }
+
+  if (password.length < 6) {
+    return { ok: false, message: 'Password needs at least 6 characters.' };
+  }
+
+  if (users.some((user) => normalizeEmail(user.email) === normalizedEmail)) {
+    return { ok: false, message: 'This email is already registered.' };
+  }
+
+  const user = {
+    id: generateId(),
+    name: String(name).trim(),
+    email: normalizedEmail,
+    password,
+    role,
+    createdAt: new Date().toISOString()
+  };
+  saveUsers([user, ...users]);
+  writeStorage(AUTH_SESSION_STORAGE_KEY, { userId: user.id });
+  return { ok: true, user };
+}
+
+function loginUser(email, password) {
+  const normalizedEmail = normalizeEmail(email);
+  const user = getUsers().find((item) => normalizeEmail(item.email) === normalizedEmail && item.password === password);
+  if (!user) return { ok: false, message: 'Email or password is not correct.' };
+
+  writeStorage(AUTH_SESSION_STORAGE_KEY, { userId: user.id });
+  return { ok: true, user };
+}
+
+function logoutUser() {
+  localStorage.removeItem(AUTH_SESSION_STORAGE_KEY);
+  clearCart();
+}
+
+function requireAuth(role) {
+  const user = getCurrentUser();
+  if (!user || (role && user.role !== role)) {
+    const next = encodeURIComponent(window.location.pathname + window.location.search);
+    window.location.href = `/auth/login/?next=${next}${role ? `&role=${role}` : ''}`;
+    return null;
+  }
+  return user;
+}
+
+function getAuthRedirect(user, fallback = '/') {
+  if (user && user.role === 'admin') return '/admin/';
+  return fallback;
+}
+
+function getPathPrefix() {
+  return window.location.pathname.replace(/\/$/, '') || '/';
+}
+
+function isActivePath(path) {
+  const current = getPathPrefix();
+  const target = path.replace(/\/$/, '') || '/';
+  return current === target || (target !== '/' && current.startsWith(target));
+}
+
+function makeNavLink(href, label) {
+  const active = isActivePath(href) ? ' aria-current="page"' : '';
+  return `<a href="${href}"${active}>${label}</a>`;
+}
+
+function renderCustomerNav(cartCount = getCart().reduce((sum, item) => sum + item.quantity, 0)) {
+  const nav = $('.site-nav');
+  if (!nav) return;
+
+  const user = getCurrentUser();
+  if (!user || user.role !== 'customer') {
+    nav.innerHTML = [
+      makeNavLink('/menus/list/', 'Menu'),
+      makeNavLink('/auth/login/', 'Log in'),
+      makeNavLink('/auth/signup/', 'Sign up')
+    ].join('');
+    return;
+  }
+
+  nav.innerHTML = [
+    makeNavLink('/menus/list/', 'Menu'),
+    makeNavLink('/basket/list/', `Basket <span id="cart-count" class="cart-count">${cartCount}</span>`),
+    makeNavLink('/orders/list/', 'Orders'),
+    makeNavLink('/my/', 'My'),
+    '<button class="nav-logout" type="button" data-logout>Log out</button>'
+  ].join('');
+
+  const logoutButton = $('[data-logout]', nav);
+  if (logoutButton) {
+    logoutButton.addEventListener('click', () => {
+      logoutUser();
+      window.location.href = '/menus/list/';
+    });
+  }
+}
+
+function renderAdminNav() {
+  const nav = $('.admin-nav');
+  if (!nav) return;
+
+  const user = getCurrentUser();
+  if (!user || user.role !== 'admin') {
+    nav.innerHTML = [makeNavLink('/auth/login/?role=admin', 'Admin login')].join('');
+    return;
+  }
+
+  nav.innerHTML = [
+    makeNavLink('/admin/', 'Dashboard'),
+    makeNavLink('/admin/menus/list/', 'Menus'),
+    makeNavLink('/admin/orders/list/', 'Orders'),
+    '<button class="nav-logout" type="button" data-logout>Log out</button>'
+  ].join('');
+
+  const logoutButton = $('[data-logout]', nav);
+  if (logoutButton) {
+    logoutButton.addEventListener('click', () => {
+      logoutUser();
+      window.location.href = '/auth/login/?role=admin';
+    });
+  }
+}
 function getMenus() {
   const menus = readStorage(MENU_STORAGE_KEY, null);
   if (menus) return menus;
@@ -165,9 +329,13 @@ function saveOrders(orders) {
 
 function createOrder(items = getCart()) {
   const total = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const currentUser = getCurrentUser();
   const order = {
     id: generateId(),
     items: [...items],
+    userId: currentUser ? currentUser.id : null,
+    customerName: currentUser ? currentUser.name : 'Guest',
+    customerEmail: currentUser ? currentUser.email : '',
     total,
     status: ORDER_STATUS.PENDING.value,
     createdAt: new Date().toISOString(),
@@ -178,6 +346,16 @@ function createOrder(items = getCart()) {
   return order;
 }
 
+
+function getCustomerOrders() {
+  const user = getCurrentUser();
+  if (!user) return [];
+  return getOrders().filter((order) => !order.userId || order.userId === user.id);
+}
+
+function getCustomerOrderById(id) {
+  return getCustomerOrders().find((order) => String(order.id) === String(id));
+}
 function getOrderById(id) {
   return getOrders().find((order) => String(order.id) === String(id));
 }

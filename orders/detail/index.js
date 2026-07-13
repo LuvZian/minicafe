@@ -1,4 +1,7 @@
-﻿const orderDetail = $('#order-detail');
+﻿renderCustomerNav();
+const currentUser = requireAuth('customer');
+if (!currentUser) throw new Error('Authentication required');
+const orderDetail = $('#order-detail');
 const notFound = $('#not-found');
 const orderTitle = $('#order-title');
 const orderStatus = $('#order-status');
@@ -13,8 +16,8 @@ function getItemCount(items) {
 }
 
 function renderOrderDetail() {
-  const order = getOrderById(getQueryParam('id'));
-  cartCount.textContent = getItemCount(getCart());
+  const order = getCustomerOrderById(getQueryParam('id'));
+  if (cartCount) cartCount.textContent = getItemCount(getCart());
 
   if (!order) {
     orderDetail.hidden = true;

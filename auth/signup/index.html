@@ -1,0 +1,50 @@
+﻿<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign up | Minicafe</title>
+    <link rel="stylesheet" href="/css/variables.css" />
+    <link rel="stylesheet" href="/auth/signup/index.css" />
+  </head>
+  <body>
+    <main class="auth-shell">
+      <section class="auth-visual" aria-labelledby="page-title">
+        <a class="brand" href="/">Minicafe</a>
+        <div>
+          <p class="eyebrow">Join Minicafe</p>
+          <h1 id="page-title">Create your customer account</h1>
+          <p>Save your cafe name, keep order history nearby, and come back to your favorite moments.</p>
+        </div>
+      </section>
+
+      <section class="auth-panel" aria-label="Signup form">
+        <form id="signup-form" class="auth-form">
+          <label class="field">
+            <span>Name</span>
+            <input id="name-input" type="text" autocomplete="name" maxlength="32" required />
+          </label>
+          <label class="field">
+            <span>Email</span>
+            <input id="email-input" type="email" autocomplete="email" required />
+          </label>
+          <label class="field">
+            <span>Password</span>
+            <input id="password-input" type="password" autocomplete="new-password" minlength="6" required />
+          </label>
+          <p id="form-message" class="form-message" role="alert" aria-live="polite"></p>
+          <button class="primary-button" type="submit">Create account</button>
+        </form>
+
+        <div class="auth-note">
+          <p>Already have an account?</p>
+          <a href="/auth/login/">Log in</a>
+        </div>
+      </section>
+    </main>
+
+    <script src="/js/data.js"></script>
+    <script src="/js/utils.js"></script>
+    <script src="/auth/signup/index.js"></script>
+  </body>
+</html>

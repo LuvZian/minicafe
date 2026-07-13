@@ -1,4 +1,5 @@
-﻿const detailRoot = $('#detail-root');
+﻿renderCustomerNav();
+const detailRoot = $('#detail-root');
 const toast = $('#toast');
 const menuId = getQueryParam('id');
 const menu = getMenuById(menuId);

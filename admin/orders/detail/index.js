@@ -1,4 +1,7 @@
-﻿const orderDetail = $('#order-detail');
+﻿renderAdminNav();
+const currentAdmin = requireAuth('admin');
+if (!currentAdmin) throw new Error('Admin authentication required');
+const orderDetail = $('#order-detail');
 const notFound = $('#not-found');
 const orderTitle = $('#order-title');
 const orderStatus = $('#order-status');

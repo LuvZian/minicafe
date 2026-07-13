@@ -1,4 +1,5 @@
-﻿const cartCount = $('#cart-count');
+﻿renderCustomerNav();
+const cartCount = $('#cart-count');
 const todayVisual = $('#today-visual');
 const todayName = $('#today-name');
 const todayDescription = $('#today-description');
@@ -63,7 +64,7 @@ function renderSummary() {
   const itemCount = getItemCount(cart);
   const recentOrder = orders[0];
 
-  cartCount.textContent = itemCount;
+  if (cartCount) cartCount.textContent = itemCount;
   basketTitle.textContent = itemCount > 0 ? `${itemCount} ${itemCount === 1 ? 'item' : 'items'} waiting` : 'Your basket is empty';
   basketCopy.textContent = itemCount > 0 ? `${formatPrice(getCartTotal())} ready in your basket.` : 'Pick something warm or sweet to begin.';
 

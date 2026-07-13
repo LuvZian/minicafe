@@ -1,4 +1,7 @@
-﻿const editRoot = $('#edit-root');
+﻿renderAdminNav();
+const currentAdmin = requireAuth('admin');
+if (!currentAdmin) throw new Error('Admin authentication required');
+const editRoot = $('#edit-root');
 const menuId = getQueryParam('id');
 const menu = getMenuById(menuId);
 
