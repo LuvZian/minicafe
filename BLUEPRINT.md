@@ -158,9 +158,9 @@ minicafe/
 
 ### 7단계: 고객 - 마이페이지
 
-- [ ] `my/index.html`
-- [ ] `my/index.css`
-- [ ] `my/index.js`
+- [x] `my/index.html`
+- [x] `my/index.css`
+- [x] `my/index.js`
 
 ### 8단계: 관리자 - 대시보드 & 주문 관리
 
