@@ -50,6 +50,7 @@
 }
 
 .site-nav a,
+.nav-logout,
 .hero-action,
 .detail-link,
 .empty-state a {
@@ -368,4 +369,10 @@
     justify-items: start;
     width: 100%;
   }
+}
+
+button.nav-logout {
+  color: inherit;
+  background: transparent;
+  border: 0;
 }

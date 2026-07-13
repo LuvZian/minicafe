@@ -53,6 +53,7 @@
 }
 
 .site-nav a,
+.nav-logout,
 .hero-action,
 .detail-link,
 .cart-button {
@@ -399,6 +400,7 @@ body {
 }
 
 .site-nav a,
+.nav-logout,
 .admin-nav a {
   white-space: nowrap;
 }
@@ -504,4 +506,10 @@ body {
 
 .toast {
   background: linear-gradient(135deg, var(--color-coffee), #6b5148);
+}
+
+button.nav-logout {
+  color: inherit;
+  background: transparent;
+  border: 0;
 }

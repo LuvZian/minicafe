@@ -50,6 +50,7 @@
 }
 
 .site-nav a,
+.nav-logout,
 .primary-link,
 .secondary-link,
 .detail-link,
@@ -369,4 +370,10 @@
     align-items: flex-start;
     flex-direction: column;
   }
+}
+
+button.nav-logout {
+  color: inherit;
+  background: transparent;
+  border: 0;
 }

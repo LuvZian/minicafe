@@ -50,6 +50,7 @@
 }
 
 .site-nav a,
+.nav-logout,
 .hero-action,
 .primary-button,
 .secondary-link {
@@ -328,4 +329,10 @@
   .my-hero {
     padding: var(--sp-lg);
   }
+}
+
+button.nav-logout {
+  color: inherit;
+  background: transparent;
+  border: 0;
 }

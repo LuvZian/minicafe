@@ -1,4 +1,7 @@
-﻿const form = $('#menu-form');
+﻿renderAdminNav();
+const currentAdmin = requireAuth('admin');
+if (!currentAdmin) throw new Error('Admin authentication required');
+const form = $('#menu-form');
 const categorySelect = $('#category');
 const formError = $('#form-error');
 

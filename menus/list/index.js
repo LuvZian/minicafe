@@ -1,4 +1,5 @@
-﻿const state = {
+﻿renderCustomerNav();
+const state = {
   category: 'all',
   query: ''
 };
@@ -35,7 +36,7 @@ const CATEGORY_IMAGES = {
 };
 
 function updateCartCount() {
-  cartCount.textContent = getCart().reduce((sum, item) => sum + item.quantity, 0);
+  if (cartCount) cartCount.textContent = getCart().reduce((sum, item) => sum + item.quantity, 0);
 }
 
 function getMenuImage(menu) {

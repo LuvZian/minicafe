@@ -53,6 +53,7 @@
 }
 
 .site-nav a,
+.nav-logout,
 .hero-action,
 .ghost-button,
 .remove-button,
@@ -482,6 +483,7 @@ body {
 }
 
 .site-nav a,
+.nav-logout,
 .admin-nav a {
   white-space: nowrap;
 }
@@ -699,4 +701,10 @@ body {
   .basket-layout {
     grid-template-columns: 1fr;
   }
+}
+
+button.nav-logout {
+  color: inherit;
+  background: transparent;
+  border: 0;
 }

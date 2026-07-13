@@ -1,0 +1,52 @@
+﻿<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Log in | Minicafe</title>
+    <link rel="stylesheet" href="/css/variables.css" />
+    <link rel="stylesheet" href="/auth/login/index.css" />
+  </head>
+  <body>
+    <main class="auth-shell">
+      <section class="auth-visual" aria-labelledby="page-title">
+        <a class="brand" href="/">Minicafe</a>
+        <div>
+          <p class="eyebrow">Welcome back</p>
+          <h1 id="page-title">Log in to your cafe space</h1>
+          <p>Use a customer account for orders, or the admin account for cafe management.</p>
+        </div>
+      </section>
+
+      <section class="auth-panel" aria-label="Login form">
+        <div class="role-tabs" role="tablist" aria-label="Account role">
+          <button id="customer-tab" class="is-active" type="button" data-role="customer">Customer</button>
+          <button id="admin-tab" type="button" data-role="admin">Admin</button>
+        </div>
+
+        <form id="login-form" class="auth-form">
+          <input id="role-input" type="hidden" value="customer" />
+          <label class="field">
+            <span>Email</span>
+            <input id="email-input" type="email" autocomplete="email" required />
+          </label>
+          <label class="field">
+            <span>Password</span>
+            <input id="password-input" type="password" autocomplete="current-password" required />
+          </label>
+          <p id="form-message" class="form-message" role="alert" aria-live="polite"></p>
+          <button class="primary-button" type="submit">Log in</button>
+        </form>
+
+        <div class="auth-note">
+          <p id="helper-text">New here?</p>
+          <a id="signup-link" href="/auth/signup/">Create customer account</a>
+        </div>
+      </section>
+    </main>
+
+    <script src="/js/data.js"></script>
+    <script src="/js/utils.js"></script>
+    <script src="/auth/login/index.js"></script>
+  </body>
+</html>

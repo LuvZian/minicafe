@@ -1,4 +1,7 @@
-﻿const ordersList = $('#orders-list');
+﻿renderAdminNav();
+const currentAdmin = requireAuth('admin');
+if (!currentAdmin) throw new Error('Admin authentication required');
+const ordersList = $('#orders-list');
 const emptyState = $('#empty-state');
 const resultCount = $('#result-count');
 const statusFilter = $('#status-filter');

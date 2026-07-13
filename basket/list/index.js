@@ -1,4 +1,7 @@
-﻿const basketList = $('#basket-list');
+﻿renderCustomerNav();
+const currentUser = requireAuth('customer');
+if (!currentUser) throw new Error('Authentication required');
+const basketList = $('#basket-list');
 const emptyState = $('#empty-state');
 const summaryCount = $('#summary-count');
 const summaryTotal = $('#summary-total');
@@ -62,7 +65,7 @@ function renderBasket() {
   emptyState.hidden = hasItems;
   clearButton.disabled = !hasItems;
   orderButton.disabled = !hasItems;
-  cartCount.textContent = itemCount;
+  if (cartCount) cartCount.textContent = itemCount;
   summaryCount.textContent = itemCount;
   summaryTotal.textContent = formatPrice(getCartTotal());
   summaryNote.textContent = hasItems ? 'You can still adjust quantities.' : 'Add a menu item to start your basket.';

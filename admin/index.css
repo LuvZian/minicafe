@@ -50,6 +50,7 @@
 }
 
 .admin-nav a,
+.nav-logout,
 .hero-action,
 .primary-link,
 .primary-button,
@@ -350,4 +351,10 @@
     align-items: flex-start;
     flex-direction: column;
   }
+}
+
+button.nav-logout {
+  color: inherit;
+  background: transparent;
+  border: 0;
 }

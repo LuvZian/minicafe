@@ -1,4 +1,7 @@
-﻿const PROFILE_STORAGE_KEY = 'minicafe_profile';
+﻿renderCustomerNav();
+const currentUser = requireAuth('customer');
+if (!currentUser) throw new Error('Authentication required');
+const PROFILE_STORAGE_KEY = 'minicafe_profile';
 
 const cartCount = $('#cart-count');
 const profileForm = $('#profile-form');
@@ -50,7 +53,7 @@ function renderActivity() {
   const favoriteCategory = getFavoriteCategory(orders);
   const recentOrder = orders[0];
 
-  cartCount.textContent = itemCount;
+  if (cartCount) cartCount.textContent = itemCount;
   basketStat.textContent = itemCount;
   basketCopy.textContent = itemCount > 0 ? `${formatPrice(getCartTotal())} waiting in your basket.` : 'No items waiting.';
 

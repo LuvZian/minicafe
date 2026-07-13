@@ -50,6 +50,7 @@
 }
 
 .admin-nav a,
+.nav-logout,
 .hero-action,
 .primary-link,
 .primary-button,
@@ -341,4 +342,10 @@
   .panel-head {
     flex-direction: column;
   }
+}
+
+button.nav-logout {
+  color: inherit;
+  background: transparent;
+  border: 0;
 }

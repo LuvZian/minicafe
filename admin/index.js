@@ -1,4 +1,7 @@
-﻿const menuCount = $('#menu-count');
+﻿renderAdminNav();
+const currentAdmin = requireAuth('admin');
+if (!currentAdmin) throw new Error('Admin authentication required');
+const menuCount = $('#menu-count');
 const orderCount = $('#order-count');
 const openCount = $('#open-count');
 const revenueTotal = $('#revenue-total');

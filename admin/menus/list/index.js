@@ -1,4 +1,7 @@
-﻿const searchInput = $('#search-input');
+﻿renderAdminNav();
+const currentAdmin = requireAuth('admin');
+if (!currentAdmin) throw new Error('Admin authentication required');
+const searchInput = $('#search-input');
 const categoryFilter = $('#category-filter');
 const menuList = $('#menu-list');
 const emptyState = $('#empty-state');

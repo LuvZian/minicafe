@@ -1,4 +1,7 @@
-﻿const detailRoot = $('#detail-root');
+﻿renderAdminNav();
+const currentAdmin = requireAuth('admin');
+if (!currentAdmin) throw new Error('Admin authentication required');
+const detailRoot = $('#detail-root');
 const menuId = getQueryParam('id');
 const menu = getMenuById(menuId);
 

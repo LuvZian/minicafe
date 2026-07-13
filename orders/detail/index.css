@@ -50,6 +50,7 @@
 }
 
 .site-nav a,
+.nav-logout,
 .back-link,
 .primary-link,
 .not-found a {
@@ -336,4 +337,10 @@
   .receipt-list dd {
     text-align: left;
   }
+}
+
+button.nav-logout {
+  color: inherit;
+  background: transparent;
+  border: 0;
 }
