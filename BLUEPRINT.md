@@ -164,12 +164,12 @@ minicafe/
 
 ### 8단계: 관리자 - 대시보드 & 주문 관리
 
-- [ ] `admin/index.html` — 대시보드
-- [ ] `admin/index.css`
-- [ ] `admin/index.js`
-- [ ] `admin/orders/list/index.html` — 주문 목록
-- [ ] `admin/orders/list/index.css`
-- [ ] `admin/orders/list/index.js`
-- [ ] `admin/orders/detail/index.html` — 주문 상세
-- [ ] `admin/orders/detail/index.css`
-- [ ] `admin/orders/detail/index.js`
+- [x] `admin/index.html` — 대시보드
+- [x] `admin/index.css`
+- [x] `admin/index.js`
+- [x] `admin/orders/list/index.html` — 주문 목록
+- [x] `admin/orders/list/index.css`
+- [x] `admin/orders/list/index.js`
+- [x] `admin/orders/detail/index.html` — 주문 상세
+- [x] `admin/orders/detail/index.css`
+- [x] `admin/orders/detail/index.js`

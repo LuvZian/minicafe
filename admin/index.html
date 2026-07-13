@@ -1,0 +1,85 @@
+﻿<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard | Minicafe</title>
+    <link rel="stylesheet" href="/css/variables.css" />
+    <link rel="stylesheet" href="/admin/index.css" />
+  </head>
+  <body>
+    <header class="admin-header">
+      <a class="brand" href="/">Minicafe</a>
+      <nav class="admin-nav" aria-label="Admin navigation">
+        <a href="/admin/" aria-current="page">Dashboard</a>
+        <a href="/admin/menus/list/">Menus</a>
+        <a href="/admin/orders/list/">Orders</a>
+      </nav>
+    </header>
+
+    <main class="page-shell">
+      <section class="dashboard-hero" aria-labelledby="page-title">
+        <div>
+          <p class="eyebrow">Admin room</p>
+          <h1 id="page-title">Keep the cafe running calmly</h1>
+          <p class="hero-copy">Check menu counts, order flow, and the next tickets waiting for attention.</p>
+        </div>
+        <a class="hero-action" href="/admin/orders/list/">Manage orders</a>
+      </section>
+
+      <section class="stats-grid" aria-label="Cafe stats">
+        <article>
+          <span>Menus</span>
+          <strong id="menu-count">0</strong>
+          <p>Active items in the cafe shelf</p>
+        </article>
+        <article>
+          <span>Orders</span>
+          <strong id="order-count">0</strong>
+          <p>Total customer orders</p>
+        </article>
+        <article>
+          <span>Open</span>
+          <strong id="open-count">0</strong>
+          <p>Orders not completed yet</p>
+        </article>
+        <article>
+          <span>Revenue</span>
+          <strong id="revenue-total">0원</strong>
+          <p>Total order amount</p>
+        </article>
+      </section>
+
+      <section class="dashboard-grid" aria-label="Admin shortcuts">
+        <article class="panel-card">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow dark">Recent</p>
+              <h2>Latest orders</h2>
+            </div>
+            <a class="text-link" href="/admin/orders/list/">All orders</a>
+          </div>
+          <div id="recent-orders" class="recent-list"></div>
+          <div id="empty-orders" class="empty-state" hidden>
+            <h3>No orders yet</h3>
+            <p>Customer orders will appear here.</p>
+          </div>
+        </article>
+
+        <article class="panel-card shortcut-card">
+          <p class="eyebrow dark">Actions</p>
+          <h2>Quick actions</h2>
+          <div class="action-list">
+            <a class="primary-link" href="/admin/menus/create/">Add menu</a>
+            <a class="secondary-link" href="/admin/menus/list/">Manage menus</a>
+            <a class="secondary-link" href="/admin/orders/list/">Review orders</a>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <script src="/js/data.js"></script>
+    <script src="/js/utils.js"></script>
+    <script src="/admin/index.js"></script>
+  </body>
+</html>
