@@ -58,7 +58,7 @@ function renderOrders() {
           <div class="order-side">
             <strong>${formatPrice(order.total)}</strong>
             <span>${itemCount} ${itemCount === 1 ? 'item' : 'items'}</span>
-            <a class="detail-link" href="../detail/index.html?id=${encodeURIComponent(order.id)}">View detail</a>
+            <a class="detail-link" href="/orders/detail/?id=${encodeURIComponent(order.id)}">View detail</a>
           </div>
         </article>
       `;

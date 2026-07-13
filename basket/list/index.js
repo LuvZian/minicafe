@@ -145,7 +145,7 @@ orderButton.addEventListener('click', () => {
   renderBasket();
   showToast(`Order ${order.id} placed`);
   window.setTimeout(() => {
-    window.location.href = `../../orders/detail/index.html?id=${encodeURIComponent(order.id)}`;
+    window.location.href = `/orders/detail/?id=${encodeURIComponent(order.id)}`;
   }, 500);
 });
 

@@ -4,17 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Basket | Minicafe</title>
-    <link rel="stylesheet" href="../../css/variables.css" />
-    <link rel="stylesheet" href="./index.css" />
+    <link rel="stylesheet" href="/css/variables.css" />
+    <link rel="stylesheet" href="/basket/list/index.css" />
   </head>
   <body>
     <header class="site-header">
-      <a class="brand" href="../../index.html">Minicafe</a>
+      <a class="brand" href="/">Minicafe</a>
       <nav class="site-nav" aria-label="Customer navigation">
-        <a href="../../menus/list/index.html">Menu</a>
-        <a href="./index.html" aria-current="page">Basket <span id="cart-count" class="cart-count">0</span></a>
-        <a href="../../orders/list/index.html">Orders</a>
-        <a href="../../my/index.html">My</a>
+        <a href="/menus/list/">Menu</a>
+        <a href="/basket/list/" aria-current="page">Basket <span id="cart-count" class="cart-count">0</span></a>
+        <a href="/orders/list/">Orders</a>
+        <a href="/my/">My</a>
       </nav>
     </header>
 
@@ -25,7 +25,7 @@
           <h1 id="page-title">Almost ready for checkout</h1>
           <p class="hero-copy">Check your drinks and treats, adjust quantities, and place the order when it feels right.</p>
         </div>
-        <a class="hero-action" href="../../menus/list/index.html">Add more</a>
+        <a class="hero-action" href="/menus/list/">Add more</a>
       </section>
 
       <section class="basket-layout" aria-live="polite">
@@ -42,7 +42,7 @@
           <div id="empty-state" class="empty-state" hidden>
             <h2>Your basket is empty</h2>
             <p>Pick something warm or sweet from the menu.</p>
-            <a href="../../menus/list/index.html">Browse menu</a>
+            <a href="/menus/list/">Browse menu</a>
           </div>
         </div>
 
@@ -66,8 +66,8 @@
 
     <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
-    <script src="../../js/data.js"></script>
-    <script src="../../js/utils.js"></script>
-    <script src="./index.js"></script>
+    <script src="/js/data.js"></script>
+    <script src="/js/utils.js"></script>
+    <script src="/basket/list/index.js"></script>
   </body>
 </html>

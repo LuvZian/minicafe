@@ -42,7 +42,7 @@ form.addEventListener('submit', (event) => {
   }
 
   const created = createMenu(menu);
-  window.location.href = `../detail/index.html?id=${encodeURIComponent(created.id)}`;
+  window.location.href = `/admin/menus/detail/?id=${encodeURIComponent(created.id)}`;
 });
 
 renderCategories();

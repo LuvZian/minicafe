@@ -54,7 +54,7 @@ function renderTodayPick(menu) {
   todayName.textContent = menu.name;
   todayDescription.textContent = menu.description;
   todayPrice.textContent = formatPrice(menu.price);
-  todayLink.href = `./menus/detail/index.html?id=${encodeURIComponent(menu.id)}`;
+  todayLink.href = `/menus/detail/?id=${encodeURIComponent(menu.id)}`;
 }
 
 function renderSummary() {
@@ -87,7 +87,7 @@ function renderFeatured(menus) {
           <p>${escapeHtml(menu.description)}</p>
           <div class="featured-footer">
             <strong>${formatPrice(menu.price)}</strong>
-            <a class="detail-link" href="./menus/detail/index.html?id=${encodeURIComponent(menu.id)}">Detail</a>
+            <a class="detail-link" href="/menus/detail/?id=${encodeURIComponent(menu.id)}">Detail</a>
           </div>
         </div>
       </article>
