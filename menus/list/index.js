@@ -1,4 +1,4 @@
-﻿renderCustomerNav();
+renderCustomerNav();
 const SEASONS = ['spring', 'summer', 'autumn', 'winter'];
 const state = {
   category: 'all',
@@ -142,6 +142,7 @@ function renderCategoryTabs() {
 
 function renderMenus() {
   const menus = sortMenusBySeasonKindPrice(getFilteredMenus());
+  const favoriteIds = getFavoriteMenuIds();
   resultCount.textContent = `${menus.length} menus`;
   emptyState.hidden = menus.length > 0;
   menuGrid.hidden = menus.length === 0;
@@ -149,7 +150,9 @@ function renderMenus() {
   renderList(
     menuGrid,
     menus,
-    (menu) => `
+    (menu) => {
+      const isFavorite = favoriteIds.includes(String(menu.id));
+      return `
       <article class="menu-card" data-season="${escapeHtml(menu.category)}">
         <a
           class="menu-visual"
@@ -165,13 +168,21 @@ function renderMenus() {
           </div>
           <h2 class="menu-title">${escapeHtml(menu.name)}</h2>
           <p class="menu-description">${escapeHtml(menu.description)}</p>
-          <div class="menu-actions">
+          <div class="menu-actions has-favorite">
+            <button
+              class="favorite-button ${isFavorite ? 'is-active' : ''}"
+              type="button"
+              data-favorite-id="${escapeHtml(menu.id)}"
+              aria-label="${escapeHtml(menu.name)} 찜하기"
+              aria-pressed="${isFavorite}"
+            >${isFavorite ? '♥' : '♡'}</button>
             <a class="detail-link" href="/menus/detail/?id=${encodeURIComponent(menu.id)}">상세</a>
             <button class="cart-button" type="button" data-open-options="${escapeHtml(menu.id)}">옵션 선택</button>
           </div>
         </div>
       </article>
-    `
+    `;
+    }
   );
 }
 
@@ -321,6 +332,10 @@ function showToast(message, season = state.themeSeason) {
   showToast.timer = window.setTimeout(() => toast.classList.remove('is-visible'), 1800);
 }
 
+function redirectToLoginForFavorite() {
+  window.location.href = '/auth/signup/?next=' + encodeURIComponent(window.location.pathname + window.location.search);
+}
+
 categoryTabs.addEventListener('click', (event) => {
   const button = event.target.closest('button[data-category]');
   if (!button) return;
@@ -338,6 +353,21 @@ searchInput.addEventListener('input', (event) => {
 });
 
 menuGrid.addEventListener('click', (event) => {
+  const favoriteButton = event.target.closest('[data-favorite-id]');
+  if (favoriteButton) {
+    if (!canAddToCart()) {
+      redirectToLoginForFavorite();
+      return;
+    }
+
+    const menu = getMenuById(favoriteButton.dataset.favoriteId);
+    if (!menu) return;
+    const isFavorite = toggleFavoriteMenu(menu.id);
+    showToast(isFavorite ? menu.name + '을 찜했어요' : menu.name + ' 찜을 해제했어요', menu.category);
+    renderMenus();
+    return;
+  }
+
   const button = event.target.closest('[data-open-options]');
   if (!button) return;
 

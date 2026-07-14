@@ -1,4 +1,4 @@
-﻿renderCustomerNav();
+renderCustomerNav();
 const currentUser = requireAuth('customer');
 if (!currentUser) throw new Error('Authentication required');
 
@@ -64,6 +64,8 @@ const favoriteCopy = $('#favorite-copy');
 const favoriteCount = $('#favorite-count');
 const recentList = $('#recent-list');
 const recentEmpty = $('#recent-empty');
+const favoriteList = $('#favorite-list');
+const favoriteEmpty = $('#favorite-empty');
 
 function getItemCount(items) {
   return items.reduce((sum, item) => sum + item.quantity, 0);
@@ -87,9 +89,10 @@ function getRepresentativeSeason(items) {
   return season || 'all';
 }
 
-function getFavoriteSeason(orders) {
-  const items = orders.flatMap((order) => order.items || []);
-  const score = getSeasonScore(items);
+function getFavoriteSeason(orders, favoriteMenus = []) {
+  const orderedItems = orders.flatMap((order) => order.items || []);
+  const favoriteItems = favoriteMenus.map((menu) => ({ menuId: menu.id, category: menu.category, quantity: 2 }));
+  const score = getSeasonScore([...favoriteItems, ...orderedItems]);
   const [season, count] = Object.entries(score).sort((a, b) => b[1] - a[1])[0] || [];
   return { season: season || 'all', count: count || 0 };
 }
@@ -99,11 +102,13 @@ function getRandomSeason() {
   return seasons[Math.floor(Math.random() * seasons.length)];
 }
 
-function getRecommendedMenu(seasonKey) {
+function getRecommendedMenu(seasonKey, favoriteMenus = []) {
   const targetSeason = seasonKey === 'all' ? getRandomSeason() : seasonKey;
-  const menus = getMenus().filter((menu) => menu.category === targetSeason);
-  if (menus.length === 0) return null;
-  return menus[Math.floor(Math.random() * menus.length)];
+  const favoritePool = favoriteMenus.filter((menu) => menu.category === targetSeason);
+  const pool = favoritePool.length > 0 ? favoritePool : getMenus().filter((menu) => menu.category === targetSeason);
+  if (pool.length === 0) return null;
+  const index = new Date().getDate() % pool.length;
+  return pool[index];
 }
 
 function getFriendlyStatus(status) {
@@ -169,16 +174,39 @@ function renderRecentOrders(orders) {
     .join('');
 }
 
+
+function renderFavoriteMenus(favoriteMenus) {
+  const menus = favoriteMenus.slice(0, 4);
+  if (!favoriteList || !favoriteEmpty) return;
+
+  favoriteEmpty.hidden = menus.length > 0;
+  favoriteList.hidden = menus.length === 0;
+
+  renderList(
+    favoriteList,
+    menus,
+    (menu) => `
+      <a class="favorite-menu-card" href="/menus/detail/?id=${encodeURIComponent(menu.id)}" data-season="${escapeHtml(menu.category)}">
+        <img src="${escapeHtml(menu.image || SEASON_IMAGES[menu.category] || SEASON_IMAGES.spring)}" alt="${escapeHtml(menu.name)} 이미지" />
+        <span>
+          <small>${escapeHtml(getCategoryName(menu.category))}</small>
+          <strong>${escapeHtml(menu.name)}</strong>
+        </span>
+      </a>
+    `
+  );
+}
 function renderActivity() {
   const cart = getCart();
   const orders = getCustomerOrders();
+  const favoriteMenus = getFavoriteMenus();
   const itemCount = getItemCount(cart);
   const orderTotal = orders.reduce((sum, order) => sum + order.total, 0);
-  const favorite = getFavoriteSeason(orders);
+  const favorite = getFavoriteSeason(orders, favoriteMenus);
   const favoriteSeasonKey = favorite.count > 0 ? favorite.season : getRandomSeason();
   const favoriteSeason = SEASON_COPY[favoriteSeasonKey] || SEASON_COPY.all;
   const basketSeason = SEASON_COPY[getRepresentativeSeason(cart)] || SEASON_COPY.all;
-  const recommendedMenu = getRecommendedMenu(favoriteSeasonKey);
+  const recommendedMenu = getRecommendedMenu(favoriteSeasonKey, favoriteMenus);
 
   document.body.dataset.favoriteSeason = favoriteSeasonKey;
   renderProfile(favoriteSeasonKey);
@@ -196,11 +224,12 @@ function renderActivity() {
 
   favoriteStat.textContent = favorite.count > 0 ? favoriteSeason.label : '-';
   favoriteCopy.textContent = favorite.count > 0 ? favoriteSeason.sentence : SEASON_COPY.all.sentence;
-  favoriteCount.textContent = `${favorite.count}개 메뉴`;
+  favoriteCount.textContent = favoriteMenus.length > 0 ? `${favoriteMenus.length}개 찜` : `${favorite.count}개 메뉴`;
 
   seasonStat.textContent = favoriteSeason.label;
   seasonCopy.textContent = favorite.count > 0 ? favoriteSeason.sentence : '아직 취향 기록이 적어서 오늘은 계절 메뉴를 랜덤으로 골라봤어요.';
 
+  renderFavoriteMenus(favoriteMenus);
   renderRecentOrders(orders);
 }
 

@@ -36,6 +36,14 @@ create table if not exists public.menus (
   updated_at timestamptz not null default now()
 );
 
+create table if not exists public.favorite_menus (
+  id bigint generated always as identity primary key,
+  user_id text not null references public.profiles(id) on delete cascade,
+  menu_id text not null references public.menus(id) on delete cascade,
+  created_at timestamptz not null default now(),
+  unique (user_id, menu_id)
+);
+
 create table if not exists public.carts (
   id uuid primary key default gen_random_uuid(),
   user_id text not null unique references public.profiles(id) on delete cascade,
@@ -82,6 +90,7 @@ create table if not exists public.order_items (
   options jsonb not null default '{}'::jsonb
 );
 
+create index if not exists favorite_menus_user_id_idx on public.favorite_menus(user_id);
 create index if not exists cart_items_cart_id_idx on public.cart_items(cart_id);
 create index if not exists orders_user_id_idx on public.orders(user_id);
 create index if not exists order_items_order_id_idx on public.order_items(order_id);
@@ -140,6 +149,7 @@ alter table public.profiles enable row level security;
 alter table public.categories enable row level security;
 alter table public.menu_types enable row level security;
 alter table public.menus enable row level security;
+alter table public.favorite_menus enable row level security;
 alter table public.carts enable row level security;
 alter table public.cart_items enable row level security;
 alter table public.orders enable row level security;
@@ -148,7 +158,7 @@ alter table public.order_items enable row level security;
 do $$
 declare table_name text;
 begin
-  foreach table_name in array array['profiles','categories','menu_types','menus','carts','cart_items','orders','order_items'] loop
+  foreach table_name in array array['profiles','categories','menu_types','menus','favorite_menus','carts','cart_items','orders','order_items'] loop
     execute format('drop policy if exists "minicafe demo access" on public.%I', table_name);
     execute format('create policy "minicafe demo access" on public.%I for all to anon using (true) with check (true)', table_name);
   end loop;
@@ -157,8 +167,9 @@ end $$;
 grant usage on schema public to anon;
 grant select on public.categories, public.menu_types to anon;
 grant select, insert, update, delete on public.menus, public.carts, public.cart_items, public.orders, public.order_items to anon;
+grant select, insert, delete on public.favorite_menus to anon;
 revoke all on public.profiles from anon;
 grant select (id, name, email, role, created_at), update (name) on public.profiles to anon;
-grant usage, select on sequence public.cart_items_id_seq, public.order_items_id_seq to anon;
+grant usage, select on sequence public.favorite_menus_id_seq, public.cart_items_id_seq, public.order_items_id_seq to anon;
 grant execute on function public.register_minicafe_user(text, text, text, text) to anon;
 grant execute on function public.login_minicafe_user(text, text) to anon;
