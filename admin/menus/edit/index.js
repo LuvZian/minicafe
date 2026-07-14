@@ -1,4 +1,4 @@
-﻿renderAdminNav();
+renderAdminNav();
 const currentAdmin = requireAuth('admin');
 if (!currentAdmin) throw new Error('관리자 로그인이 필요해요.');
 
@@ -97,6 +97,7 @@ function getFormValue() {
     kind: $('#kind').value,
     optionConfig: getOptionConfig(),
     price: $('#price').value,
+    soldOut: $('#sold-out')?.checked || false,
     image: $('#image').value,
     description: $('#description').value
   };
@@ -161,6 +162,13 @@ function renderForm(item) {
           <input id="price" name="price" type="number" min="0" step="100" required value="${escapeHtml(item.price)}" />
         </label>
 
+        <label class="field stock-field">
+          <span>판매 상태</span>
+          <label class="stock-toggle">
+            <input id="sold-out" name="soldOut" type="checkbox" ${item.soldOut ? 'checked' : ''} />
+            <strong>품절로 표시</strong>
+          </label>
+        </label>
         <label class="field field-wide">
           <span>이미지 URL</span>
           <input id="image" name="image" type="text" value="${escapeHtml(item.image)}" />

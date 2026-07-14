@@ -1,4 +1,4 @@
-﻿renderAdminNav();
+renderAdminNav();
 const currentAdmin = requireAuth('admin');
 if (!currentAdmin) throw new Error('관리자 로그인이 필요해요.');
 
@@ -74,6 +74,7 @@ function getFormValue() {
     kind: $('#kind').value,
     optionConfig: getOptionConfig(),
     price: $('#price').value,
+    soldOut: $('#sold-out')?.checked || false,
     image: $('#image').value,
     description: $('#description').value
   };

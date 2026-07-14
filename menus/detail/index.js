@@ -145,22 +145,24 @@ function renderNotFound() {
 
 function renderDetail(item) {
   let isFavorite = isFavoriteMenu(item.id);
+  const isSoldOut = Boolean(item.soldOut);
   document.body.dataset.season = item.category;
   document.body.classList.add('season-' + item.category);
   document.title = `${item.name} | Minicafe Menu`;
   detailRoot.innerHTML = `
-    <article class="detail-layout">
+    <article class="detail-layout ${isSoldOut ? 'is-sold-out' : ''}">
       <div
         class="menu-visual"
         style="--menu-image: url('${escapeHtml(getMenuImage(item))}')"
         aria-label="${escapeHtml(item.name)} image"
       >
-        <span>${escapeHtml(getCategoryName(item.category))}</span>
+        <span>${isSoldOut ? '품절' : escapeHtml(getCategoryName(item.category))}</span>
       </div>
       <div class="detail-panel">
         <div class="customer-menu-meta">
           <span class="category-pill">${escapeHtml(getCategoryName(item.category))}</span>
           <span class="kind-pill">${escapeHtml(getMenuKindName(item.kind || getMenuKind(item)))}</span>
+          ${isSoldOut ? '<span class="sold-out-badge">품절</span>' : ''}
         </div>
         <div>
           <h1 class="detail-title">${escapeHtml(item.name)}</h1>
@@ -174,7 +176,7 @@ function renderDetail(item) {
             id="favorite-button"
             aria-pressed="${isFavorite}"
           >${isFavorite ? '♥ 찜한 메뉴' : '♡ 메뉴 찜하기'}</button>
-          <button class="primary-button" type="button" id="open-options-button">옵션 선택하고 담기</button>
+          <button class="primary-button" type="button" id="open-options-button" ${isSoldOut ? 'disabled aria-disabled="true"' : ''}>${isSoldOut ? '품절된 메뉴예요' : '옵션 선택하고 담기'}</button>
           <a class="secondary-link" href="/menus/list/">메뉴 더 보기</a>
         </div>
       </div>
@@ -251,6 +253,10 @@ function renderDetail(item) {
     }
 
     if (event.target.closest('#open-options-button')) {
+      if (item.soldOut) {
+        showToast(item.name + '은 지금 품절이에요', item.category);
+        return;
+      }
       quantityInput.value = 1;
       optionOverlay.hidden = false;
       return;
@@ -262,6 +268,11 @@ function renderDetail(item) {
     }
 
     if (event.target.closest('#confirm-add-button')) {
+      if (item.soldOut) {
+        optionOverlay.hidden = true;
+        showToast(item.name + '은 지금 품절이에요', item.category);
+        return;
+      }
       if (!canAddToCart()) {
         redirectToSignupForCart();
         return;
