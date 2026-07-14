@@ -1,22 +1,56 @@
-﻿const MENU_STORAGE_KEY = 'minicafe_menus';
-const CART_STORAGE_KEY = 'minicafe_cart';
-const ORDER_STORAGE_KEY = 'minicafe_orders';
-const AUTH_USERS_STORAGE_KEY = 'minicafe_users';
 const AUTH_SESSION_STORAGE_KEY = 'minicafe_session';
-const MENU_VERSION_STORAGE_KEY = 'minicafe_menu_version';
-const MENU_DATA_VERSION = 'season-menu-options-v2';
 
-function readStorage(key, fallback) {
+function getSupabaseSettings() {
+  const settings = window.MINICAFE_SUPABASE || {};
+  const url = String(settings.url || '').replace(/\/$/, '');
+  const anonKey = String(settings.anonKey || '');
+  const isPlaceholder = !anonKey || anonKey.includes('YOUR_SUPABASE_ANON_KEY');
+
+  return {
+    url,
+    anonKey,
+    enabled: settings.enabled !== false && Boolean(url) && !isPlaceholder
+  };
+}
+
+function getSessionValue() {
   try {
-    const stored = localStorage.getItem(key);
-    return stored ? JSON.parse(stored) : fallback;
+    const stored = sessionStorage.getItem(AUTH_SESSION_STORAGE_KEY);
+    return stored ? JSON.parse(stored) : null;
   } catch (error) {
-    return fallback;
+    return null;
   }
 }
 
-function writeStorage(key, value) {
-  localStorage.setItem(key, JSON.stringify(value));
+function setSessionValue(value) {
+  sessionStorage.setItem(AUTH_SESSION_STORAGE_KEY, JSON.stringify(value));
+}
+
+function requestSupabase(method, path, body = null, prefer = '') {
+  const settings = getSupabaseSettings();
+  if (!settings.enabled) {
+    throw new Error('Supabase is not configured. Check js/supabase-config.js.');
+  }
+
+  const xhr = new XMLHttpRequest();
+
+  try {
+    xhr.open(method, `${settings.url}/rest/v1/${path}`, false);
+    xhr.setRequestHeader('apikey', settings.anonKey);
+    xhr.setRequestHeader('Authorization', `Bearer ${settings.anonKey}`);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    if (prefer) xhr.setRequestHeader('Prefer', prefer);
+    xhr.send(body === null ? null : JSON.stringify(body));
+
+    if (xhr.status < 200 || xhr.status >= 300) {
+      throw new Error(`Supabase request failed (${xhr.status}): ${xhr.responseText}`);
+    }
+
+    return xhr.responseText ? JSON.parse(xhr.responseText) : null;
+  } catch (error) {
+    console.error('Supabase request failed:', error);
+    throw error;
+  }
 }
 
 function generateId() {
@@ -213,59 +247,27 @@ function normalizeEmail(email) {
   return String(email || '').trim().toLowerCase();
 }
 
-function getDefaultAdminUser() {
-  return {
-    id: 'admin-default',
-    name: 'Minicafe Admin',
-    email: 'admin@minicafe.local',
-    password: 'admin1234',
-    role: 'admin',
-    createdAt: new Date().toISOString()
-  };
-}
-
 function getUsers() {
-  const users = readStorage(AUTH_USERS_STORAGE_KEY, []);
-  const defaultAdmin = getDefaultAdminUser();
-  const adminIndex = users.findIndex((user) => normalizeEmail(user.email) === defaultAdmin.email);
-
-  if (adminIndex === -1) {
-    const nextUsers = [defaultAdmin, ...users];
-    writeStorage(AUTH_USERS_STORAGE_KEY, nextUsers);
-    return nextUsers;
-  }
-
-  const savedAdmin = users[adminIndex];
-  if (savedAdmin.role !== 'admin' || savedAdmin.password !== defaultAdmin.password) {
-    const nextUsers = [...users];
-    nextUsers[adminIndex] = {
-      ...savedAdmin,
-      id: savedAdmin.id || defaultAdmin.id,
-      name: savedAdmin.name || defaultAdmin.name,
-      email: defaultAdmin.email,
-      password: defaultAdmin.password,
-      role: 'admin'
-    };
-    writeStorage(AUTH_USERS_STORAGE_KEY, nextUsers);
-    return nextUsers;
-  }
-
-  return users;
+  return requestSupabase('GET', 'profiles?select=id,name,email,role,created_at&order=created_at.desc')
+    .map((row) => ({ ...row, createdAt: row.created_at }));
 }
 
 function saveUsers(users) {
-  writeStorage(AUTH_USERS_STORAGE_KEY, users);
+  users.forEach((user) => {
+    requestSupabase('PATCH', `profiles?id=eq.${encodeURIComponent(user.id)}`, {
+      name: String(user.name || '').trim()
+    }, 'return=minimal');
+  });
 }
 
 function getCurrentUser() {
-  const session = readStorage(AUTH_SESSION_STORAGE_KEY, null);
+  const session = getSessionValue();
   if (!session) return null;
   return getUsers().find((user) => user.id === session.userId) || null;
 }
 
 function registerUser({ name, email, password, role = 'customer' }) {
   const normalizedEmail = normalizeEmail(email);
-  const users = getUsers();
 
   if (!name || !normalizedEmail || !password) {
     return { ok: false, message: 'Please fill in every field.' };
@@ -275,35 +277,32 @@ function registerUser({ name, email, password, role = 'customer' }) {
     return { ok: false, message: 'Password needs at least 6 characters.' };
   }
 
-  if (users.some((user) => normalizeEmail(user.email) === normalizedEmail)) {
-    return { ok: false, message: 'This email is already registered.' };
+  try {
+    const user = requestSupabase('POST', 'rpc/register_minicafe_user', {
+      p_id: generateId(), p_name: String(name).trim(), p_email: normalizedEmail, p_password: password
+    });
+    setSessionValue({ userId: user.id });
+    return { ok: true, user };
+  } catch (error) {
+    const duplicate = String(error.message).includes('Email already registered');
+    return { ok: false, message: duplicate ? 'This email is already registered.' : 'Could not create the account.' };
   }
-
-  const user = {
-    id: generateId(),
-    name: String(name).trim(),
-    email: normalizedEmail,
-    password,
-    role,
-    createdAt: new Date().toISOString()
-  };
-  saveUsers([user, ...users]);
-  writeStorage(AUTH_SESSION_STORAGE_KEY, { userId: user.id });
-  return { ok: true, user };
 }
 
 function loginUser(email, password) {
   const normalizedEmail = normalizeEmail(email);
-  const user = getUsers().find((item) => normalizeEmail(item.email) === normalizedEmail && item.password === password);
+  const user = requestSupabase('POST', 'rpc/login_minicafe_user', {
+    p_email: normalizedEmail, p_password: password
+  });
   if (!user) return { ok: false, message: '이메일 또는 비밀번호가 맞지 않아요.' };
 
-  writeStorage(AUTH_SESSION_STORAGE_KEY, { userId: user.id });
+  setSessionValue({ userId: user.id });
   return { ok: true, user };
 }
 
 function logoutUser() {
-  localStorage.removeItem(AUTH_SESSION_STORAGE_KEY);
   clearCart();
+  sessionStorage.removeItem(AUTH_SESSION_STORAGE_KEY);
 }
 
 function requireAuth(role) {
@@ -393,33 +392,35 @@ function renderAdminNav() {
   }
 }
 function getMenus() {
-  const menus = readStorage(MENU_STORAGE_KEY, null);
-  const version = readStorage(MENU_VERSION_STORAGE_KEY, null);
-  if (Array.isArray(menus) && menus.length > 0 && version === MENU_DATA_VERSION) {
-    const normalizedMenus = menus.map((menu) => ({
-      ...menu,
-      kind: menu.kind || getMenuKind(menu),
-      optionConfig: normalizeMenuOptionConfig(menu)
-    }));
-    if (
-      normalizedMenus.some((menu, index) =>
-        menu.kind !== menus[index].kind ||
-        JSON.stringify(menu.optionConfig || {}) !== JSON.stringify(menus[index].optionConfig || {})
-      )
-    ) {
-      saveMenus(normalizedMenus);
-    }
-    return normalizedMenus;
+  let rows = requestSupabase('GET', 'menus?select=*&order=created_at.asc');
+  if (rows.length === 0) {
+    saveMenus(MENU_ITEMS);
+    rows = requestSupabase('GET', 'menus?select=*&order=created_at.asc');
   }
-
-  writeStorage(MENU_STORAGE_KEY, MENU_ITEMS);
-  writeStorage(MENU_VERSION_STORAGE_KEY, MENU_DATA_VERSION);
-  return MENU_ITEMS.map((menu) => ({ ...menu, kind: menu.kind || getMenuKind(menu), optionConfig: normalizeMenuOptionConfig(menu) }));
+  return rows.map(menuFromRow);
 }
 
 function saveMenus(menus) {
-  writeStorage(MENU_STORAGE_KEY, menus);
-  writeStorage(MENU_VERSION_STORAGE_KEY, MENU_DATA_VERSION);
+  if (!menus.length) return;
+  requestSupabase('POST', 'menus?on_conflict=id', menus.map(menuToRow), 'resolution=merge-duplicates,return=minimal');
+}
+
+function menuFromRow(row) {
+  return {
+    id: row.id, name: row.name, category: row.category_id, kind: row.menu_type_id,
+    optionConfig: row.option_config || {}, price: Number(row.price),
+    description: row.description, image: row.image
+  };
+}
+
+function menuToRow(menu) {
+  const normalized = normalizeMenu(menu);
+  return {
+    id: String(menu.id), name: normalized.name, category_id: normalized.category,
+    menu_type_id: normalized.kind, option_config: normalized.optionConfig,
+    price: normalized.price, description: normalized.description, image: normalized.image,
+    updated_at: new Date().toISOString()
+  };
 }
 
 function getMenuById(id) {
@@ -439,40 +440,64 @@ function normalizeMenu(menu) {
 }
 
 function createMenu(menu) {
-  const menus = getMenus();
   const newMenu = {
     id: generateId(),
     ...normalizeMenu(menu)
   };
-
-  menus.push(newMenu);
-  saveMenus(menus);
+  requestSupabase('POST', 'menus', menuToRow(newMenu), 'return=minimal');
   return newMenu;
 }
 
 function updateMenu(id, updates) {
-  const menus = getMenus();
-  const index = menus.findIndex((menu) => String(menu.id) === String(id));
-  if (index === -1) return null;
-
-  menus[index] = {
-    ...menus[index],
-    ...normalizeMenu(updates)
-  };
-  saveMenus(menus);
-  return menus[index];
+  const existing = getMenuById(id);
+  if (!existing) return null;
+  const updated = { ...existing, ...normalizeMenu(updates) };
+  const row = menuToRow(updated);
+  delete row.id;
+  requestSupabase('PATCH', `menus?id=eq.${encodeURIComponent(id)}`, row, 'return=minimal');
+  return updated;
 }
 
 function deleteMenu(id) {
-  saveMenus(getMenus().filter((menu) => String(menu.id) !== String(id)));
+  requestSupabase('DELETE', `menus?id=eq.${encodeURIComponent(id)}`, null, 'return=minimal');
 }
 
 function getCart() {
-  return readStorage(CART_STORAGE_KEY, []);
+  const user = getCurrentUser();
+  if (!user) return [];
+  const carts = requestSupabase('GET', `carts?user_id=eq.${encodeURIComponent(user.id)}&select=id&limit=1`);
+  if (!carts.length) return [];
+  return requestSupabase('GET', `cart_items?cart_id=eq.${encodeURIComponent(carts[0].id)}&select=*&order=created_at.asc`)
+    .map(cartItemFromRow);
 }
 
 function saveCart(cart) {
-  writeStorage(CART_STORAGE_KEY, cart);
+  const user = getCurrentUser();
+  if (!user) throw new Error('Login is required to save a cart.');
+  const rows = requestSupabase(
+    'POST', 'carts?on_conflict=user_id&select=id', { user_id: user.id, updated_at: new Date().toISOString() },
+    'resolution=merge-duplicates,return=representation'
+  );
+  const cartId = rows[0].id;
+  requestSupabase('DELETE', `cart_items?cart_id=eq.${encodeURIComponent(cartId)}`, null, 'return=minimal');
+  if (cart.length) {
+    requestSupabase('POST', 'cart_items', cart.map((item) => cartItemToRow(cartId, item)), 'return=minimal');
+  }
+}
+
+function cartItemFromRow(row) {
+  return {
+    cartItemId: row.cart_item_key, menuId: row.menu_id, name: row.name, category: row.category_id,
+    kind: row.menu_type_id, price: Number(row.price), quantity: Number(row.quantity), options: row.options || {}
+  };
+}
+
+function cartItemToRow(cartId, item) {
+  return {
+    cart_item_key: item.cartItemId || getCartItemKey(item.menuId, item.options), cart_id: cartId,
+    menu_id: String(item.menuId), name: item.name, category_id: item.category,
+    menu_type_id: item.kind, price: Number(item.price), quantity: Number(item.quantity), options: item.options || {}
+  };
 }
 
 function addToCart(menuId, quantity = 1, options = {}) {
@@ -530,11 +555,15 @@ function getCartTotal() {
 }
 
 function getOrders() {
-  return readStorage(ORDER_STORAGE_KEY, []);
+  return requestSupabase('GET', 'orders?select=*,order_items(*)&order=created_at.desc').map(orderFromRow);
 }
 
 function saveOrders(orders) {
-  writeStorage(ORDER_STORAGE_KEY, orders);
+  orders.forEach((order) => {
+    requestSupabase('PATCH', `orders?id=eq.${encodeURIComponent(order.id)}`, {
+      status: order.status, completed_at: order.completedAt
+    }, 'return=minimal');
+  });
 }
 
 function createOrder(items = getCart()) {
@@ -552,8 +581,31 @@ function createOrder(items = getCart()) {
     completedAt: null
   };
 
-  saveOrders([order, ...getOrders()]);
+  requestSupabase('POST', 'orders', {
+    id: order.id, user_id: order.userId, customer_name: order.customerName,
+    customer_email: order.customerEmail, total: order.total, status: order.status,
+    created_at: order.createdAt, completed_at: order.completedAt
+  }, 'return=minimal');
+  if (items.length) {
+    requestSupabase('POST', 'order_items', items.map((item) => ({
+      order_id: order.id, menu_id: String(item.menuId), name: item.name,
+      category_id: item.category, menu_type_id: item.kind, price: Number(item.price),
+      quantity: Number(item.quantity), options: item.options || {}
+    })), 'return=minimal');
+  }
   return order;
+}
+
+function orderFromRow(row) {
+  return {
+    id: row.id, userId: row.user_id, customerName: row.customer_name,
+    customerEmail: row.customer_email, total: Number(row.total), status: row.status,
+    createdAt: row.created_at, completedAt: row.completed_at,
+    items: (row.order_items || []).map((item) => ({
+      menuId: item.menu_id, name: item.name, category: item.category_id,
+      kind: item.menu_type_id, price: Number(item.price), quantity: Number(item.quantity), options: item.options || {}
+    }))
+  };
 }
 
 
@@ -571,13 +623,14 @@ function getOrderById(id) {
 }
 
 function updateOrderStatus(id, status) {
-  const orders = getOrders();
-  const order = orders.find((item) => String(item.id) === String(id));
+  const order = getOrderById(id);
   if (!order) return null;
 
   order.status = status;
   order.completedAt = status === ORDER_STATUS.COMPLETED.value ? new Date().toISOString() : order.completedAt;
-  saveOrders(orders);
+  requestSupabase('PATCH', `orders?id=eq.${encodeURIComponent(id)}`, {
+    status: order.status, completed_at: order.completedAt
+  }, 'return=minimal');
   return order;
 }
 
