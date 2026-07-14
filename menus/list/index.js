@@ -142,7 +142,9 @@ function renderCategoryTabs() {
 
 function renderMenus() {
   const menus = sortMenusBySeasonKindPrice(getFilteredMenus());
-  const favoriteIds = getFavoriteMenuIds();
+  const user = getCurrentUser();
+  const canFavorite = user && user.role === 'customer';
+  const favoriteIds = canFavorite ? getFavoriteMenuIds() : [];
   resultCount.textContent = `${menus.length} menus`;
   emptyState.hidden = menus.length > 0;
   menuGrid.hidden = menus.length === 0;
@@ -170,13 +172,15 @@ function renderMenus() {
           <h2 class="menu-title">${escapeHtml(menu.name)}${isSoldOut ? '<em class="sold-out-badge">품절</em>' : ''}</h2>
           <p class="menu-description">${escapeHtml(menu.description)}</p>
           <div class="menu-actions has-favorite">
-            <button
-              class="favorite-button ${isFavorite ? 'is-active' : ''}"
-              type="button"
-              data-favorite-id="${escapeHtml(menu.id)}"
-              aria-label="${escapeHtml(menu.name)} 찜하기"
-              aria-pressed="${isFavorite}"
-            >${isFavorite ? '♥' : '♡'}</button>
+            ${canFavorite ? `
+              <button
+                class="favorite-button ${isFavorite ? 'is-active' : ''}"
+                type="button"
+                data-favorite-id="${escapeHtml(menu.id)}"
+                aria-label="${escapeHtml(menu.name)} 찜하기"
+                aria-pressed="${isFavorite}"
+              >${isFavorite ? '♥' : '♡'}</button>
+            ` : ''}
             <a class="detail-link" href="/menus/detail/?id=${encodeURIComponent(menu.id)}">상세</a>
             <button class="cart-button" type="button" data-open-options="${escapeHtml(menu.id)}" ${isSoldOut ? 'disabled aria-disabled="true"' : ''}>${isSoldOut ? '품절' : '옵션 선택'}</button>
           </div>

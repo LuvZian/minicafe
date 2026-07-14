@@ -144,7 +144,9 @@ function renderNotFound() {
 }
 
 function renderDetail(item) {
-  let isFavorite = isFavoriteMenu(item.id);
+  const user = getCurrentUser();
+  const canFavorite = user && user.role === 'customer';
+  let isFavorite = canFavorite ? isFavoriteMenu(item.id) : false;
   const isSoldOut = Boolean(item.soldOut);
   document.body.dataset.season = item.category;
   document.body.classList.add('season-' + item.category);
@@ -170,12 +172,14 @@ function renderDetail(item) {
         </div>
         <div class="detail-price">${formatPrice(item.price)}</div>
         <div class="purchase-box">
-          <button
-            class="favorite-detail-button ${isFavorite ? 'is-active' : ''}"
-            type="button"
-            id="favorite-button"
-            aria-pressed="${isFavorite}"
-          >${isFavorite ? '♥ 찜한 메뉴' : '♡ 메뉴 찜하기'}</button>
+          ${canFavorite ? `
+            <button
+              class="favorite-detail-button ${isFavorite ? 'is-active' : ''}"
+              type="button"
+              id="favorite-button"
+              aria-pressed="${isFavorite}"
+            >${isFavorite ? '♥ 찜한 메뉴' : '♡ 메뉴 찜하기'}</button>
+          ` : ''}
           <button class="primary-button" type="button" id="open-options-button" ${isSoldOut ? 'disabled aria-disabled="true"' : ''}>${isSoldOut ? '품절된 메뉴예요' : '옵션 선택하고 담기'}</button>
           <a class="secondary-link" href="/menus/list/">메뉴 더 보기</a>
         </div>
