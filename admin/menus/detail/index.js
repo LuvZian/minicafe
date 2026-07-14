@@ -1,4 +1,4 @@
-﻿renderAdminNav();
+renderAdminNav();
 const currentAdmin = requireAuth('admin');
 if (!currentAdmin) throw new Error('관리자 로그인이 필요해요.');
 const detailRoot = $('#detail-root');
@@ -29,7 +29,7 @@ function renderDetail(item) {
   document.title = `${item.name} | 메뉴 상세`;
   document.body.dataset.season = item.category;
   detailRoot.innerHTML = `
-    <article class="detail-layout" data-season="${escapeHtml(item.category)}">
+    <article class="detail-layout ${item.soldOut ? 'is-sold-out' : ''}" data-season="${escapeHtml(item.category)}">
       <div
         class="menu-visual"
         style="--menu-image: url('${escapeHtml(item.image || SEASON_IMAGES[item.category] || SEASON_IMAGES.spring)}')"
@@ -42,6 +42,7 @@ function renderDetail(item) {
           <span class="category-pill">계절 · ${escapeHtml(getCategoryName(item.category))}</span>
           <span class="kind-pill">관리자 카테고리 · ${escapeHtml(getMenuKindName(kind))}</span>
           ${optionBadge}
+          ${item.soldOut ? '<span class="sold-out-badge">품절</span>' : '<span class="available-badge">판매중</span>'}
         </div>
         <div>
           <h1 class="detail-title">${escapeHtml(item.name)}</h1>

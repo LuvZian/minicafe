@@ -409,7 +409,7 @@ function menuFromRow(row) {
   return {
     id: row.id, name: row.name, category: row.category_id, kind: row.menu_type_id,
     optionConfig: row.option_config || {}, price: Number(row.price),
-    description: row.description, image: row.image
+    description: row.description, image: row.image, soldOut: Boolean(row.is_sold_out)
   };
 }
 
@@ -419,7 +419,7 @@ function menuToRow(menu) {
     id: String(menu.id), name: normalized.name, category_id: normalized.category,
     menu_type_id: normalized.kind, option_config: normalized.optionConfig,
     price: normalized.price, description: normalized.description, image: normalized.image,
-    updated_at: new Date().toISOString()
+    is_sold_out: normalized.soldOut, updated_at: new Date().toISOString()
   };
 }
 
@@ -435,7 +435,8 @@ function normalizeMenu(menu) {
     optionConfig: normalizeMenuOptionConfig(menu),
     price: Number(menu.price) || 0,
     description: String(menu.description || '').trim(),
-    image: String(menu.image || '').trim()
+    image: String(menu.image || '').trim(),
+    soldOut: Boolean(menu.soldOut)
   };
 }
 
@@ -584,7 +585,7 @@ function cartItemToRow(cartId, item) {
 
 function addToCart(menuId, quantity = 1, options = {}) {
   const menu = getMenuById(menuId);
-  if (!menu) return null;
+  if (!menu || menu.soldOut) return null;
 
   const normalizedOptions = normalizeMenuOptions(menu, options);
   const cartItemId = getCartItemKey(menu.id, normalizedOptions);

@@ -152,21 +152,22 @@ function renderMenus() {
     menus,
     (menu) => {
       const isFavorite = favoriteIds.includes(String(menu.id));
+      const isSoldOut = Boolean(menu.soldOut);
       return `
-      <article class="menu-card" data-season="${escapeHtml(menu.category)}">
+      <article class="menu-card ${isSoldOut ? 'is-sold-out' : ''}" data-season="${escapeHtml(menu.category)}">
         <a
           class="menu-visual"
           style="--menu-image: url('${escapeHtml(getMenuImage(menu))}')"
           href="/menus/detail/?id=${encodeURIComponent(menu.id)}"
           aria-label="${escapeHtml(menu.name)} detail"
         >
-          <span>${escapeHtml(getCategoryName(menu.category))}</span>
+          <span>${isSoldOut ? '품절' : escapeHtml(getCategoryName(menu.category))}</span>
         </a>
         <div class="menu-body">
           <div class="menu-meta price-only">
             <strong>${formatPrice(menu.price)}</strong>
           </div>
-          <h2 class="menu-title">${escapeHtml(menu.name)}</h2>
+          <h2 class="menu-title">${escapeHtml(menu.name)}${isSoldOut ? '<em class="sold-out-badge">품절</em>' : ''}</h2>
           <p class="menu-description">${escapeHtml(menu.description)}</p>
           <div class="menu-actions has-favorite">
             <button
@@ -177,7 +178,7 @@ function renderMenus() {
               aria-pressed="${isFavorite}"
             >${isFavorite ? '♥' : '♡'}</button>
             <a class="detail-link" href="/menus/detail/?id=${encodeURIComponent(menu.id)}">상세</a>
-            <button class="cart-button" type="button" data-open-options="${escapeHtml(menu.id)}">옵션 선택</button>
+            <button class="cart-button" type="button" data-open-options="${escapeHtml(menu.id)}" ${isSoldOut ? 'disabled aria-disabled="true"' : ''}>${isSoldOut ? '품절' : '옵션 선택'}</button>
           </div>
         </div>
       </article>
@@ -373,6 +374,10 @@ menuGrid.addEventListener('click', (event) => {
 
   const menu = getMenuById(button.dataset.openOptions);
   if (!menu) return;
+  if (menu.soldOut) {
+    showToast(menu.name + '은 지금 품절이에요', menu.category);
+    return;
+  }
   openOptionOverlay(menu);
 });
 

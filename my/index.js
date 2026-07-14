@@ -104,8 +104,8 @@ function getRandomSeason() {
 
 function getRecommendedMenu(seasonKey, favoriteMenus = []) {
   const targetSeason = seasonKey === 'all' ? getRandomSeason() : seasonKey;
-  const favoritePool = favoriteMenus.filter((menu) => menu.category === targetSeason);
-  const pool = favoritePool.length > 0 ? favoritePool : getMenus().filter((menu) => menu.category === targetSeason);
+  const favoritePool = favoriteMenus.filter((menu) => menu.category === targetSeason && !menu.soldOut);
+  const pool = favoritePool.length > 0 ? favoritePool : getMenus().filter((menu) => menu.category === targetSeason && !menu.soldOut);
   if (pool.length === 0) return null;
   const index = new Date().getDate() % pool.length;
   return pool[index];

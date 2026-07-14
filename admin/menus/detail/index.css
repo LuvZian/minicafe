@@ -1708,3 +1708,45 @@ body[data-season='winter'] .admin-header .brand::before {
   font-size: var(--font-size-sm) !important;
   font-weight: 900 !important;
 }
+/* Sold-out badges */
+.sold-out-badge,
+.available-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 28px !important;
+  padding: 0 11px !important;
+  margin-left: 8px !important;
+  border-radius: 999px !important;
+  font-size: 12px !important;
+  line-height: 1 !important;
+  font-style: normal !important;
+  font-weight: 950 !important;
+  white-space: nowrap !important;
+}
+
+.sold-out-badge {
+  color: #fffdf8 !important;
+  background: linear-gradient(135deg, #7b6f68, #b0786d) !important;
+  box-shadow: 0 8px 18px rgba(123, 111, 104, 0.18) !important;
+}
+
+.available-badge {
+  color: #365438 !important;
+  background: rgba(185, 214, 148, 0.38) !important;
+  border: 1px solid rgba(127, 168, 102, 0.22) !important;
+}
+
+.is-sold-out .menu-visual,
+.is-sold-out .menu-thumb {
+  filter: grayscale(0.42) saturate(0.72) brightness(0.86) !important;
+}
+
+.is-sold-out .cart-button:disabled,
+.primary-button:disabled {
+  color: #fffdf8 !important;
+  background: linear-gradient(135deg, #9a928c, #b7ada4) !important;
+  box-shadow: none !important;
+  cursor: not-allowed !important;
+  transform: none !important;
+}

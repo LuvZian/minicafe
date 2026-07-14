@@ -221,8 +221,9 @@ function bindHeroSlider() {
 }
 
 function getTodayPick(menuItems) {
-  const favoriteMenus = getFavoriteMenus();
-  const source = favoriteMenus.length > 0 ? favoriteMenus : menuItems;
+  const favoriteMenus = getFavoriteMenus().filter((menu) => !menu.soldOut);
+  const availableMenus = menuItems.filter((menu) => !menu.soldOut);
+  const source = favoriteMenus.length > 0 ? favoriteMenus : availableMenus;
   if (source.length === 0) return null;
   const index = new Date().getDate() % source.length;
   return source[index];
@@ -305,7 +306,7 @@ function renderFeatured() {
   if (!featuredGrid) return;
 
   const season = getActiveSeason();
-  const seasonalMenus = menus.filter((menu) => menu.category === season);
+  const seasonalMenus = menus.filter((menu) => menu.category === season && !menu.soldOut);
   const featured = seasonalMenus.slice(0, 4);
   const label = SEASON_LABELS[season] || '계절';
   const shortLabel = SEASON_SHORT_LABELS[season] || '계절';

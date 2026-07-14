@@ -54,11 +54,11 @@ function renderMenus() {
     menuList,
     filteredMenus,
     (menu) => `
-      <article class="menu-row" data-season="${escapeHtml(menu.category)}">
+      <article class="menu-row ${menu.soldOut ? 'is-sold-out' : ''}" data-season="${escapeHtml(menu.category)}">
         <div class="menu-thumb" style="--menu-image: url('${escapeHtml(menu.image || SEASON_IMAGES[menu.category] || SEASON_IMAGES.spring)}')" aria-hidden="true"></div>
         <div class="menu-info">
-          <p class="menu-meta">${escapeHtml(getCategoryName(menu.category))}</p>
-          <h3 class="menu-title">${escapeHtml(menu.name)}</h3>
+          <p class="menu-meta">${escapeHtml(getCategoryName(menu.category))}${menu.soldOut ? ' · 품절' : ''}</p>
+          <h3 class="menu-title">${escapeHtml(menu.name)}${menu.soldOut ? '<span class="sold-out-badge">품절</span>' : ''}</h3>
           <p class="menu-description">${escapeHtml(menu.description)}</p>
         </div>
         <strong class="price">${formatPrice(menu.price)}</strong>

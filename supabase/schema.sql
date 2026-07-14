@@ -32,6 +32,7 @@ create table if not exists public.menus (
   price integer not null check (price >= 0),
   description text not null default '',
   image text not null default '',
+  is_sold_out boolean not null default false,
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
