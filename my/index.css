@@ -2489,3 +2489,81 @@ body[data-favorite-season='winter'] .my-hero {
 .profile-message {
   color: #6f9d55 !important;
 }
+/* Favorite shelf */
+.favorite-panel {
+  position: relative !important;
+  overflow: hidden !important;
+  padding: clamp(24px, 4vw, 42px) !important;
+  background: linear-gradient(145deg, rgba(255, 254, 250, 0.98), rgba(250, 252, 242, 0.94)) !important;
+  border: 1px solid rgba(142, 160, 121, 0.14) !important;
+  border-radius: 30px !important;
+  box-shadow: 0 18px 44px rgba(87, 104, 84, 0.1) !important;
+}
+
+.favorite-panel::before {
+  position: absolute !important;
+  inset: 0 0 auto !important;
+  height: 6px !important;
+  background: linear-gradient(90deg, #f0b8c8 0%, #b9d694 34%, #f2c998 66%, #bed9e8 100%) !important;
+  content: '' !important;
+}
+
+.favorite-list {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 16px !important;
+  margin-top: 22px !important;
+}
+
+.favorite-menu-card {
+  display: grid !important;
+  grid-template-columns: 92px minmax(0, 1fr) !important;
+  align-items: center !important;
+  gap: 14px !important;
+  min-height: 116px !important;
+  padding: 12px !important;
+  color: #2f3029 !important;
+  text-decoration: none !important;
+  background: rgba(255, 254, 250, 0.94) !important;
+  border: 1px solid rgba(142, 160, 121, 0.14) !important;
+  border-radius: 22px !important;
+  box-shadow: 0 12px 22px rgba(87, 104, 84, 0.08) !important;
+}
+
+.favorite-menu-card img {
+  display: block !important;
+  width: 92px !important;
+  height: 92px !important;
+  object-fit: cover !important;
+  border-radius: 18px !important;
+}
+
+.favorite-menu-card span {
+  display: grid !important;
+  gap: 6px !important;
+  min-width: 0 !important;
+}
+
+.favorite-menu-card small {
+  color: #70835a !important;
+  font-weight: 900 !important;
+}
+
+.favorite-menu-card strong {
+  overflow-wrap: anywhere !important;
+  word-break: keep-all !important;
+  font-size: 18px !important;
+  line-height: 1.25 !important;
+}
+
+@media (max-width: 980px) {
+  .favorite-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 620px) {
+  .favorite-list {
+    grid-template-columns: 1fr !important;
+  }
+}

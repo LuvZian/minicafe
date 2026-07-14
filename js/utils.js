@@ -462,7 +462,89 @@ function deleteMenu(id) {
   requestSupabase('DELETE', `menus?id=eq.${encodeURIComponent(id)}`, null, 'return=minimal');
 }
 
+
+function getFavoriteMenuIds() {
+  const user = getCurrentUser();
+  if (!user || user.role !== 'customer') return [];
+
+  try {
+    return requestSupabase(
+      'GET',
+      `favorite_menus?user_id=eq.${encodeURIComponent(user.id)}&select=menu_id&order=created_at.desc`
+    ).map((row) => String(row.menu_id));
+  } catch (error) {
+    console.warn('favorite_menus table is not ready yet.', error);
+    return [];
+  }
+}
+
+function getFavoriteMenus() {
+  const favoriteIds = getFavoriteMenuIds();
+  if (favoriteIds.length === 0) return [];
+
+  const menuMap = new Map(getMenus().map((menu) => [String(menu.id), menu]));
+  return favoriteIds.map((id) => menuMap.get(String(id))).filter(Boolean);
+}
+
+function isFavoriteMenu(menuId) {
+  return getFavoriteMenuIds().includes(String(menuId));
+}
+
+function addFavoriteMenu(menuId) {
+  const user = getCurrentUser();
+  if (!user || user.role !== 'customer') return false;
+
+  try {
+    requestSupabase(
+      'POST',
+      'favorite_menus?on_conflict=user_id,menu_id',
+      { user_id: user.id, menu_id: String(menuId) },
+      'resolution=merge-duplicates,return=minimal'
+    );
+    return true;
+  } catch (error) {
+    console.warn('favorite_menus table is not ready yet.', error);
+    return false;
+  }
+}
+
+function removeFavoriteMenu(menuId) {
+  const user = getCurrentUser();
+  if (!user || user.role !== 'customer') return false;
+
+  try {
+    requestSupabase(
+      'DELETE',
+      `favorite_menus?user_id=eq.${encodeURIComponent(user.id)}&menu_id=eq.${encodeURIComponent(String(menuId))}`,
+      null,
+      'return=minimal'
+    );
+    return true;
+  } catch (error) {
+    console.warn('favorite_menus table is not ready yet.', error);
+    return false;
+  }
+}
+
+function toggleFavoriteMenu(menuId) {
+  if (isFavoriteMenu(menuId)) {
+    removeFavoriteMenu(menuId);
+    return false;
+  }
+
+  return addFavoriteMenu(menuId);
+}
+
+function getFavoriteSeasonFromFavorites() {
+  const scores = getFavoriteMenus().reduce((acc, menu) => {
+    acc[menu.category] = (acc[menu.category] || 0) + 1;
+    return acc;
+  }, {});
+  const [season] = Object.entries(scores).sort((a, b) => b[1] - a[1])[0] || [];
+  return season || '';
+}
 function getCart() {
+
   const user = getCurrentUser();
   if (!user) return [];
   const carts = requestSupabase('GET', `carts?user_id=eq.${encodeURIComponent(user.id)}&select=id&limit=1`);

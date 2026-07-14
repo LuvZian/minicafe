@@ -1,4 +1,4 @@
-﻿body {
+body {
   background:
     radial-gradient(circle at 12% 5%, rgba(217, 164, 65, 0.18), transparent 28%),
     radial-gradient(circle at 82% 16%, rgba(125, 146, 120, 0.16), transparent 26%),
@@ -2775,5 +2775,90 @@ body.season-winter .cart-button {
 
   .option-modal .fork-control {
     justify-self: stretch !important;
+  }
+}
+/* Favorite menu controls */
+.menu-actions.has-favorite {
+  display: grid !important;
+  grid-template-columns: 46px minmax(0, 1fr) minmax(118px, auto) !important;
+  align-items: center !important;
+  gap: 10px !important;
+}
+
+.favorite-button {
+  display: inline-grid !important;
+  place-items: center !important;
+  width: 46px !important;
+  height: 46px !important;
+  min-width: 46px !important;
+  padding: 0 !important;
+  color: var(--menu-primary, #8aa35f) !important;
+  background: rgba(255, 253, 248, 0.92) !important;
+  border: 1px solid color-mix(in srgb, var(--menu-primary, #8aa35f) 24%, #fff) !important;
+  border-radius: 999px !important;
+  box-shadow: 0 10px 18px rgba(48, 42, 34, 0.08) !important;
+  font-size: 22px !important;
+  font-weight: 950 !important;
+  line-height: 1 !important;
+  cursor: pointer !important;
+  transition: transform 180ms ease, color 180ms ease, background 180ms ease, box-shadow 180ms ease !important;
+}
+
+.favorite-button:hover,
+.favorite-button.is-active {
+  color: #fffdf8 !important;
+  background: linear-gradient(135deg, var(--menu-primary-dark, #5f7950), var(--menu-primary, #8aa35f)) !important;
+  box-shadow: 0 14px 24px color-mix(in srgb, var(--menu-primary, #8aa35f) 26%, transparent) !important;
+  transform: translateY(-1px) !important;
+}
+
+@media (max-width: 640px) {
+  .menu-actions.has-favorite {
+    grid-template-columns: 46px 1fr !important;
+  }
+
+  .menu-actions.has-favorite .cart-button {
+    grid-column: 1 / -1 !important;
+  }
+}
+/* Favorite button layout refinement */
+.menu-card {
+  position: relative !important;
+}
+
+.menu-actions.has-favorite {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) minmax(128px, auto) !important;
+  align-items: center !important;
+  gap: 10px !important;
+}
+
+.menu-actions.has-favorite .favorite-button {
+  position: absolute !important;
+  top: 18px !important;
+  right: 18px !important;
+  z-index: 4 !important;
+  width: 44px !important;
+  height: 44px !important;
+  min-width: 44px !important;
+  color: var(--menu-primary-dark, #5f7950) !important;
+  background: rgba(255, 253, 248, 0.9) !important;
+  border: 1px solid rgba(255, 253, 248, 0.72) !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+.menu-actions.has-favorite .favorite-button:hover,
+.menu-actions.has-favorite .favorite-button.is-active {
+  color: #fffdf8 !important;
+  background: linear-gradient(135deg, var(--menu-primary-dark, #5f7950), var(--menu-primary, #8aa35f)) !important;
+}
+
+@media (max-width: 640px) {
+  .menu-actions.has-favorite {
+    grid-template-columns: minmax(0, 1fr) minmax(112px, auto) !important;
+  }
+
+  .menu-actions.has-favorite .cart-button {
+    grid-column: auto !important;
   }
 }

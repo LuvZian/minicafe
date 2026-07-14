@@ -2601,3 +2601,26 @@ body.season-winter .cart-button {
     justify-self: stretch !important;
   }
 }
+/* Favorite detail action */
+.favorite-detail-button {
+  width: 100% !important;
+  min-height: 52px !important;
+  padding: 0 18px !important;
+  color: var(--detail-primary-dark, #516f42) !important;
+  background: rgba(255, 253, 248, 0.94) !important;
+  border: 1px solid color-mix(in srgb, var(--detail-primary, #8aa35f) 24%, #fff) !important;
+  border-radius: 999px !important;
+  box-shadow: 0 12px 24px rgba(48, 42, 34, 0.08) !important;
+  font: inherit !important;
+  font-weight: 950 !important;
+  cursor: pointer !important;
+  transition: transform 180ms ease, color 180ms ease, background 180ms ease, box-shadow 180ms ease !important;
+}
+
+.favorite-detail-button:hover,
+.favorite-detail-button.is-active {
+  color: #fffdf8 !important;
+  background: linear-gradient(135deg, var(--detail-primary-dark, #516f42), var(--detail-primary, #8aa35f)) !important;
+  box-shadow: 0 16px 28px color-mix(in srgb, var(--detail-primary, #8aa35f) 26%, transparent) !important;
+  transform: translateY(-1px) !important;
+}

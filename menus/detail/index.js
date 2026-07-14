@@ -1,4 +1,4 @@
-﻿renderCustomerNav();
+renderCustomerNav();
 const detailRoot = $('#detail-root');
 const toast = $('#toast');
 const menuId = getQueryParam('id');
@@ -28,6 +28,11 @@ function normalizeForkCount(value) {
 }
 
 function redirectToSignupForCart() {
+  const next = encodeURIComponent(window.location.pathname + window.location.search);
+  window.location.href = `/auth/signup/?next=${next}`;
+}
+
+function redirectToLoginForFavorite() {
   const next = encodeURIComponent(window.location.pathname + window.location.search);
   window.location.href = `/auth/signup/?next=${next}`;
 }
@@ -139,6 +144,7 @@ function renderNotFound() {
 }
 
 function renderDetail(item) {
+  let isFavorite = isFavoriteMenu(item.id);
   document.body.dataset.season = item.category;
   document.body.classList.add('season-' + item.category);
   document.title = `${item.name} | Minicafe Menu`;
@@ -162,6 +168,12 @@ function renderDetail(item) {
         </div>
         <div class="detail-price">${formatPrice(item.price)}</div>
         <div class="purchase-box">
+          <button
+            class="favorite-detail-button ${isFavorite ? 'is-active' : ''}"
+            type="button"
+            id="favorite-button"
+            aria-pressed="${isFavorite}"
+          >${isFavorite ? '♥ 찜한 메뉴' : '♡ 메뉴 찜하기'}</button>
           <button class="primary-button" type="button" id="open-options-button">옵션 선택하고 담기</button>
           <a class="secondary-link" href="/menus/list/">메뉴 더 보기</a>
         </div>
@@ -221,6 +233,20 @@ function renderDetail(item) {
           normalizeForkCount(forkInput.value) + Number(forkButton.dataset.forkStep)
         );
       }
+      return;
+    }
+
+    if (event.target.closest('#favorite-button')) {
+      if (!canAddToCart()) {
+        redirectToLoginForFavorite();
+        return;
+      }
+      isFavorite = toggleFavoriteMenu(item.id);
+      const favoriteButton = $('#favorite-button');
+      favoriteButton.classList.toggle('is-active', isFavorite);
+      favoriteButton.setAttribute('aria-pressed', String(isFavorite));
+      favoriteButton.textContent = isFavorite ? '♥ 찜한 메뉴' : '♡ 메뉴 찜하기';
+      showToast(isFavorite ? `${item.name}을 찜했어요` : `${item.name} 찜을 해제했어요`, item.category);
       return;
     }
 

@@ -221,9 +221,17 @@ function bindHeroSlider() {
 }
 
 function getTodayPick(menuItems) {
-  if (menuItems.length === 0) return null;
-  const index = new Date().getDate() % menuItems.length;
-  return menuItems[index];
+  const favoriteMenus = getFavoriteMenus();
+  const source = favoriteMenus.length > 0 ? favoriteMenus : menuItems;
+  if (source.length === 0) return null;
+  const index = new Date().getDate() % source.length;
+  return source[index];
+}
+
+function getFavoriteHeroSlideIndex() {
+  const favoriteSeason = getFavoriteSeasonFromFavorites();
+  if (!favoriteSeason) return -1;
+  return HERO_SLIDES.findIndex((slide) => slide.season === favoriteSeason);
 }
 
 function renderTodayPick(menu) {
@@ -326,6 +334,8 @@ function renderFeatured() {
 }
 
 menus = getMenus();
+const favoriteHeroSlideIndex = getFavoriteHeroSlideIndex();
+if (favoriteHeroSlideIndex >= 0) activeHeroSlide = favoriteHeroSlideIndex;
 bindHeroSlider();
 renderTodayPick(getTodayPick(menus));
 renderSummary();
